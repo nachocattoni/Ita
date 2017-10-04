@@ -20,6 +20,8 @@
 
 ## Bitácora
 
+El checkbox indica si asistí o no a la clase.
+
 Semana 1
 
 - [x] Dia 16/08: Teoría, vimos la primer parte del apunte de sucesiones y series numéricas.
