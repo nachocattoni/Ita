@@ -50,9 +50,9 @@ Semana 3
 
 Semana 4
 
-- [ ] Día 06/09: Pedir lo que se dió.
+- [ ] Día 06/09: Método de la falsa posición, punto fijo.
 
-- [ ] Día 07/09: Pedir lo que se dió.
+- [ ] Día 07/09: Asumo que dieron práctica.
 
 - [x] Día 08/09: Empezamos la unidad 4, de sistemas de ecuaciones no lineales.
 
