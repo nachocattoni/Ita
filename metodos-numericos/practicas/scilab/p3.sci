@@ -21,6 +21,9 @@ function y = f5(x)
     y = x.*x/4 - sin(x);
 endfunction
 
+function y = f(x)
+    y = x^3
+endfunction
 
 function y = f6(x)
     g = 9.8

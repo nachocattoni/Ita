@@ -86,3 +86,6 @@ Semana 7
 Semana 8
 
 - [x] Día 04/10: Repaso antes del exámen.
+
+- [ ] Día 05/10: EXÁMEN TEÓRICO, no fuí porque no puedo rendirlo, no tengo aprobada Álgebra Lineal.
+
