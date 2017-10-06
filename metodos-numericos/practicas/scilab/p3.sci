@@ -25,6 +25,10 @@ function y = f(x)
     y = x^3
 endfunction
 
+function y = g(x)
+    y = (x^2 - 1) / 3;
+endfunction
+
 function y = f6(x)
     g = 9.8
     T = 5
@@ -59,6 +63,31 @@ function r = bisecar(f, a, b, err)
         end
     end
     r = m;
+endfunction
+
+//// Iteración de punto fijo, f función, p0 aproximación inicial,
+//// err es la tolerancia dada, y n la cantidad máxima de repeticiones.
+function p = fixear(f, p0, err, n)
+    for i = 1:n
+        p = f(p0);
+        if norm(p - p0) < err then
+            mprintf("El método de punto fijo fue exitoso! vamos los pibes!")
+            return;
+        end
+        p0 = p
+    end
+    mprintf("El método de punto fijo no fue exitoso\n");
+endfunction
+
+//// Otro método de punto fijo, g es la función, x la estimación inicial
+//// y err la tolerancia.
+function x = puntofijar(g, x, err)
+    ant = x
+    x = g(x)
+    while norm( x - ant ) > err
+        ant = x
+        x = g(x)
+    end
 endfunction
 
 function r = secar(f, x0, x1, err)
@@ -107,7 +136,7 @@ function r = falsiar(f, p0, p1, err, n)
         if norm(p - p1) < err then
             r = p;
             mprintf("Regula falsi finalizó con éxito (increíble)\n");
-            return r;
+            return;
         end
         q = f(p)
         if q*q1 < 0 then
@@ -118,6 +147,21 @@ function r = falsiar(f, p0, p1, err, n)
         q1 = q
     end
     mprintf("Regula falsi falló horriblemente (huh, como siempre)\n");
+endfunction
+
+//// Recibe las dimensiones, un multiplicador, y una tolerancia, 
+//// se fija si converge el método de Newton en puntos aleatorios de la
+//// dimensión especificada con la tolerancia requerida.
+//// Valores recomendados si no tenés idea: mul = 10, err = 1
+function aleatoriar(dim, mul, err)
+    while %T
+        try
+            r = newtar(f, mul * random(1, dim), err);
+            if find(isnan(r)) then continue; else break; end
+        catch
+            continue
+        end
+    end
 endfunction
 
 x = (-0:0.0001:0.2);
