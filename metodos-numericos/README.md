@@ -87,5 +87,5 @@ Semana 8
 
 - [x] Día 04/10: Repaso antes del exámen.
 
-- [ ] Día 05/10: EXÁMEN TEÓRICO, no fuí porque no puedo rendirlo, no tengo aprobada Álgebra Lineal.
+- [ ] Día 05/10: EXÁMEN TEÓRICO, no fuí porque no puedo rendirlo, no tengo aprobada Álgebra Lineal. Preguntaron: probar convergencia de serie geométrica y telescópica, demostrar QR, explicar Newton, probar su orden de convergencia y que existe un intervalo que converge con raiz única, explicar error absoluto y relativo y decir cual es más útil, explicar cifras significativas y supresión de cifras, dar ejemplo.
 
