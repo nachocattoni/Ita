@@ -81,6 +81,45 @@ function r = newtar(f, x1, err)
     r = x1;
 endfunction
 
+//// Implementación de Roman
+function r = falsear(f, a, b, err)
+    ant = a - err
+    while( b-a > err )
+        m = (a * f(b) - b * f(a)) / (f(b) - f(a))
+        disp(m)
+        if( norm(m-ant) < err ) break; end
+        if( sign(f(a)) * sign(f(m)) < 1 )
+            b = m;
+        else
+            a = m;
+        end
+        ant = m
+    end
+    r = m;
+endfunction
+
+//// Implementada desde el Burden y Faires
+function r = falsiar(f, p0, p1, err, n)
+    q0 = f(p0);
+    q1 = f(p1);
+    for i = 2:n
+        p = p1 - q1*(p1 - p0)/(q1 - q0);
+        if norm(p - p1) < err then
+            r = p;
+            mprintf("Regula falsi finalizó con éxito (increíble)\n");
+            return r;
+        end
+        q = f(p)
+        if q*q1 < 0 then
+            p0 = p1;
+            q0 = q1;
+        end
+        p1 = p
+        q1 = q
+    end
+    mprintf("Regula falsi falló horriblemente (huh, como siempre)\n");
+endfunction
+
 x = (-0:0.0001:0.2);
 
 //plot(x, f6(x))

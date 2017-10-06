@@ -107,3 +107,17 @@ function L = choleskear(A)
         L(2:n,2:n) = choleskear(A(2:n, 2:n) - L(2:n,1) * L(2:n,1)')
     end
 endfunction
+
+function [Q, R] = querrar(A)
+    [n, m] = size(A)
+    Q = zeros(n, n)
+    Q(:,1) = A(:,1) / norm(A(:,1))
+    for i = 2:n
+        w = A(:,i)
+        for j = 1:i-1
+            w = w - (Q(:,j)'*A(:,i)) * Q(:,j)
+        end
+        Q(:,i) = w / norm(w)  
+    end
+    R = Q'*A
+endfunction
