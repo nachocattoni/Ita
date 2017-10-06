@@ -87,5 +87,10 @@ Semana 8
 
 - [x] Día 04/10: Repaso antes del exámen.
 
-- [ ] Día 05/10: EXÁMEN TEÓRICO, no fuí porque no puedo rendirlo, no tengo aprobada Álgebra Lineal. Preguntaron: probar convergencia de serie geométrica y telescópica, demostrar QR, explicar Newton, probar su orden de convergencia y que existe un intervalo que converge con raiz única, explicar error absoluto y relativo y decir cual es más útil, explicar cifras significativas y supresión de cifras, dar ejemplo.
+- [ ] Día 05/10: EXÁMEN TEÓRICO, no fuí porque no puedo rendirlo, no tengo aprobada Álgebra Lineal. Preguntaron:
+
+    - Dar las expresiones de sumas parciales de las series telescópica y geométrica. Explicar bajo qué condiciones convergen y divergen.
+    - Explicar la diferencia entre error relativo y absoluto. Justificar cuál es más correcto para revisar la precisión de una aproximación. Explicar supresión de cifras significativas y dar un ejemplo.
+    - Explicar Método de Newton. Dar su orden de convergencia y demostrarlo. Decir bajo qué condiciones tiene una única raíz en un intervalo [a,b]. Demostrarlo.
+    - Explicar en qué consiste factorización QR y cómo se la consigue.
 
