@@ -94,3 +94,4 @@ Semana 8
     - Explicar Método de Newton. Dar su orden de convergencia y demostrarlo. Decir bajo qué condiciones tiene una única raíz en un intervalo [a,b]. Demostrarlo.
     - Explicar en qué consiste factorización QR y cómo se la consigue.
 
+- [x] Día 06/10: EXÁMEN PRÁCTICO.
