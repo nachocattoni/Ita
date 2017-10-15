@@ -95,3 +95,11 @@ Semana 8
     - Explicar en qué consiste factorización QR y cómo se la consigue.
 
 - [x] Día 06/10: EXÁMEN PRÁCTICO.
+
+Semana 9
+
+- [ ] Día 11/10: Pedir lo que se dió, falté.
+
+- [X] Día 12/10: Clase práctica, hice la primer parte del ejercicio 1 de la práctica 5, me codeé mi propio Jacobi y Gauss Seidel.
+
+- [ ] Día 13/10: Pedir lo que se dió, no fui por la TecnoMate.
