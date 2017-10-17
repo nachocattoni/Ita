@@ -14,6 +14,13 @@
 
   Por qué?
 
+- En Scilab, esto también da error:
+
+  ```javascript
+  A = [0 2 4; 1 -1 -1; 1 -1 2];
+  spec(A) > 1e-15;
+  ```
+
 - En la práctica 2, en el ejercicio 5 y 6, no debería la serie de Taylor estar definida alrededor de algun punto? se toma como que ese punto es cero?
 
 - Cómo obtengo la n-ésima derivada sin que el error sea catastrófico?
