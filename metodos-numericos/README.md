@@ -2,8 +2,6 @@
 
 ## Dudas
 
-- La definición de la cantidad de cifras significativas de un valor aproximado respecto de uno verdadero parece ambigua.
-
 - En Scilab, lo siguiente da error:
 
   ```javascript
@@ -14,6 +12,12 @@
 
   Por qué?
 
+  Respuesta: al parecer, horner devuelve un número complejo, se soluciona con:
+
+  ```javascript
+  - real(horner(p, r(1))) < %eps
+  ```
+
 - En Scilab, esto también da error:
 
   ```javascript
@@ -21,9 +25,10 @@
   spec(A) > 1e-15;
   ```
 
-- En la práctica 2, en el ejercicio 5 y 6, no debería la serie de Taylor estar definida alrededor de algun punto? se toma como que ese punto es cero?
+  Respuesta: por la misma razón que en el anterior, hay que usar la función "real" a lo que devuelve "spec".
 
 - Cómo obtengo la n-ésima derivada sin que el error sea catastrófico?
+
 
 ## Bitácora
 
@@ -110,3 +115,9 @@ Semana 9
 - [X] Día 12/10: Clase práctica, hice la primer parte del ejercicio 1 de la práctica 5, me codeé mi propio Jacobi y Gauss Seidel.
 
 - [ ] Día 13/10: Pedir lo que se dió, no fui por la TecnoMate.
+
+Semana 10
+
+- [x] Día 18/10: Empezamos con interpolaciones, vimos la existencia y unicidad del polinomio interpolante, la matriz de Vandermonde, la interpolación de Lagrange, diferencias divididas, e interpolación por diferencias divididas de Newton.
+
+- [x] Día 19/10: Última clase para hacer la práctica 5.

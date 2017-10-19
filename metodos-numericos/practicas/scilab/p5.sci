@@ -26,7 +26,9 @@ function y = radioEspectralear(A)
         D = diag(diag(A));
         R = A - D;
         y = max(abs(spec(inv(D)*R))) < 1;
+        disp(max(abs(spec(inv(D)*R))), "Radio Espectral da: ");
     catch
+        mprintf("El radio espectral no se pudo calcular :(");
         y = %F;
     end
 endfunction
@@ -34,7 +36,7 @@ endfunction
 // A: matriz cuadrada, te devuelve la solucion si
 // radioEspectralear da %T (o una aproximación,
 // ya que puede converger muuuuuy lento).
-function y = jacobear(A, x, b)
+function y = jacobear(A, x, b, tol)
     n = size(A, 1);
     y = x;
     for rep=1:15000
@@ -44,13 +46,17 @@ function y = jacobear(A, x, b)
             y(i) = (b(i) - A(i,:)*x) / guarda;
             A(i, i) = guarda;
         end
+        if(norm(x - y) < tol)
+            mprintf("JACOBI TERMINA LUEGO DE %d ITERACIONES", rep);
+            break;
+        end
         x = y;
     end
 endfunction
 
 disp( radioEspectralear(A1), "Funciona para la primera? " );
 disp( radioEspectralear(A2), "Funciona para la segunda? " );
-res = jacobear(A2, x2, b2);
+res = jacobear(A2, x2, b2, 1e-9);
 disp(res, "La solucion encontrada es: ");
 disp(A2*res, "Para checkear, la multiplicamos por A2: ");
 disp(b2, "Esto era lo que debía dar: ");
@@ -98,7 +104,7 @@ endfunction
 
 //// Te da la solucion si la matriz es diagonal dominante,
 //// o simétrica y definida positiva.
-function y = gaussSeidelear(A, x, b)
+function y = gaussSeidelear(A, x, b, tol)
     n = size(A, 1);
     y = x;
     for rep=1:15000
@@ -113,6 +119,9 @@ function y = gaussSeidelear(A, x, b)
                 v2 = sum(mat(i+1:n));
             end
             y(i) = (b(i) - v1 - v2) / A(i, i);
+        end
+        if(norm(x - y) < tol)
+            break;
         end
         x = y;
     end
@@ -130,14 +139,59 @@ mprintf("La matriz 1 no es apta para Gaussear :(\n");
 
 //if(aptaParaGaussear(A2))
     disp("La matriz 2 es apta para Gaussear!");
-    res = gaussSeidelear(A2, x2, b2);
+    res = gaussSeidelear(A2, x2, b2, 1e-9);
     disp(res, "Gauss-Seidel para la segunda matriz: ");
     disp(A2*res, "Para checkear, la multiplicamos por A2: ");
     disp(b2, "Esto es lo que debía dar: ");
 //end
 
+/// Parte c) ///
 for i = 1:72
     mprintf("*");
 end
-mprintf("\n");
+mprintf("\nParte c)\n");
+mprintf("Como resolver la primer matriz si ninguno de los dos métodos funciona?");
+disp(jacobear(A2, x2, b2, 1e-2), "Con 1e-2 de tolerancia la matriz 2 da: ");
+for i = 1:72
+    mprintf("*");
+end
 
+//// Ejercicio 2
+
+mprintf("\n<<< Ejercicio 2) >>>\n");
+for i = 1:72
+    mprintf("*");
+end
+
+//// Ejercicio 5, robado a Gonza :3
+
+function [sol, iter]=SOR(A,b,x0,tol)
+    iter = 0;
+    n = size(A, 1);
+    D = diag(diag(A));
+    D = inv(D);
+    ant = x0;
+    S = max(abs(spec(eye(n,n) - D*A)))
+    w = 2/(1+sqrt(1-S^2));
+   while ( %T )
+    for i=1:n
+     aux1 = 0; 
+     for j=1:i-1
+        aux1 = aux1 + A(i,j)*sol(j)
+     end
+     aux2 = 0;
+     for j=i+1:n
+        aux2 = aux2 + A(i,j)*ant(j)
+     end
+     
+     sol(i) = w/A(i,i) * (b(i) - aux1 - aux2) + (1 - w)*ant(i)
+     iter = iter + 1;
+    end
+    disp(sol);
+    disp(ant);
+    if norm(sol - ant) < tol
+        break;
+     end
+     ant = sol;
+   end
+endfunction
