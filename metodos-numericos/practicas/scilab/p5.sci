@@ -141,3 +141,35 @@ for i = 1:72
 end
 mprintf("\n");
 
+//// Ejercicio 5, robado a Gonza :3
+
+function [sol, iter]=SOR(A,b,x0,tol)
+    iter = 0;
+    n = size(A, 1);
+    D = diag(diag(A));
+    D = inv(D);
+    ant = x0;
+    S = max(abs(spec(eye(n,n) - D*A)))
+    w = 2/(1+sqrt(1-S^2));
+   while ( %T )
+    for i=1:n
+     aux1 = 0; 
+     for j=1:i-1
+        aux1 = aux1 + A(i,j)*sol(j)
+     end
+     aux2 = 0;
+     for j=i+1:n
+        aux2 = aux2 + A(i,j)*ant(j)
+     end
+     
+     sol(i) = w/A(i,i) * (b(i) - aux1 - aux2) + (1 - w)*ant(i)
+     iter = iter + 1;
+    end
+    disp(sol);
+    disp(ant);
+    if norm(sol - ant) < tol
+        break;
+     end
+     ant = sol;
+   end
+endfunction
