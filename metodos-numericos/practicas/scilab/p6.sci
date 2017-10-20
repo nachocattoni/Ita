@@ -41,11 +41,31 @@ A2 = [1 0 0; -0.1 0 0.1; -0.1 -0.1 2];
 
 //// Ejercicio 3
 
-for k=0:1000
-    A = [1 -1 0; -2 4 -2; 0, -1, 1 + 0.1*k];
-    charp = poly(spec(A), "x", "r");
-    eigenv = spec(A);
-    disp(charp);
-    disp(eigenv);
-    gerschgorinear(A);
-end
+function ej3()
+    for k=0:10
+        A = [1 -1 0; -2 4 -2; 0, -1, 1 + 0.1*k];
+        charp = poly(spec(A), "x", "r");
+        eigenv = spec(A);
+        disp(charp);
+        disp(eigenv);
+        gerschgorinear(A);
+    end
+endfunction
+
+//// Ejercicio 4
+
+function [v, l] = powerade(A, zv, iter)
+    n = size(A, 1);
+    for rep=1:iter
+        wn = A*zv;
+        zn = wn / norm(wn);
+        for k=1:n
+            if(abs(wn(k)) > 1e-12)
+                l = wn(k) / zv;
+                break;
+            end
+        end
+        zv = zn;
+    end
+    v = wn;
+endfunction
