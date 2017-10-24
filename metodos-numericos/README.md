@@ -121,3 +121,7 @@ Semana 10
 - [x] Día 18/10: Empezamos con interpolaciones, vimos la existencia y unicidad del polinomio interpolante, la matriz de Vandermonde, la interpolación de Lagrange, diferencias divididas, e interpolación por diferencias divididas de Newton.
 
 - [x] Día 19/10: Última clase para hacer la práctica 5.
+
+- [x] Día 20/10: Dimos el error de la interpolación polinomial, y lo demostramos con el teorema generalizado de Rolle.
+
+Semana 11
