@@ -125,3 +125,5 @@ Semana 10
 - [x] Día 20/10: Dimos el error de la interpolación polinomial, y lo demostramos con el teorema generalizado de Rolle.
 
 Semana 11
+
+- [ ] Día 25/10: Falté, pedir lo que dieron.
