@@ -127,3 +127,8 @@ Semana 10
 Semana 11
 
 - [ ] Día 25/10: Falté, pedir lo que dieron.
+
+- [x] Día 26/10: No hubo clases, JCC 2017.
+
+- [x] Día 27/10: No hubo clases, JCC 2017.
+
