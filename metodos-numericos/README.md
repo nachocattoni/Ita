@@ -132,3 +132,10 @@ Semana 11
 
 - [x] Día 27/10: No hubo clases, JCC 2017.
 
+Semana 12:
+
+- [x] Día 01/11: La clase la dio Nico, dimos teorema de Weierstrass, aproximación de mínimos cuadrados.
+
+- [x] Día 02/11: Clase práctica, empezamos la práctica 7.
+
+- [x] Día 03/11: Dimos métodos de integración numérica, y continuamos la práctica 7.
