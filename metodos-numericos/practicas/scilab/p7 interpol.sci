@@ -54,7 +54,27 @@ function [p, err] = minicuadrar(x, y, k)
     err = y - X * a
 endfunction
 
+function p = chebyshevear(n)
+    if n == 0 then
+        p = poly([1], "x", "coeff")
+    end
+    if n == 1 then
+        p = poly([0 1], "x", "coeff")                        
+    end
+    if n > 1 then
+      for k = 1:n
+           p = 2 * poly([0 1],"x","coeff") * chebyshevear(n-1) - chebyshevear(n-2)
+        end
+    end
+endfunction
 
+function r = getchebypointar(n, a, b)
+    /// PARA APROXIMAR POLINOMIOS DE GRADOS N, PASAR N+1 ASI OBTENES N+1 PUNTOS
+    r = zeros(n,1)
+    for k = 0:n-1
+        r(k+1) = (b - a) / 2 * cos(%pi * (2 * k + 1) / (2 * n)) + (a + b) / 2
+    end
+endfunction
 
 /// EJ 1
 Y = [1.0 1.2214 1.4918 1.8221]
@@ -124,37 +144,54 @@ clc();
 
 // Ej 8
 
+//Al hacer crecer n, 
+//Para valores cercanos a cero, el error converge a cero,
+//mientras que para valores lejanos a éste, e.g., -5, diverge
+//a infinito.
+
+//function y = f(x)
+//    y = 1 ./ (1 + x .* x) 
+//endfunction
+//
+//disp("pepe")
+//clf()
+//
+//for n = [2 4 6 10 14 ]
+//    X = -5:(10/n):5
+//    Pn = internewtar(X', f(X'))
+//    X2 = -4:0.1:4
+//    plot(X2', f(X2') - horner(Pn, X2'), "r")
+//    sleep(1000)
+//    
+//end 
 
 
-function y = f(x)
-    y = 1 ./ (1+x.*x) 
-endfunction
+// Ej 9
+//T4 = chebyshevear(4)
+//X = roots(T4 / 8)
+//Y = exp(X)
+//p = internewtar(X, Y)
+//
+//// funcion
+//X2 = -1:0.01:1
+//plot(X2,horner(p,X2))
+//
+//plot2d(X, Y,-1)
+//disp(T4/8)
+//
+//disp(X)
+//disp(getchebypointar(4,-1,1))
+//
+//// error
+//clf();
+//plot(X2, abs(exp(X2) - horner(p, X2)),"r")
 
-disp("pepe")
+
+//Ej 10
 clf()
-for n = [2 4 6 10 14]
-    X = -5:(10/n):5
-    Pn = internewtar(X', f(X'))
-    X2 = -5:0.1:5
-    plot(X2', f(X2'))
-    plot(X2', f(X2') - horner(Pn, X2')', "r")
-    sleep(1000)
-    
-end 
-
-function p=chebyshevear(n)
-    
-    if n==0 then
-        p = poly([1],"x","coeff")
-    end
-    
-    if n ==1 then
-        p = poly([0 1],"x","coeff")                        
-    end
-   
-   for k=1:n
-       
-       p = 2*poly([0 1],"x","coeff")*chebyshevear(n-1)-chebyshevear(n-2)
-   end
-endfunction
-
+X = getchebypointar(4,0,%pi/2)
+X2 = 0:0.1:%pi/2
+Y = cos(X)
+p = internewtar(X, Y)
+plot(X2', cos(X2'), "r")
+plot(X2', horner(p, X2'), "b")
