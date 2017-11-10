@@ -39,7 +39,11 @@ function g = fijarx(f, x)
     deff('r = g(y)', 'r = f(' + string(x) + ',y)')
 endfunction
 
-function I = Simpsonar2D(f, a, b, cc, dd, n)
+function y = test(a, b)
+    y = 2
+endfunction
+
+function I = Trapeciar2D(f, a, b, cc, dd, n)
     hx = (b - a) / n
     for kx = 0:n
         x = a + kx*hx
@@ -53,6 +57,7 @@ function I = Simpsonar2D(f, a, b, cc, dd, n)
             d = dd
         end
 
+        subI = 0
         hy = (d - c) / n
         for ky = 0:n
             y = c + ky*hy
@@ -67,10 +72,13 @@ function I = Simpsonar2D(f, a, b, cc, dd, n)
                 w = w / 2
             end
             
-            I = I + w*f(x, y)
+            subI = subI + w*f(x, y)
         end
+        subI = subI * hy
+        
+        I = I + subI
     end
-    I = I * hx * hy
+    I = I * hx
 endfunction
 
 //function I = Simpsonar2D(f, xa, xb, ya, yb, xn, yn)
