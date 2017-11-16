@@ -81,6 +81,52 @@ function I = Trapeciar2D(f, a, b, cc, dd, n)
     I = I * hx
 endfunction
 
+function I = Simpsonar2D(f, a, b, cc, dd, n)
+    I = 0
+    hx = (b - a) / n
+    for kx = 0:n
+        x = a + kx*hx
+        
+        // asumo que ambas son funciones
+        if(typeof(cc) == "function")
+            c = cc(x)
+            d = dd(x)
+        else
+            c = cc
+            d = dd
+        end
+
+        subI = 0
+        hy = (d - c) / n
+        for ky = 0:n
+            y = c + ky*hy
+            
+            w = 1
+            
+            if(kx ~= 0 & kx ~= n)
+                if( modulo(kx, 2) == 0 )
+                    w = w * 2
+                else
+                    w = w * 4
+                end
+            end
+
+            if(ky ~= 0 & ky ~= n)
+                if( modulo(ky, 2) == 0 )
+                    w = w * 2
+                else
+                    w = w * 4
+                end
+            end
+            subI = subI + w * f(x, y)
+        end
+        subI = subI * hy / 3
+        
+        I = I + subI
+    end
+    I = I * hx / 3
+endfunction
+
 //function I = Simpsonar2D(f, xa, xb, ya, yb, xn, yn)
 //    /// LA CANTIDAD DE INTERVALOS n DEBE SER PAR
 //    h = (xb - xa) / xn
@@ -117,10 +163,103 @@ endfunction
 //disp(Ireal)
 //disp( 0.05^2 / 12 )
 
+
+function [I]=DoubleIntegralTrap(a,b,n,c,d,m,f)
+    //This function calculates the double integral of f(x,y)
+    //in the rectangular domain a < x < b, c < y < d through a
+    //generalization of the trapezoidal rule.
+    Dx = (b - a)/n;
+    Dy = (d - c)/m;
+    x = zeros(1,n+1);
+    y = zeros(1,m+1);
+    F = zeros(n+1,m+1);
+    for i = 1:n+1
+        x(1,i) = a + (i-1)*Dx;
+    end;
+    for j = 1:m+1
+        y(1,j) = c + (j-1)*Dy;
+    end;
+    for i = 1:n+1
+        for j = 1:m+1
+            F(i,j) = f(x(1,i),y(1,j));
+        end;
+    end;
+    I = F(1,1) + F(1,m+1) + F(n+1,1) + F(n+1,m+1);
+    for i = 2:n
+        I = I + 2*(F(i,1) + F(i,m+1));
+    end;
+    for j = 2:m
+        I = I + 2*(F(1,j) + F(n+1,j));
+    end;
+    for i = 2:n
+        for j = 2:m
+            I = I + 4*F(i,j);
+        end;
+    end;
+    I = I*Dx*Dy/4;
+    //end of DoubleIntegral function
+endfunction
+
+function [I]=DoubleIntegralSimp(a,b,n,c,d,m,f)
+
+    Dx = (b - a)/n;
+    Dy = (d - c)/m;
+    
+    x = zeros(1,n+1);
+    y = zeros(1,m+1);
+    
+    Rx = zeros(1, n+1);
+    Ry = zeros(1, m+1);
+    
+    F = zeros(n+1,m+1);
+    for i = 1:n+1
+        x(1,i) = a + (i-1)*Dx;
+    end;
+    for j = 1:m+1
+        y(1,j) = c + (j-1)*Dy;
+    end;
+    for i = 1:n+1
+        for j = 1:m+1
+            F(i,j) = f(x(1,i),y(1,j));
+        end;
+    end;
+    
+    resto = 2
+    for i = 1:n+1
+        Rx(i) = resto
+        resto = 6 - resto
+    end
+    Rx(1) = 1
+    Rx(n + 1) = 1
+    
+    resto = 2
+    for i = 1:m+1
+        Ry(i) = resto
+        resto = 6 - resto
+    end
+    Ry(1) = 1
+    Ry(m + 1) = 1    
+    
+    R = Rx' * Ry
+    //disp(F)
+    I = sum(F .* R)/9 * Dx * Dy 
+    //end of DoubleIntegral function
+endfunction
+
 // Ej 2
 
-deff('y = f(x)', 'y = 1/x')
-I = trapeciar(f, 1, 3, 4)
-disp(I)
-disp(intg(1,3,f))
+//deff('y = f(x)', 'y = 1/x')
+//I = trapeciar(f, 1, 3, 4)
+//disp(I)
+//disp(intg(1,3,f))
 
+function z = f(x, y)
+    if ( x^2 + y^2 ) <= 2*x then
+        z = 1
+    else
+        z = 0
+    end
+endfunction
+
+z1 = DoubleIntegralSimp(0, 2, 1500, -1, 1, 1500, f)
+disp(z1)
