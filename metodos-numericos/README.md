@@ -29,6 +29,7 @@
 
 - Cómo obtengo la n-ésima derivada sin que el error sea catastrófico?
 
+  Respuesta: googleá derivada numérica.
 
 ## Bitácora
 
@@ -139,3 +140,19 @@ Semana 12:
 - [x] Día 02/11: Clase práctica, empezamos la práctica 7.
 
 - [x] Día 03/11: Dimos métodos de integración numérica, y continuamos la práctica 7.
+
+Semana 13:
+
+- [x] Día 08/11: Faltan completar cosas, pero vimos el método compuesto de Simpson, su error, e integración numérica con dominio bidimensional. También anotamos demostraciones que no son necesarias saber para el parcial teórico.
+
+- [x] Día 09/11: Clase práctica.
+
+- [x] Día 10/11: Clase práctica.
+
+Semana 14:
+
+- [x] Día 15/11: Clase de repaso para el parcial.
+
+## Arte
+
+![Esto es arte!](arte.png)
