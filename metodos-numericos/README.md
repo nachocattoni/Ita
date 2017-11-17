@@ -153,6 +153,10 @@ Semana 14:
 
 - [x] Día 15/11: Clase de repaso para el parcial.
 
+- [x] Día 16/11: Clase práctica.
+
+- [x] Día 17/11: Clase práctica.
+
 ## Arte
 
 ![Esto es arte!](arte.png)
