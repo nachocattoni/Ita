@@ -37,6 +37,9 @@ endfunction
 // radioEspectralear da %T (o una aproximación,
 // ya que puede converger muuuuuy lento).
 function y = jacobear(A, x, b, tol)
+//    Sea D = diag(A)
+//    x_sig = (I - inv(D) * A) * x + inv(D) * b
+    
     n = size(A, 1);
     y = x;
     for rep=1:15000
@@ -90,9 +93,9 @@ function y = simetrica(A)
 endfunction
 
 //// Da true si la matriz es definida positiva
-//// NO FUNCIONA, TESTEAR A MANO... :(
+//// QUIZAS FUNCIONA, TESTEAR A MANO... :(
 function y = dp(A)
-    y = and(spec(A) > 1e-15);
+    y = and(real(spec(A)) > 1e-15);
 endfunction
 
 //// Te dice si tu matriz esta apta para darle con Gauss-Seidel
@@ -127,23 +130,23 @@ function y = gaussSeidelear(A, x, b, tol)
     end
 endfunction
 
-// La primera no es apta para gaussear, pero no me anda el test :(
-//if(aptaParaGaussear(A1))
-//    disp("La matriz 1 es apta para Gaussear!");
-//    res = gaussSeidelear(A1, x1, b1);
-//    disp(res, "Gauss-Seidel para la segunda matriz: ");
-//    disp(A1*res, "Para checkear, la multiplicamos por A1: ");
-//    disp(b2, "Esto es lo que debía dar: ");
-//end
+//La primera no es apta para gaussear, pero no me anda el test :(
+if(aptaParaGaussear(A1))
+    disp("La matriz 1 es apta para Gaussear!");
+    res = gaussSeidelear(A1, x1, b1);
+    disp(res, "Gauss-Seidel para la segunda matriz: ");
+    disp(A1*res, "Para checkear, la multiplicamos por A1: ");
+    disp(b2, "Esto es lo que debía dar: ");
+end
 mprintf("La matriz 1 no es apta para Gaussear :(\n");
 
-//if(aptaParaGaussear(A2))
+if(aptaParaGaussear(A2))
     disp("La matriz 2 es apta para Gaussear!");
     res = gaussSeidelear(A2, x2, b2, 1e-9);
     disp(res, "Gauss-Seidel para la segunda matriz: ");
     disp(A2*res, "Para checkear, la multiplicamos por A2: ");
     disp(b2, "Esto es lo que debía dar: ");
-//end
+end
 
 /// Parte c) ///
 for i = 1:72
@@ -171,7 +174,7 @@ function [sol, iter]=SOR(A,b,x0,tol)
     D = diag(diag(A));
     D = inv(D);
     ant = x0;
-    S = max(abs(spec(eye(n,n) - D*A)))
+    S = max(abs(real(spec(eye(n,n) - D*A))))
     w = 2/(1+sqrt(1-S^2));
    while ( %T )
     for i=1:n

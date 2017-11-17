@@ -7,6 +7,8 @@ clc
 A1 = [1 0 0; -1 0 1; -1 -1 2];
 
 function [cota_inf, cota_sup] = gerschgorinear(A)
+    // Devuelve la cota inferior y la cota superior de los autovalores
+    // Tambien hace un plot, que da mas informacion...
     cota_inf = 0;
     cota_sup = 0;
     n = size(A, 1);
@@ -33,8 +35,6 @@ A2 = [1 0 0; -0.1 0 0.1; -0.1 -0.1 2];
 // gerschgorinear(A2);
 // disp(spec(A2))
 
-// Kip gowin
-
 //// Ejercicio 2
 
 // bueno, mejor no
@@ -55,6 +55,9 @@ endfunction
 //// Ejercicio 4
 
 function [v, l] = powerade(A, zv, iter)
+    // zv es un vector inicial, iter cantidad de iteraciones
+    // metodo de la potencia, aproxima el autovalor de mayor
+    // valor absoluto, y su autovector asociado
     n = size(A, 1);
     for rep=1:iter
         wn = A*zv;
@@ -69,3 +72,22 @@ function [v, l] = powerade(A, zv, iter)
     end
     v = wn;
 endfunction
+
+// En teoria, este anda mejor...
+function [v,l] = poweradeGonza(A, zv, iter)
+    n = size(A, 1);
+    for rep=1:iter
+        wn = A*zv;
+        zn = wn / norm(wn);
+        for k=1:n
+          if(abs(wn(k)) > 1e-12)
+             l = wn(k) / zv;
+              break;
+            end
+        end
+        zv = zn;
+    end
+    v = zn;
+    l = l(1);
+endfunction
+

@@ -2,7 +2,7 @@
 clear();
 
 function D = difinitar(x, y)
-    //D(i,j) = f[x_i ... x_j]
+    //D(i,j) = f[x_i ... x_j] DIFERENCIAS DIVIDIDAS
     n = length(y)
     D = diag(y)
     for j = 2:n
@@ -13,6 +13,7 @@ function D = difinitar(x, y)
 endfunction
 
 function p = internewtar(x, y)
+    // para una interp de grado n, pasar n+1 puntos
     n = length(x)
     D = difinitar(x, y)
     p = poly([0], "x", "coeff")
@@ -24,6 +25,7 @@ function p = internewtar(x, y)
 endfunction
 
 function p = Lkar(j, x)
+//     L_k(x) = Productorio{ desde i = 0, i != k hasta n}[ (x - x(i)) / (x(k) - x(i))]
     n = length(x)
     p = poly([1], "x", "coeff")
     for m = 1:n
@@ -33,11 +35,13 @@ function p = Lkar(j, x)
 endfunction
 
 function p = interlagrangear(x, y)
+    // para una interp de grado n-1, pasar n puntos
     p = poly([0], "x", "coeff")
     n = length(y)
     for i = 1:n
        p = p + Lkar(i, x) * y(i) 
     end
+//    El polinomio P(x) = Sumatorio {desde k = 1 hasta n} [ L_k(x) * y(k)]
 endfunction
 
 function [p, err] = minicuadrar(x, y, k)
@@ -48,7 +52,7 @@ function [p, err] = minicuadrar(x, y, k)
             X(i,j+1) = x(i)**j
         end
     end
-    //a = inv(X'*X)*X'*y 
+//    a = inv(X'*X)*X'*y 
     a = linsolve(X'*X,-X'*y)
     p = poly(a, "x", "coeff")
     err = y - X * a
@@ -70,6 +74,7 @@ endfunction
 
 function r = getchebypointar(n, a, b)
     /// PARA APROXIMAR POLINOMIOS DE GRADOS N, PASAR N+1 ASI OBTENES N+1 PUNTOS
+    /// DA LOS MEJORES PUNTOS EN LOS CUALES INTERPOLAR (ESCRITO POR MAXI, PUEDE ESTAR MAL :v)
     r = zeros(n,1)
     for k = 0:n-1
         r(k+1) = (b - a) / 2 * cos(%pi * (2 * k + 1) / (2 * n)) + (a + b) / 2

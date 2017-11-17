@@ -35,15 +35,9 @@ function r = suma(x, y)
     r = x + y
 endfunction
 
-function g = fijarx(f, x)
-    deff('r = g(y)', 'r = f(' + string(x) + ',y)')
-endfunction
-
-function y = test(a, b)
-    y = 2
-endfunction
-
+// SE BANCA PASAR FUNCIONES COMO ARGUMENTOS EN Y
 function I = Trapeciar2D(f, a, b, cc, dd, n)
+    /// CANT INTERVALOS N DEBE SER PAR
     hx = (b - a) / n
     for kx = 0:n
         x = a + kx*hx
@@ -81,74 +75,6 @@ function I = Trapeciar2D(f, a, b, cc, dd, n)
     I = I * hx
 endfunction
 
-function I = Simpsonar2D(f, a, b, cc, dd, n)
-    I = 0
-    hx = (b - a) / n
-    for kx = 0:n
-        x = a + kx*hx
-        
-        // asumo que ambas son funciones
-        if(typeof(cc) == "function")
-            c = cc(x)
-            d = dd(x)
-        else
-            c = cc
-            d = dd
-        end
-
-        subI = 0
-        hy = (d - c) / n
-        for ky = 0:n
-            y = c + ky*hy
-            
-            w = 1
-            
-            if(kx ~= 0 & kx ~= n)
-                if( modulo(kx, 2) == 0 )
-                    w = w * 2
-                else
-                    w = w * 4
-                end
-            end
-
-            if(ky ~= 0 & ky ~= n)
-                if( modulo(ky, 2) == 0 )
-                    w = w * 2
-                else
-                    w = w * 4
-                end
-            end
-            subI = subI + w * f(x, y)
-        end
-        subI = subI * hy / 3
-        
-        I = I + subI
-    end
-    I = I * hx / 3
-endfunction
-
-//function I = Simpsonar2D(f, xa, xb, ya, yb, xn, yn)
-//    /// LA CANTIDAD DE INTERVALOS n DEBE SER PAR
-//    h = (xb - xa) / xn
-//    
-//    I = f(xa, ) + f(b)
-//    for k = 1:n-1
-//        x = a + k * h
-//        if modulo(k,2) == 1 then
-//            I = I + 4 * f(x)
-//        else
-//            I = I + 2 * f(x)            
-//        end
-//    end
-//    I = I * h/3
-////    El error es
-////    -h^4 * (b-a) / 180 * max(abs(f''''(x))) para x entre a y b
-//endfunction
-
-//function I = Simponar2D(f, xa, xb, ya, yb, xn, yn)
-//    I = Simpsonar( )
-//endfunction
-
 /// Ej 1
 
 //I = Simpsonar(log, 1, 2, 20)
@@ -164,10 +90,11 @@ endfunction
 //disp( 0.05^2 / 12 )
 
 
-function [I]=DoubleIntegralTrap(a,b,n,c,d,m,f)
-    //This function calculates the double integral of f(x,y)
-    //in the rectangular domain a < x < b, c < y < d through a
-    //generalization of the trapezoidal rule.
+function [I]=DoubleIntegralTrap(a, b, n, c, d, m, f)
+//    TRAPECIO 2D
+//    a < b, n: cantidad de divisiones sobre x
+//    c < d, m: cantidad de divisiones sobre y
+
     Dx = (b - a)/n;
     Dy = (d - c)/m;
     x = zeros(1,n+1);
@@ -200,7 +127,10 @@ function [I]=DoubleIntegralTrap(a,b,n,c,d,m,f)
     //end of DoubleIntegral function
 endfunction
 
-function [I]=DoubleIntegralSimp(a,b,n,c,d,m,f)
+function [I]=DoubleIntegralSimp(a, b, n, c, d, m, f)
+//    SIMPSON 2D
+//    a < b, n: cantidad de divisiones sobre x
+//    c < d, m: cantidad de divisiones sobre y
 
     Dx = (b - a)/n;
     Dy = (d - c)/m;
@@ -254,12 +184,9 @@ endfunction
 //disp(intg(1,3,f))
 
 function z = f(x, y)
-    if ( x^2 + y^2 ) <= 2*x then
-        z = 1
-    else
-        z = 0
-    end
+//    z = 1 / (%pi * sqrt(x * (1-x)))
+    z = sin(x + y)
 endfunction
 
-z1 = DoubleIntegralSimp(0, 2, 1500, -1, 1, 1500, f)
+z1 = DoubleIntegralSimp(0, 1, 2, 0, 2, 2, f)
 disp(z1)
