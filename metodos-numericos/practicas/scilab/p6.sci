@@ -54,40 +54,22 @@ endfunction
 
 //// Ejercicio 4
 
-function [v, l] = powerade(A, zv, iter)
+function [vector, lambda] = powerade(A, zv, iter)
     // zv es un vector inicial, iter cantidad de iteraciones
     // metodo de la potencia, aproxima el autovalor de mayor
     // valor absoluto, y su autovector asociado
     n = size(A, 1);
     for rep=1:iter
         wn = A*zv;
-        zn = wn / norm(wn);
+        zn = wn / norm(wn, 'inf');
         for k=1:n
-            if(abs(wn(k)) > 1e-12)
-                l = wn(k) / zv;
+            if(abs(zn(k)) > 1e-12)
+                lambda = wn(k) / zv(k);
                 break;
             end
         end
         zv = zn;
     end
-    v = wn;
-endfunction
-
-// En teoria, este anda mejor...
-function [v,l] = poweradeGonza(A, zv, iter)
-    n = size(A, 1);
-    for rep=1:iter
-        wn = A*zv;
-        zn = wn / norm(wn);
-        for k=1:n
-          if(abs(wn(k)) > 1e-12)
-             l = wn(k) / zv;
-              break;
-            end
-        end
-        zv = zn;
-    end
-    v = zn;
-    l = l(1);
+    vector = zn;
 endfunction
 
