@@ -40,7 +40,7 @@ function [Q, R] = QR(A)
         for j = 1:i-1
             w = w - (Q(:,j)'*A(:,i)) * Q(:,j)
         end
-        Q(:,i) = w / norm(w)  
+        Q(:,i) = w / norm(w)
     end
     R = Q'*A
 endfunction
@@ -65,18 +65,18 @@ function b = checkJacobi(A)
     try
         D = diag(diag(A))
         R = A - D
-        b = radioEspectral( inv(D) * R ) < 1 
+        b = radioEspectral( diag(1 ./ diag(D)) * R ) < 1 
     catch
         b = %f
     end
+    // Agregar el método general de la norma
 endfunction
-
 
 // Método de Jacobi                                                          //
 //                                                                           //
 // A, x, b: Describen el sistema de ecuaciones, x es aproximación inicial    //
-// tol: Tolerancia requerida                                                 //
-// iter: Cantidad de iteraciones a realizar                                  //
+// tol: Tolerancia requerida, por defecto 1e-4                               //
+// iter: Cantidad de iteraciones a realizar, por defecto 15k                 //
 // y: Aproximación de la solucion                                            //
 // cnt: Cantidad de iteraciones realizadas realmente                         //
 //                                                                           //
@@ -110,8 +110,8 @@ function [y, cnt] = Jacobi(A, x, b, tol, iter)
     end
 endfunction
 
-EJ_JacobiA1 = [0  2  4; 
-               1 -1 -1; 
+EJ_JacobiA1 = [0  2  4;
+               1 -1 -1;
                1 -1  2];
 EJ_Jacobib1 = [0 0.375 0]';
 EJ_Jacobix1 = [5 7 10]';
@@ -121,3 +121,40 @@ EJ_JacobiA2 = [ 1 -1  0;
                 0 -1  1.1];
 EJ_Jacobib2 = [0 1 0]';
 EJ_Jacobix2 = [1 4 3]';
+
+// Método de Gauss-Seidel                                                    //
+//                                                                           //
+//                                                                           //
+
+function [y, cnt] = GaussSeidel(A, x, b, tol, iter)
+    if ~exists("iter", "local") then
+        iter = 15000
+    end
+    if ~exists("tol", "local") then
+        tol = 1e-4
+    end
+   
+    n = size(A, 1);
+    y = x;
+    
+    cnt = 0
+    while cnt < iter
+        cnt = cnt + 1
+        for i=1:n
+            mat = A(i,:).*y';
+            v1 = 0;
+            v2 = 0;
+            if(i > 1)
+                v1 = sum(mat(1:i-1));
+            end
+            if(i < n)
+                v2 = sum(mat(i+1:n));
+            end
+            y(i) = (b(i) - v1 - v2) / A(i, i);
+        end
+        if(norm(x - y) < tol)
+            break;
+        end
+        x = y;
+    end
+endfunction
