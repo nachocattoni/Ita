@@ -88,7 +88,7 @@ function [y, cnt] = Jacobi(A, x, b, tol, iter)
         iter = 15000
     end
     if ~exists("tol", "local") then
-        tol = 1e-4
+        tol = 1e-9
     end
     
     n = size(A, 1);
@@ -131,7 +131,7 @@ function [y, cnt] = GaussSeidel(A, x, b, tol, iter)
         iter = 15000
     end
     if ~exists("tol", "local") then
-        tol = 1e-4
+        tol = 1e-9
     end
    
     n = size(A, 1);
@@ -158,3 +158,29 @@ function [y, cnt] = GaussSeidel(A, x, b, tol, iter)
         x = y;
     end
 endfunction
+
+// Minimos Cuadrados                                                  //
+
+function [p, err] = MinimosCuadrados(x, y, k)
+    n = length(x)
+    X = ones(n, k+1)
+    for i = 1:n
+        for j = 1:k
+            X(i,j+1) = x(i)**j
+        end
+    end
+//    a = inv(X'*X)*X'*y 
+    a1 = linsolve(X'*X,-X'*y)
+    a2 = GaussSeidel(X'*X, -X'*y, y, 1e-1, 5)
+    disp(norm(a1 - a2), "Ojo, la dif con linsolve es")
+    a = a2
+    p = poly(a, "x", "coeff")
+    err = y - X * a
+endfunction
+
+X = [0 0.15 0.31 0.5 0.6 0.75]'
+Y = [1 1.004 1.031 1.117 1.223 1.422 ]'
+p = MinimosCuadrados(X, Y, 5)
+X2 = 0:0.01:1
+plot(X2,horner(p,X2))
+plot2d(X, Y,-1)
