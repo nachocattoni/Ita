@@ -31,10 +31,6 @@ function I = trapeciar(f, a, b, n)
 //    h^2 (b-a) / 12 * max(abs(f''(x))) para x entre a y b
 endfunction
 
-function r = suma(x, y)
-    r = x + y
-endfunction
-
 // SE BANCA PASAR FUNCIONES COMO ARGUMENTOS EN Y
 function I = Trapeciar2D(f, a, b, cc, dd, n)
     /// CANT INTERVALOS N DEBE SER PAR

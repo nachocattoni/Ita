@@ -152,11 +152,57 @@ function [y, cnt] = GaussSeidel(A, x, b, tol, iter)
             end
             y(i) = (b(i) - v1 - v2) / A(i, i);
         end
+        disp(norm(x - y), "Raro")
         if(norm(x - y) < tol)
             break;
         end
         x = y;
     end
+endfunction
+
+// Sustitución Regresiva                                                     //
+//                                                                           //
+// Resuelve el sistema de ecuaciones Ax = b, con A triangular inferior.      //
+
+function x = SustitucionRegresiva(A, b)
+    n = size(A, 1)
+    x(n) = b(n) / A(n, n)
+    for i = n-1:-1:1
+        x(i) = (b(i) - A(i,i+1:n) * x(i+1:n)) / A(i,i)
+    end
+endfunction
+
+// Método de Gauss                                                           //
+//                                                                           //
+// Resuelve el sistema de ecuaciones Ax = b dando como resultado la matriz   //
+// P de permutacion de filas, la solucion x, y deja a A como triangular      //
+// inferior.                                                                 //
+
+function [x, P, A, b] = Gauss(A, b)
+    n = size(A, 1)
+    P = eye(n, n)
+    if( det(A) == 0 )
+        error("Argiroffo informs: ¡El determinante es cero, nene!")
+    end
+    for i = 1:n
+        mx = A(i, i)
+        idmx = i
+        for j = i+1:n
+            if(abs(A(j, i)) > mx)
+                mx = A(j, i)
+                idmx = j
+            end
+        end
+        A([i, idmx],:) = A([idmx, i],:)
+        P([i, idmx],:) = P([idmx, i],:)
+        b([i, idmx]) = b([idmx, i])
+        for j = i+1:n
+            m = A(j,i) / A(i,i)
+            A(j,:) = A(j,:) - m * A(i,:)
+            b(j) = b(j) - m * b(i)
+        end
+    end
+    x = SustitucionRegresiva(A, b)
 endfunction
 
 // Minimos Cuadrados                                                  //
@@ -169,18 +215,14 @@ function [p, err] = MinimosCuadrados(x, y, k)
             X(i,j+1) = x(i)**j
         end
     end
-//    a = inv(X'*X)*X'*y 
-    a1 = linsolve(X'*X,-X'*y)
-    a2 = GaussSeidel(X'*X, -X'*y, y, 1e-1, 5)
-    disp(norm(a1 - a2), "Ojo, la dif con linsolve es")
-    a = a2
+    a = Gauss(X'*X, X'*y)
     p = poly(a, "x", "coeff")
     err = y - X * a
 endfunction
 
 X = [0 0.15 0.31 0.5 0.6 0.75]'
 Y = [1 1.004 1.031 1.117 1.223 1.422 ]'
-p = MinimosCuadrados(X, Y, 5)
+p = MinimosCuadrados(X, Y, 3)
 X2 = 0:0.01:1
 plot(X2,horner(p,X2))
 plot2d(X, Y,-1)
