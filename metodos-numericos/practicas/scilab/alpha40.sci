@@ -95,14 +95,21 @@ endfunction
 // espectral menor que 1. Si lo tiene, la función devuelve true y es apta    //
 // para utilizar Jacobi, si no, aún puede ser diagonal dominante y Jacobi    //
 // aún puede funcionar.                                                      //
+// La matriz de iteración de Jacobi es inv(D)*R, si esa matriz tiene norma   //
+// menor que uno, entonces converge y NO ESTA CHECKADO ACA.                  //
 
 function b = CheckJacobi(A)
+    D = diag(diag(A))
+    R = A - D
     try
-        D = diag(diag(A))
-        R = A - D
         b = RadioEspectral( diag(1 ./ diag(D)) * R ) < 1 
     catch
-        b = %f
+        b = DiagonalDominante(A)
+        if ~b then
+            try
+                b = norm(diag(1 ./ diag(D)) * R) < 1 // puede usarse cualquier norm
+            end
+        end
     end
     // Agregar el método general de la norma
 endfunction
@@ -112,9 +119,23 @@ endfunction
 // Determina si la matriz es apta para aplicar el método de Gauss-Seidel     //
 // Para serlo, debe ser diagonal dominante, o bien, simétrica y definida     //
 // positiva.                                                                 //
+// Descomponer A en L D U, donde D es diag(diag(A)), la matriz de iteración  //
+// de Gauss Seidel es inv(D - L)*U, si eso tiene alguna norma que de menor   //
+// que 1, entonces también converge.                                         //
 
 function y = CheckGauss(A)
     y = DiagonalDominante(A) | (Simetrica(A) & DefinidaPositiva(A));
+    if ~y then
+        try 
+            D = diag(diag(A))
+            L = tril(A) - D
+            U = (tril(A') - D)'
+            disp(D, L, U);
+            y = norm(inv(D - L)*U) < 1; // puede usarse cualquier norm
+        catch
+            y = %f
+        end
+    end
 endfunction
 
 // Método de Jacobi                                                          //
@@ -169,7 +190,11 @@ EJ_Jacobix2 = [1 4 3]';
 
 // Método de Gauss-Seidel                                                    //
 //                                                                           //
-//                                                                           //
+// Usar la conveniente "CheckGauss" en A, antes que querer usar esto         //
+// A, x, b: Sistema de ecuaciones normal, con x siendo una aproximación      //
+// inicial de la solución.                                                   //
+// tol; Tolerancia, por defecto es 1e-9                                      //
+// iter: Cantidad de iteraciones, por defecto, 15k                           //
 
 function [y, cnt] = GaussSeidel(A, x, b, tol, iter)
     if ~exists("iter", "local") then
@@ -250,6 +275,12 @@ function [x, P, A, b] = Gauss(A, b)
 endfunction
 
 // Minimos Cuadrados                                                         //
+//                                                                           //
+// x, y: descripción de los puntos, no necesariamente distintos en x         //
+// k: grado del polinomio que querés                                         //
+// p: polinomio que querés, que minimiza la suma de las diferencias al       //
+// cuadrado con los puntos dados como dato, de grado k                       //
+// err: error                                                                //
 
 function [p, err] = MinimosCuadrados(x, y, k)
     n = length(x)
