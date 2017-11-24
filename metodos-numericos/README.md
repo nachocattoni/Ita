@@ -157,6 +157,14 @@ Semana 14:
 
 - [x] Día 17/11: Clase práctica.
 
+Semana 15:
+
+- [x] Día 22/11: Repaso antes de los parciales.
+
+- [ ] Día 23/11: Segundo parcial, teoría.
+
+- [x] Día 24/11: Segunro parcial, teórico.
+
 ## Arte
 
 ![Esto es arte!](arte.png)
