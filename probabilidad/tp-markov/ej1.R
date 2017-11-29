@@ -44,6 +44,7 @@ PruebaEmpirica <- function(rep, S, k, p) {
 
 # Si le pasamos el parámetro 'graf' en TRUE, la función nos va a devolver un
 # lindo gráfico de la cantidad de dinero del jugador A en función del tiempo.
+# El gráfico queda guardado en 'gamblersruin.pdf', en la carpeta actual.
 GamblersRuin(50, 25, 0.49, graf=TRUE)
 
 # En este, empezamos con 7 dólares, y hay 10 en juego, nuestra probabilidad de ganar
