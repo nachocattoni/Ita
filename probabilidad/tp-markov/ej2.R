@@ -40,3 +40,5 @@ pruebaEmpirica(500, 100, 0.3)
 pruebaEmpirica(10, 100, 0.3)
 pruebaEmpirica(10, 3, 0.3)
 
+# En el proceso S_n, que es el número de éxitos en el proceso Bernoulli, 
+# tenemos que la esperanza(S_n) = np, y que variancia(S_n) = npq.
