@@ -3,10 +3,23 @@
 % Head down to where it says "Start here"
 % --------------------------------------------------------------
  
-\documentclass[12pt]{article}
+\documentclass[12pt,spanish]{article}
  
 \usepackage[margin=1in]{geometry} 
 \usepackage{amsmath,amsthm,amssymb} 
+
+% Solución temporal al problema de los tildes, funciona bien
+% sin instalar nada, pero habría que saber instalar polyglossia.
+\usepackage[T1]{fontenc}
+\usepackage{selinput}
+\SelectInputMappings{%
+  aacute={á},
+  eacute={é},
+  iacute={í},
+  oacute={ó},
+  uacute={ú},
+  ntilde={ñ}
+}
  
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -17,13 +30,13 @@
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 \newenvironment{ejercicio}[2][Ejercicio]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{reflexion}[2][Reflexion]{\begin{trivlist}
+\newenvironment{reflexion}[2][Reflexión]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{demostracion}{{\emph{Demostracion.} }}{\hfill $\blacksquare$ \\} 
-\newenvironment{proposicion}[2][Proposicion]{\begin{trivlist}
+\newenvironment{proposicion}[2][Proposición]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 \newenvironment{corolario}[2][Corolario]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{demostracion}{{\emph{Demostración.} }}{\hfill $\blacksquare$ \\} 
  
 \begin{document}
  
@@ -31,7 +44,7 @@
 %                         Start here
 % --------------------------------------------------------------
  
-\title{Tarea}
+\title{Álgebra Lineal}
 \author{Mi Nombre}
 % \date{fecha de hoy}
  
@@ -59,7 +72,7 @@ Let $n\in \Z$.
 \end{proposicion}
  
 \begin{demostracion}%Whatever you put in the square brackets will be the label for the block of text to follow in the proof environment.
-Con esto solo faltaria hacer que sea posible poner tildes y otros caracteres especiales, y ya estaria. Por lo tanto A es no singular.
+Ahora es posible colocar tildes, lo cual hace el trabajo mucho más fácil y lindo.
 \end{demostracion}
  
 % --------------------------------------------------------------
