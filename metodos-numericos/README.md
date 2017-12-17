@@ -163,7 +163,7 @@ Semana 15:
 
 - [ ] Día 23/11: Segundo parcial, teoría.
 
-- [x] Día 24/11: Segunro parcial, teórico.
+- [x] Día 24/11: Segundo parcial, teórico.
 
 ## Arte
 
