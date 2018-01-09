@@ -1,0 +1,105 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt,spanish]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+\usepackage{enumitem}
+
+% Para eliminar la numeración de secciones
+\setcounter{secnumdepth}{0}
+\frenchspacing
+
+% Solución temporal al problema de los tildes, funciona bien sin instalar nada, pero habría que saber instalar polyglossia.
+\usepackage[T1]{fontenc}
+\usepackage{selinput}
+\SelectInputMappings{%
+  aacute={á},
+  eacute={é},
+  iacute={í},
+  oacute={ó},
+  uacute={ú},
+  ntilde={ñ}
+}
+
+% Para simbolos de conjuntos usualmente usados. 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\K}{\mathbb{K}}
+ 
+% Para estructurar el documento en teoremas, lemas, ejercicios, reflexiones, proposiciones, corolarios, y demostraciones.
+\newenvironment{teorema}[2][Teorema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lema}[2][Lema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{ejercicio}[2][Ejercicio]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflexion}[2][Reflexión]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposicion}[2][Proposición]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corolario}[2][Corolario]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{demostracion}{{\emph{Demostración.}}}{\hfill $\blacksquare$ \\} 
+
+% Para poder escribir \iff en math mode fácil.
+\DeclareRobustCommand\iff{\;\Leftrightarrow\;}
+ 
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+\title{TP Final Arquitectura - Pilot}
+\author{Gonzalo Turconi, Nacho Cattoni, Redigonda Maximiliano}
+\date{Enero 8, 2018}
+ 
+\maketitle
+
+\section{Introducción}
+El objetivo de este projecto es generar un compilador para el lenguaje Pilot a lenguaje ensamblador ARM. \textbf{Pilot} es un lenguaje sencillo, del cual nosotros proveemos una descripción basada en las consignas del trabajo práctico.
+
+Todas las sentencias en Pilot son de una linea. Cada linea comienza con una letra que indica la operación a ejecutarse, o con el nombre de una variable para una operación de asignación.
+
+Las variables son cadenas alfanuméricas que comienzan con una letra en minúscula, y son seguidas obligatoriamente por un entero de etiqueta\footnote{Número entero no negativo representable por un entero con signo de 32 bits. Cualquier entero entre $0$ y $2^{31}-1$ inclusive.}. De esta manera:
+\begin{itemize}
+\item{a0, z24, x231, p2147483647, son nombres válidos, mientras que}
+\item{a-1, b, romeosantos, 23z, w2147483648, no son nombres válidos}
+\end{itemize}
+
+\noindent Las operaciones soportadas son las siguientes:
+\begin{itemize}
+\item{Asignación: se caracteriza por comenzar con el nombre de una variable y seguir con una expresión. Su efecto es asignar el valor de la expresión en la variable.}
+\item{Entrada: comienza con un caracter R seguido de el nombre de una variable. Su efecto es leer un entero por la entrada estándar y asignárselo a la variable.}
+\item{Salida: comienza con un caracter O seguido de una variable o una expresión. Su efecto es imprimir el valor de la variable o de la expresión por pantalla.}
+\item{Terminar: consiste de una única letra E, su efecto es el de terminar el programa.}
+\item{Salto: se representa por una G inicial, seguida de un entero de etiqueta. Su efecto es el de interrumpir la ejecución del programa para resumirla en la etiqueta caracterizada por el entero.}
+\item{Etiqueta: comienza con una L, y es seguida por un entero de etiqueta. Su efecto es definir la etiqueta caracterizada por el entero.}
+\item{Salto condicional: se representa por una letra I, seguida de una expresión o variable, y termina en un entero de etiqueta. Su efecto es el de saltar a la etiqueta correspondiente si el valor de la expresión o variable es distinto de cero.}
+\end{itemize}
+
+\noindent Es importante notar que una expresión, está definida como una variable, o un operador seguido de dos variables.
+
+\section{Pasos a seguir}
+Para realizar este projecto, necesitaremos:
+\begin{enumerate}
+\item{Familiarizarnos con el lenguaje Pilot.}
+\item{Diagramar una posible implementación de alto nivel del compilador.}
+\item{Crear un sistema de procesado linea por linea.}
+\item{Interpretar cada linea y discriminarlas por tipo de operación.}
+\item{Obtener el conjunto de instrucciones equivalentes a cada sentencia de Pilot.}
+\item{Mapear las sentencias en Pilot a cada  conjunto de instrucciones de ARM.}
+\item{Programar el algoritmo del campesino ruso y realizarle pruebas para verificar su correctitud.}
+\end{enumerate}
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+ 
+\end{document}
