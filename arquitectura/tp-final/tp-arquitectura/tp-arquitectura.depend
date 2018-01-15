@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1515984171 source:/home/mred/Documents/University/Ita/arquitectura/tp-final/tp-arquitectura/f.c
+
+1516026803 source:/home/mred/Documents/University/Ita/arquitectura/tp-final/tp-arquitectura/main.c
+	<stdio.h>
+	"main.h"
+	"instruction-decoder.h"
+
+1515984127 /home/mred/Documents/University/Ita/arquitectura/tp-final/tp-arquitectura/f.h
+
+1516023907 source:/home/mred/Documents/University/Ita/arquitectura/tp-final/tp-arquitectura/instruction-reader.c
+	<stdio.h>
+	"instruction-reader.h"
+
+1516023888 /home/mred/Documents/University/Ita/arquitectura/tp-final/tp-arquitectura/instruction-reader.h
+
+1516026049 /home/mred/Documents/University/Ita/arquitectura/tp-final/tp-arquitectura/main.h
+
+1516026595 /home/mred/Documents/University/Ita/arquitectura/tp-final/tp-arquitectura/instruction-decoder.h
+
+1516026244 source:/home/mred/Documents/University/Ita/arquitectura/tp-final/tp-arquitectura/instruction-decoder.c
+	<stdio.h>
+	<stdlib.h>
+	"main.h"
+	"instruction-decoder.h"
+
