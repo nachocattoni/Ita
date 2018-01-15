@@ -16,11 +16,14 @@
 
 1516026049 /home/mred/Documents/University/Ita/arquitectura/tp-final/tp-arquitectura/main.h
 
-1516026595 /home/mred/Documents/University/Ita/arquitectura/tp-final/tp-arquitectura/instruction-decoder.h
+1516028592 /home/mred/Documents/University/Ita/arquitectura/tp-final/tp-arquitectura/instruction-decoder.h
+	"main.h"
 
-1516026244 source:/home/mred/Documents/University/Ita/arquitectura/tp-final/tp-arquitectura/instruction-decoder.c
+1516028630 source:/home/mred/Documents/University/Ita/arquitectura/tp-final/tp-arquitectura/instruction-decoder.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
+	<ctype.h>
 	"main.h"
 	"instruction-decoder.h"
 

@@ -1,7 +1,9 @@
 #ifndef INSTRUCTION_DECODER_H
 #define INSTRUCTION_DECODER_H
 
-typedef enum _codeType {
+#include "main.h"
+
+typedef enum _instructionType {
     ASSIGN,
     INPUT,
     OUTPUT,
@@ -9,14 +11,16 @@ typedef enum _codeType {
     JUMP,
     LABEL,
     CONDITIONAL_JUMP
-} codeType;
+} instructionType;
 
 typedef struct _Instruction {
     int length;
-    char **word;
+    char **words;
 } Instruction;
 
-char *      get_instruction_line();
-Instruction get_next_instruction();
+char *          get_instruction_line();
+Instruction     get_next_instruction();
+instructionType get_instruction_type(Instruction);
+bool            is_valid_variable_name(const char *);
 
 #endif // INSTRUCTION_DECODER_H

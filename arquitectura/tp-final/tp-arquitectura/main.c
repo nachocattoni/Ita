@@ -9,8 +9,10 @@ int main(){
 
         int i;
         for(i = 0; i < instr.length; i++){
-            printf("%s\n", instr.word[i]);
+            printf("%s\n", instr.words[i]);
         }
+
+        printf("%d\n", get_instruction_type(instr));
     }
     return 0;
 }
