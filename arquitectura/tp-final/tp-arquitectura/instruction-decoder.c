@@ -6,9 +6,6 @@
 #include "main.h"
 #include "instruction-decoder.h"
 
-/*
- * Returns the next line to be read.
- */
 char *get_instruction_line(){
     char *line = (char *) malloc(MAX_BUFF_SIZE * sizeof(char));
     size_t sz = MAX_BUFF_SIZE;
@@ -18,10 +15,6 @@ char *get_instruction_line(){
     return line;
 }
 
-/*
- * Returns the next instruction to be executed,
- * as a list of words.
- */
 Instruction get_next_instruction(){
     Instruction instr;
     char *line = get_instruction_line();
@@ -64,8 +57,27 @@ bool is_valid_variable_name(const char *s){
 }
 
 instructionType get_instruction_type(Instruction instr){
-    if(is_valid_variable_name(instr.words[0])){
+	const char *s = instr.words[0];
+    if(is_valid_variable_name(s)){
         return ASSIGN;
     }
+    if(strcmp(s, "R") == 0){
+		return INPUT;
+	}
+	if(strcmp(s, "O") == 0){
+		return OUTPUT;
+	}
+	if(strcmp(s, "E") == 0){
+		return END;
+	}
+	if(strcmp(s, "G") == 0){
+		return JUMP;
+	}
+	if(strcmp(s, "L") == 0){
+		return LABEL;
+	}
+	if(strcmp(s, "I") == 0){
+		return CONDITIONAL_JUMP;
+	}
     return -1;
 }
