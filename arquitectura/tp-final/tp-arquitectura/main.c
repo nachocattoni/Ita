@@ -3,6 +3,8 @@
 
 #include "main.h"
 #include "instruction-decoder.h"
+#include "expressions.h"
+#include "debug.h"
 
 int main(){
     while(true){
