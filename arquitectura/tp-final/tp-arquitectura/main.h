@@ -15,5 +15,9 @@ typedef enum _bool {
 } bool;
 
 #define MAX_BUFF_SIZE 256
+#define NUMBER_OF_INSTRUCTION_TYPES 6
+#define NUMBER_OF_OPERATORS 12
+
+#define INCORRECT_INSTRUCTION "ERROR: One of the instructions is not valid."
 
 #endif // MAIN_H

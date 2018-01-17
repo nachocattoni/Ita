@@ -1,0 +1,191 @@
+\hypertarget{instruction-decoder_8h}{}\section{Referencia del Archivo instruction-\/decoder.h}
+\label{instruction-decoder_8h}\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}
+
+
+Implementa funcionalidades para leer e interpretar instrucciones y expresiones.  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\\*
+Dependencia gráfica adjunta para instruction-\/decoder.h\+:
+% FIG 0
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct__Instruction}{\+\_\+\+Instruction}
+\begin{DoxyCompactList}\small\item\em Una instruccion es un conjunto de palabras. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\textquotesingle{}typedefs\textquotesingle{}}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \hyperlink{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dd}{\+\_\+instruction\+Type} \hyperlink{instruction-decoder_8h_adf2defcd2066c43cbd1faf88bdd9ba16}{instruction\+Type}\hypertarget{instruction-decoder_8h_adf2defcd2066c43cbd1faf88bdd9ba16}{}\label{instruction-decoder_8h_adf2defcd2066c43cbd1faf88bdd9ba16}
+
+\begin{DoxyCompactList}\small\item\em Describe todos los tipos de instruccion posibles. \end{DoxyCompactList}\item 
+typedef enum \hyperlink{instruction-decoder_8h_a009d76c855de7302b1d5988387ef2ca5}{\+\_\+operator\+Type} \hyperlink{instruction-decoder_8h_a3191f5752595ff1ca3c171b08bb62d43}{operator\+Type}\hypertarget{instruction-decoder_8h_a3191f5752595ff1ca3c171b08bb62d43}{}\label{instruction-decoder_8h_a3191f5752595ff1ca3c171b08bb62d43}
+
+\begin{DoxyCompactList}\small\item\em Describe los tipos de operaciones posibles. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{struct__Instruction}{\+\_\+\+Instruction} \hyperlink{instruction-decoder_8h_ac06f16dc4b8865a415f213130413b962}{Instruction}\hypertarget{instruction-decoder_8h_ac06f16dc4b8865a415f213130413b962}{}\label{instruction-decoder_8h_ac06f16dc4b8865a415f213130413b962}
+
+\begin{DoxyCompactList}\small\item\em Una instruccion es un conjunto de palabras. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumeraciones}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dd}{\+\_\+instruction\+Type} \{ \\*
+\hyperlink{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dda52a9b031766fa116251f70e65a84c01a}{A\+S\+S\+I\+GN}, 
+\hyperlink{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340ddae310c909d76b003d016bef8bdf16936a}{I\+N\+P\+UT}, 
+\hyperlink{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dda2ab08d3e103968f5f4f26b66a52e99d6}{O\+U\+T\+P\+UT}, 
+\hyperlink{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340ddadc6f24fd6915a3f2786a1b7045406924}{E\+ND}, 
+\\*
+\hyperlink{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dda1f28d4392b1c1e7da2af2283632d81e1}{J\+U\+MP}, 
+\hyperlink{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dda0f90de4d94720fdd5156fd7e7c3b0c9b}{L\+A\+B\+EL}, 
+\hyperlink{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340ddabd188f491d22b30498268698f09d03ed}{C\+O\+N\+D\+I\+T\+I\+O\+N\+A\+L\+\_\+\+J\+U\+MP}
+ \}\begin{DoxyCompactList}\small\item\em Describe todos los tipos de instruccion posibles. \end{DoxyCompactList}
+\item 
+enum \hyperlink{instruction-decoder_8h_a009d76c855de7302b1d5988387ef2ca5}{\+\_\+operator\+Type} \{ \\*
+{\bfseries S\+U\+MA}, 
+{\bfseries R\+E\+S\+TA}, 
+{\bfseries M\+U\+L\+T\+I\+P\+L\+I\+C\+A\+C\+I\+ON}, 
+{\bfseries D\+I\+V\+I\+S\+I\+ON}, 
+\\*
+{\bfseries A\+ND}, 
+{\bfseries OR}, 
+{\bfseries X\+OR}, 
+{\bfseries M\+E\+N\+OR}, 
+\\*
+{\bfseries M\+E\+N\+O\+R\+\_\+\+O\+\_\+\+I\+G\+U\+AL}, 
+{\bfseries I\+G\+U\+AL}, 
+{\bfseries M\+A\+Y\+OR}, 
+{\bfseries M\+A\+Y\+O\+R\+\_\+\+O\+\_\+\+I\+G\+U\+AL}
+ \}\hypertarget{instruction-decoder_8h_a009d76c855de7302b1d5988387ef2ca5}{}\label{instruction-decoder_8h_a009d76c855de7302b1d5988387ef2ca5}
+\begin{DoxyCompactList}\small\item\em Describe los tipos de operaciones posibles. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{instruction-decoder_8h_ad7d9580ce6b4840338dab5b0f099d5a0}{get\+\_\+instruction\+\_\+line} ()
+\item 
+\hyperlink{instruction-decoder_8h_ac06f16dc4b8865a415f213130413b962}{Instruction} \hyperlink{instruction-decoder_8h_a4162c39d93d9a019be7462e499f169a6}{get\+\_\+next\+\_\+instruction} ()
+\item 
+\hyperlink{instruction-decoder_8h_adf2defcd2066c43cbd1faf88bdd9ba16}{instruction\+Type} \hyperlink{instruction-decoder_8h_aff329c965f2a9cfb5c320ef37d5e86d7}{get\+\_\+instruction\+\_\+type} (\hyperlink{instruction-decoder_8h_ac06f16dc4b8865a415f213130413b962}{Instruction} instr)
+\item 
+\hyperlink{main_8h_ae84aff2ab941ad3ca48ca2c3bf54e4ed}{bool} \hyperlink{instruction-decoder_8h_a55d70f8ee77ec91c3bb81bdea7b6594b}{is\+\_\+valid\+\_\+variable\+\_\+name} (const char $\ast$s)
+\item 
+\hyperlink{main_8h_ae84aff2ab941ad3ca48ca2c3bf54e4ed}{bool} \hyperlink{instruction-decoder_8h_abf686584acb600d4d233763ac9d39473}{get\+\_\+next\+\_\+expression} (const char $\ast$$\ast$words)
+\item 
+\hyperlink{instruction-decoder_8h_a3191f5752595ff1ca3c171b08bb62d43}{operator\+Type} \hyperlink{instruction-decoder_8h_a9e064b3fd01c15efaf5ac3f8f30d2702}{get\+\_\+operation\+\_\+type} (const char $\ast$word)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Implementa funcionalidades para leer e interpretar instrucciones y expresiones. 
+
+
+
+\subsection{Documentación de las enumeraciones}
+\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!\+\_\+instruction\+Type@{\+\_\+instruction\+Type}}
+\index{\+\_\+instruction\+Type@{\+\_\+instruction\+Type}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}
+\subsubsection[{\texorpdfstring{\+\_\+instruction\+Type}{_instructionType}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf \+\_\+instruction\+Type}}\hypertarget{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dd}{}\label{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dd}
+
+
+Describe todos los tipos de instruccion posibles. 
+
+\begin{Desc}
+\item[Valores de enumeraciones]\par
+\begin{description}
+\index{A\+S\+S\+I\+GN@{A\+S\+S\+I\+GN}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!A\+S\+S\+I\+GN@{A\+S\+S\+I\+GN}}\item[{\em 
+A\+S\+S\+I\+GN\hypertarget{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dda52a9b031766fa116251f70e65a84c01a}{}\label{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dda52a9b031766fa116251f70e65a84c01a}
+}]Asigna el valor de una expresion a una variable. \index{I\+N\+P\+UT@{I\+N\+P\+UT}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!I\+N\+P\+UT@{I\+N\+P\+UT}}\item[{\em 
+I\+N\+P\+UT\hypertarget{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340ddae310c909d76b003d016bef8bdf16936a}{}\label{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340ddae310c909d76b003d016bef8bdf16936a}
+}]Lee un valor entero de stdin y lo escribe a una variable. \index{O\+U\+T\+P\+UT@{O\+U\+T\+P\+UT}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!O\+U\+T\+P\+UT@{O\+U\+T\+P\+UT}}\item[{\em 
+O\+U\+T\+P\+UT\hypertarget{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dda2ab08d3e103968f5f4f26b66a52e99d6}{}\label{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dda2ab08d3e103968f5f4f26b66a52e99d6}
+}]Escribe el valor de una expresion en la pantalla. \index{E\+ND@{E\+ND}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!E\+ND@{E\+ND}}\item[{\em 
+E\+ND\hypertarget{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340ddadc6f24fd6915a3f2786a1b7045406924}{}\label{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340ddadc6f24fd6915a3f2786a1b7045406924}
+}]Termina el programa. \index{J\+U\+MP@{J\+U\+MP}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!J\+U\+MP@{J\+U\+MP}}\item[{\em 
+J\+U\+MP\hypertarget{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dda1f28d4392b1c1e7da2af2283632d81e1}{}\label{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dda1f28d4392b1c1e7da2af2283632d81e1}
+}]Cambia el punto de ejecucion. \index{L\+A\+B\+EL@{L\+A\+B\+EL}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!L\+A\+B\+EL@{L\+A\+B\+EL}}\item[{\em 
+L\+A\+B\+EL\hypertarget{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dda0f90de4d94720fdd5156fd7e7c3b0c9b}{}\label{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340dda0f90de4d94720fdd5156fd7e7c3b0c9b}
+}]Declara una etiqueta, lugar al cual se puede cambiar el punto de ejecucion. \index{C\+O\+N\+D\+I\+T\+I\+O\+N\+A\+L\+\_\+\+J\+U\+MP@{C\+O\+N\+D\+I\+T\+I\+O\+N\+A\+L\+\_\+\+J\+U\+MP}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!C\+O\+N\+D\+I\+T\+I\+O\+N\+A\+L\+\_\+\+J\+U\+MP@{C\+O\+N\+D\+I\+T\+I\+O\+N\+A\+L\+\_\+\+J\+U\+MP}}\item[{\em 
+C\+O\+N\+D\+I\+T\+I\+O\+N\+A\+L\+\_\+\+J\+U\+MP\hypertarget{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340ddabd188f491d22b30498268698f09d03ed}{}\label{instruction-decoder_8h_a1d2825f124f73682fb65e1c1ac9340ddabd188f491d22b30498268698f09d03ed}
+}]Cambia condicionalmente el punto de ejecucion. \end{description}
+\end{Desc}
+
+
+\subsection{Documentación de las funciones}
+\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!get\+\_\+instruction\+\_\+line@{get\+\_\+instruction\+\_\+line}}
+\index{get\+\_\+instruction\+\_\+line@{get\+\_\+instruction\+\_\+line}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}
+\subsubsection[{\texorpdfstring{get\+\_\+instruction\+\_\+line()}{get_instruction_line()}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\+\_\+instruction\+\_\+line (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{instruction-decoder_8h_ad7d9580ce6b4840338dab5b0f099d5a0}{}\label{instruction-decoder_8h_ad7d9580ce6b4840338dab5b0f099d5a0}
+\begin{DoxyReturn}{Devuelve}
+La siguiente linea a leer de stdin. 
+\end{DoxyReturn}
+\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!get\+\_\+instruction\+\_\+type@{get\+\_\+instruction\+\_\+type}}
+\index{get\+\_\+instruction\+\_\+type@{get\+\_\+instruction\+\_\+type}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}
+\subsubsection[{\texorpdfstring{get\+\_\+instruction\+\_\+type(\+Instruction instr)}{get_instruction_type(Instruction instr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf instruction\+Type} get\+\_\+instruction\+\_\+type (
+\begin{DoxyParamCaption}
+\item[{{\bf Instruction}}]{instr}
+\end{DoxyParamCaption}
+)}\hypertarget{instruction-decoder_8h_aff329c965f2a9cfb5c320ef37d5e86d7}{}\label{instruction-decoder_8h_aff329c965f2a9cfb5c320ef37d5e86d7}
+Determina el tipo de instruccion que representa un objeto de tipo \hyperlink{struct__Instruction}{\+\_\+\+Instruction}. 
+\begin{DoxyParams}{Parámetros}
+{\em instr} & La instruccion de la cual se quiere averiguar el tipo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+El tipo de la instruccion, como un \+\_\+instruction\+Type. 
+\end{DoxyReturn}
+\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!get\+\_\+next\+\_\+expression@{get\+\_\+next\+\_\+expression}}
+\index{get\+\_\+next\+\_\+expression@{get\+\_\+next\+\_\+expression}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}
+\subsubsection[{\texorpdfstring{get\+\_\+next\+\_\+expression(const char $\ast$$\ast$words)}{get_next_expression(const char **words)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} get\+\_\+next\+\_\+expression (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$$\ast$}]{words}
+\end{DoxyParamCaption}
+)}\hypertarget{instruction-decoder_8h_abf686584acb600d4d233763ac9d39473}{}\label{instruction-decoder_8h_abf686584acb600d4d233763ac9d39473}
+Lee una expresion de una lista de palabras. Recordar que una expresion es\+: un literal, una variable, o un operador seguido de dos literales o variables. 
+\begin{DoxyParams}{Parámetros}
+{\em words} & Un puntero a la primer palabra de una lista de palabras. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Retorna verdadero en caso de que la expresion se haya leido con exito. 
+\end{DoxyReturn}
+\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!get\+\_\+next\+\_\+instruction@{get\+\_\+next\+\_\+instruction}}
+\index{get\+\_\+next\+\_\+instruction@{get\+\_\+next\+\_\+instruction}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}
+\subsubsection[{\texorpdfstring{get\+\_\+next\+\_\+instruction()}{get_next_instruction()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Instruction} get\+\_\+next\+\_\+instruction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{instruction-decoder_8h_a4162c39d93d9a019be7462e499f169a6}{}\label{instruction-decoder_8h_a4162c39d93d9a019be7462e499f169a6}
+\begin{DoxyReturn}{Devuelve}
+La siguiente instruccion a leer, en forma de \hyperlink{struct__Instruction}{\+\_\+\+Instruction}. 
+\end{DoxyReturn}
+\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!get\+\_\+operation\+\_\+type@{get\+\_\+operation\+\_\+type}}
+\index{get\+\_\+operation\+\_\+type@{get\+\_\+operation\+\_\+type}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}
+\subsubsection[{\texorpdfstring{get\+\_\+operation\+\_\+type(const char $\ast$word)}{get_operation_type(const char *word)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf operator\+Type} get\+\_\+operation\+\_\+type (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{word}
+\end{DoxyParamCaption}
+)}\hypertarget{instruction-decoder_8h_a9e064b3fd01c15efaf5ac3f8f30d2702}{}\label{instruction-decoder_8h_a9e064b3fd01c15efaf5ac3f8f30d2702}
+Funcion auxiliar usada para determinar que operador simboliza una palabra dada, en caso de que lo haga. Un operador es uno de la siguiente lista\+: +, -\/, $\ast$, /, \&, $\ast$, $\vert$, $^\wedge$, $<$, $<$=, ==, $>$, $>$=. 
+\begin{DoxyParams}{Parámetros}
+{\em word} & La palabra que posiblemente represente el operador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+El operador que representa la palabra o -\/1 si no. 
+\end{DoxyReturn}
+\index{instruction-\/decoder.\+h@{instruction-\/decoder.\+h}!is\+\_\+valid\+\_\+variable\+\_\+name@{is\+\_\+valid\+\_\+variable\+\_\+name}}
+\index{is\+\_\+valid\+\_\+variable\+\_\+name@{is\+\_\+valid\+\_\+variable\+\_\+name}!instruction-\/decoder.\+h@{instruction-\/decoder.\+h}}
+\subsubsection[{\texorpdfstring{is\+\_\+valid\+\_\+variable\+\_\+name(const char $\ast$s)}{is_valid_variable_name(const char *s)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} is\+\_\+valid\+\_\+variable\+\_\+name (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{instruction-decoder_8h_a55d70f8ee77ec91c3bb81bdea7b6594b}{}\label{instruction-decoder_8h_a55d70f8ee77ec91c3bb81bdea7b6594b}
+
+\begin{DoxyParams}{Parámetros}
+{\em s} & El nombre de la cadena. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Retorna verdadero si la cadena corresponde a un nombre valido para una variable\+: una letra seguida de un numero de etiqueta, donde un numero de etiqueta es un valor entre 0 y 2147483647. No se permiten ceros a izquierda. 
+\end{DoxyReturn}

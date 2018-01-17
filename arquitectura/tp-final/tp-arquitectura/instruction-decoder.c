@@ -25,7 +25,8 @@ Instruction get_next_instruction(){
 
     char *s = strtok(line, skip);
     while(s != NULL){
-        instr.words[instr.length] = (char *) malloc(MAX_BUFF_SIZE * sizeof(char));
+        instr.words[instr.length] = (char *) 
+			malloc(MAX_BUFF_SIZE * sizeof(char));
         strcpy(instr.words[instr.length], s);
         instr.length++;
         s = strtok(NULL, skip);
@@ -61,23 +62,38 @@ instructionType get_instruction_type(Instruction instr){
 	if(is_valid_variable_name(s)){
         return ASSIGN;
     }
-    if(strcmp(s, "R") == 0){
-		return INPUT;
-	}
-	if(strcmp(s, "O") == 0){
-		return OUTPUT;
-	}
-	if(strcmp(s, "E") == 0){
-		return END;
-	}
-	if(strcmp(s, "G") == 0){
-		return JUMP;
-	}
-	if(strcmp(s, "L") == 0){
-		return LABEL;
-	}
-	if(strcmp(s, "I") == 0){
-		return CONDITIONAL_JUMP;
+    
+    const char *instructionTypes[] = {"R", "O", "E", "G", "L", "I"};
+    const instructionType types[] = {INPUT, OUTPUT, END, JUMP, LABEL, 
+		CONDITIONAL_JUMP};
+    int i;
+    
+    for(i = 0; i < NUMBER_OF_INSTRUCTION_TYPES; i++){
+		if(strcmp(s, instructionTypes[i]) == 0){
+			return types[i];
+		}
 	}
     return -1;
+}
+
+operatorType get_operation_type(const char *word){
+	const char *operators[] = {"+", "-", "*", "/", "&", "|", "^", "<", 
+		"<=", "==", ">", ">="};
+	const operatorType operation_code[] = {SUMA, RESTA, MULTIPLICACION, 
+		DIVISION, AND, OR, XOR, MENOR, MENOR_O_IGUAL, IGUAL, MAYOR, 
+		MAYOR_O_IGUAL};
+	int i;
+	
+	for(i = 0; i < NUMBER_OF_OPERATORS; i++){
+		if(strcmp(word, operators[i]) == 0){
+			return operation_code[i];
+		}
+	}
+	
+	return -1;
+}
+
+Expression get_next_expression(Instruction instr, int pos){
+	Expression e;
+	return e;
 }

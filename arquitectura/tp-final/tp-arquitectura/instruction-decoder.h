@@ -23,6 +23,24 @@ typedef enum _instructionType {
 } instructionType;
 
 /**
+ * @brief Describe los tipos de operaciones posibles. 
+ */
+typedef enum _operatorType {
+	SUMA,
+	RESTA, 
+	MULTIPLICACION,
+	DIVISION,
+	AND,
+	OR,
+	XOR,
+	MENOR,
+	MENOR_O_IGUAL,
+	IGUAL,
+	MAYOR,
+	MAYOR_O_IGUAL
+} operatorType;
+
+/**
  * @brief Una instruccion es un conjunto de palabras. 
  */
 typedef struct _Instruction {
@@ -30,6 +48,25 @@ typedef struct _Instruction {
     char **words;
 } Instruction;
 
+/**
+ * @brief Representa un literal o una variable. Si es un literal, code
+ * vale '?'. De lo contrario, si es, por ejemplo, la variable p278, 
+ * entonces code vale 'p', y value es 278.
+ */
+typedef struct _Component {
+	char code;
+	int value;
+} Component;
+
+/**
+ * @brief Representa una expresion. Una expresion es un componente
+ * unico, o es una operacion seguido de dos componentes. Si oper es
+ * -1, entonces el valor de la expresion esta solo en el componente v1.
+ */
+typedef struct _Expression {
+	operatorType oper;
+	Component v1, v2;
+} Expression;
 
 /**
  * @return La siguiente linea a leer de stdin.
@@ -62,10 +99,19 @@ bool            is_valid_variable_name(const char *s);
  * Lee una expresion de una lista de palabras. Recordar que una
  * expresion es: un literal, una variable, o un operador seguido de dos
  * literales o variables.
- * @param words Un puntero a la primer palabra de una lista de palabras.
- * @return Retorna verdadero en caso de que la expresion se haya leido
- * con exito.
+ * @param instr Es la instruccion de la cual leer la expresion.
+ * @param pos Es la posicion desde la cual leer la instruccion.
+ * @return Retorna la expresion.
  */
-bool 			get_next_expression(const char** words);
+Expression		get_next_expression(Instruction instr, int pos);
+
+/**
+ * Funcion auxiliar usada para determinar que operador simboliza una 
+ * palabra dada, en caso de que lo haga. Un operador es uno de la 
+ * siguiente lista: +, -, *, /, &, *, |, ^, <, <=, ==, >, >=.
+ * @param word La palabra que posiblemente represente el operador.
+ * @return El operador que representa la palabra o -1 si no.
+ */
+operatorType get_operation_type(const char *word);
 
 #endif // INSTRUCTION_DECODER_H
