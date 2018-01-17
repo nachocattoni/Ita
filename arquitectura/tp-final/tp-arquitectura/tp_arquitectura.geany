@@ -29,10 +29,10 @@ long_line_column=72
 
 [files]
 current_page=2
-FILE_NAME_0=1281;C;0;EUTF-8;1;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Finstruction-decoder.c;0;4
-FILE_NAME_1=7;C;0;EUTF-8;1;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Finstruction-decoder.h;0;4
-FILE_NAME_2=247;C;0;EUTF-8;1;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fmain.c;0;4
-FILE_NAME_3=80;C;0;EUTF-8;1;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fmain.h;0;4
+FILE_NAME_0=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Finstruction-decoder.c;0;4
+FILE_NAME_1=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Finstruction-decoder.h;0;4
+FILE_NAME_2=280;C;0;EUTF-8;1;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fmain.c;0;4
+FILE_NAME_3=3;C;0;EUTF-8;1;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fmain.h;0;4
 
 [build-menu]
 CFT_01_LB=_Build

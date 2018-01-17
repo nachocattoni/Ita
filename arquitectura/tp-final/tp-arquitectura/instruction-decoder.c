@@ -26,7 +26,7 @@ Instruction get_next_instruction(){
     char *s = strtok(line, skip);
     while(s != NULL){
         instr.words[instr.length] = (char *) 
-			malloc(MAX_BUFF_SIZE * sizeof(char));
+            malloc(MAX_BUFF_SIZE * sizeof(char));
         strcpy(instr.words[instr.length], s);
         instr.length++;
         s = strtok(NULL, skip);
@@ -58,42 +58,42 @@ bool is_valid_variable_name(const char *s){
 }
 
 instructionType get_instruction_type(Instruction instr){
-	const char *s = instr.words[0];
-	if(is_valid_variable_name(s)){
+    const char *s = instr.words[0];
+    if(is_valid_variable_name(s)){
         return ASSIGN;
     }
     
     const char *instructionTypes[] = {"R", "O", "E", "G", "L", "I"};
     const instructionType types[] = {INPUT, OUTPUT, END, JUMP, LABEL, 
-		CONDITIONAL_JUMP};
+        CONDITIONAL_JUMP};
     int i;
     
     for(i = 0; i < NUMBER_OF_INSTRUCTION_TYPES; i++){
-		if(strcmp(s, instructionTypes[i]) == 0){
-			return types[i];
-		}
-	}
+        if(strcmp(s, instructionTypes[i]) == 0){
+            return types[i];
+        }
+    }
     return -1;
 }
 
 operatorType get_operation_type(const char *word){
-	const char *operators[] = {"+", "-", "*", "/", "&", "|", "^", "<", 
-		"<=", "==", ">", ">="};
-	const operatorType operation_code[] = {SUMA, RESTA, MULTIPLICACION, 
-		DIVISION, AND, OR, XOR, MENOR, MENOR_O_IGUAL, IGUAL, MAYOR, 
-		MAYOR_O_IGUAL};
-	int i;
-	
-	for(i = 0; i < NUMBER_OF_OPERATORS; i++){
-		if(strcmp(word, operators[i]) == 0){
-			return operation_code[i];
-		}
-	}
-	
-	return -1;
+    const char *operators[] = {"+", "-", "*", "/", "&", "|", "^", "<", 
+        "<=", "==", ">", ">="};
+    const operatorType operation_code[] = {SUMA, RESTA, MULTIPLICACION, 
+        DIVISION, AND, OR, XOR, MENOR, MENOR_O_IGUAL, IGUAL, MAYOR, 
+        MAYOR_O_IGUAL};
+    int i;
+    
+    for(i = 0; i < NUMBER_OF_OPERATORS; i++){
+        if(strcmp(word, operators[i]) == 0){
+            return operation_code[i];
+        }
+    }
+    
+    return -1;
 }
 
 Expression get_next_expression(Instruction instr, int pos){
-	Expression e;
-	return e;
+    Expression e;
+    return e;
 }

@@ -26,18 +26,18 @@ typedef enum _instructionType {
  * @brief Describe los tipos de operaciones posibles. 
  */
 typedef enum _operatorType {
-	SUMA,
-	RESTA, 
-	MULTIPLICACION,
-	DIVISION,
-	AND,
-	OR,
-	XOR,
-	MENOR,
-	MENOR_O_IGUAL,
-	IGUAL,
-	MAYOR,
-	MAYOR_O_IGUAL
+    SUMA,
+    RESTA, 
+    MULTIPLICACION,
+    DIVISION,
+    AND,
+    OR,
+    XOR,
+    MENOR,
+    MENOR_O_IGUAL,
+    IGUAL,
+    MAYOR,
+    MAYOR_O_IGUAL
 } operatorType;
 
 /**
@@ -54,8 +54,8 @@ typedef struct _Instruction {
  * entonces code vale 'p', y value es 278.
  */
 typedef struct _Component {
-	char code;
-	int value;
+    char code;
+    int value;
 } Component;
 
 /**
@@ -64,8 +64,8 @@ typedef struct _Component {
  * -1, entonces el valor de la expresion esta solo en el componente v1.
  */
 typedef struct _Expression {
-	operatorType oper;
-	Component v1, v2;
+    operatorType oper;
+    Component v1, v2;
 } Expression;
 
 /**
@@ -103,7 +103,7 @@ bool            is_valid_variable_name(const char *s);
  * @param pos Es la posicion desde la cual leer la instruccion.
  * @return Retorna la expresion.
  */
-Expression		get_next_expression(Instruction instr, int pos);
+Expression      get_next_expression(Instruction instr, int pos);
 
 /**
  * Funcion auxiliar usada para determinar que operador simboliza una 
