@@ -37,7 +37,8 @@ typedef enum _operatorType {
     MENOR_O_IGUAL,
     IGUAL,
     MAYOR,
-    MAYOR_O_IGUAL
+    MAYOR_O_IGUAL,
+    NONE
 } operatorType;
 
 /**
@@ -64,6 +65,7 @@ typedef struct _Component {
  * -1, entonces el valor de la expresion esta solo en el componente v1.
  */
 typedef struct _Expression {
+	bool valid;
     operatorType oper;
     Component v1, v2;
 } Expression;
@@ -96,22 +98,34 @@ instructionType get_instruction_type(Instruction instr);
 bool            is_valid_variable_name(const char *s);
 
 /**
- * Lee una expresion de una lista de palabras. Recordar que una
- * expresion es: un literal, una variable, o un operador seguido de dos
- * literales o variables.
- * @param instr Es la instruccion de la cual leer la expresion.
- * @param pos Es la posicion desde la cual leer la instruccion.
- * @return Retorna la expresion.
- */
-Expression      get_next_expression(Instruction instr, int pos);
-
-/**
  * Funcion auxiliar usada para determinar que operador simboliza una 
  * palabra dada, en caso de que lo haga. Un operador es uno de la 
  * siguiente lista: +, -, *, /, &, *, |, ^, <, <=, ==, >, >=.
  * @param word La palabra que posiblemente represente el operador.
  * @return El operador que representa la palabra o -1 si no.
  */
-operatorType get_operation_type(const char *word);
+operatorType 	get_operation_type(const char *word);
 
+/**
+ * Lee una expresion de una lista de palabras. Recordar que una
+ * expresion es: un literal, una variable, o un operador seguido de dos
+ * literales o variables.
+ * @param instr Es la instruccion de la cual leer la expresion.
+ * @param pos Es la posicion desde la cual leer la instruccion.
+ * @return Retorna la expresion, en caso de fallo retorna una expresion
+ * no valida.
+ */
+Expression      get_next_expression(Instruction instr, int pos);
+
+/**
+ * Dada una componente, imprime por pantalla toda la informacion sobre
+ * ella.
+ */
+void show_component(Component c);
+
+/**
+ * Dada una expresion, imprime por pantalla toda la informacion sobre
+ * ella.
+ */
+void show_expression(Expression e);
 #endif // INSTRUCTION_DECODER_H

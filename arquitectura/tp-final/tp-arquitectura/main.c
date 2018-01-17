@@ -12,26 +12,41 @@ int main(){
         
         switch(instr_type){
             case ASSIGN:
+            {
                 
                 break;
+			}
             case INPUT:
+            {
                 
                 break;
+			}
             case END:
+            {
                 
                 break;
+			}
             case JUMP:
+            {
                 
                 break;
+			}
             case LABEL:
+            {
                 
                 break;
+			}
             case CONDITIONAL_JUMP:
-                
+            {
+                Expression e = get_next_expression(instr, 1);
+                show_expression(e);
                 break;
+			}
             default:
+            {
                 printf("%s\n", INCORRECT_INSTRUCTION);
                 return -1;
+			}
         }
     }
     return 0;

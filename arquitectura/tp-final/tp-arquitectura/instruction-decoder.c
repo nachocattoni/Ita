@@ -77,8 +77,7 @@ instructionType get_instruction_type(Instruction instr){
 }
 
 operatorType get_operation_type(const char *word){
-    const char *operators[] = {"+", "-", "*", "/", "&", "|", "^", "<", 
-        "<=", "==", ">", ">="};
+    const char *operators[] = OPERATOR_LIST;
     const operatorType operation_code[] = {SUMA, RESTA, MULTIPLICACION, 
         DIVISION, AND, OR, XOR, MENOR, MENOR_O_IGUAL, IGUAL, MAYOR, 
         MAYOR_O_IGUAL};
@@ -95,5 +94,54 @@ operatorType get_operation_type(const char *word){
 
 Expression get_next_expression(Instruction instr, int pos){
     Expression e;
+    if(pos < instr.length){
+		if(is_valid_variable_name(instr.words[pos])){
+			e.valid = true;
+			e.oper = NONE;
+			
+			Component v;
+			v.code = instr.words[pos][0];
+			v.value = atoi(instr.words[pos] + 1);
+			
+			e.v1 = v;
+		}
+		else if(get_operation_type(instr.words[pos]) != -1){
+			
+		}
+		else {
+			printf("Nothing here...\n");
+		}
+	}
+	else {
+		e.valid = false;
+	}
     return e;
+}
+
+void show_component(Component c){
+	if(c.code == '?'){
+		printf("La componente consiste del literal: %d\n", c.value);
+	}
+	else {
+		printf("La componente corresponde a la variable %c%d\n", c.code,
+			c.value);
+	}
+}
+
+void show_expression(Expression e){
+	if(!e.valid){
+		printf("No es una expresion valida\n");
+	}
+	else {
+		if(e.oper != NONE){
+			const char *operators[] = OPERATOR_LIST;
+			printf("La expresion consiste de dos componentes, siendo operadas por: %s\n", operators[e.oper]);
+			printf("Componente 1: "); show_component(e.v1);
+			printf("Componente 2: "); show_component(e.v2);
+		}
+		else {
+			printf("La expresion consiste de una sola componente\n");
+			show_component(e.v1);
+		}
+	}
 }
