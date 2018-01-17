@@ -1,14 +1,13 @@
 /**
  * @file main.h
- * @brief Defines globally used enumerations and constants, like bool
- * and MAX_BUFF_SIZE.
+ * @brief Define enumeraciones y constantes usadas globalmente.
  */
 
 #ifndef MAIN_H
 #define MAIN_H
 
 /**
- * @brief Bool enumeration to have C/C++ compatible boolean types.
+ * @brief Enumeracion booleana para proveer tipos semejantes a los de C++.
  */
 typedef enum _bool {
     false,

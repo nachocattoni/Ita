@@ -58,7 +58,7 @@ bool is_valid_variable_name(const char *s){
 
 instructionType get_instruction_type(Instruction instr){
 	const char *s = instr.words[0];
-    if(is_valid_variable_name(s)){
+	if(is_valid_variable_name(s)){
         return ASSIGN;
     }
     if(strcmp(s, "R") == 0){

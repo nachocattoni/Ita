@@ -1,7 +1,7 @@
 /**
  * @file instruction-decoder.h
- * @brief Defines the types of instructions and provides functionalities
- * to read and decode the meaning of each line.
+ * @brief Implementa funcionalidades para leer e interpretar 
+ * instrucciones y expresiones.
  */
 
 #ifndef INSTRUCTION_DECODER_H
@@ -10,20 +10,20 @@
 #include "main.h"
 
 /**
- * @brief All possible types of instruction.
+ * @brief Describe todos los tipos de instruccion posibles.
  */
 typedef enum _instructionType {
-    ASSIGN, /**< This type of instruction assigns the value of an expression to a variable. */
-    INPUT, /**< This type of instruction reads an integer value from stdin to a variable. */
-    OUTPUT, /**< This type of instruction writes to screen the value of an expression. */
-    END, /**< This type of instruction ends the program. */
-    JUMP, /**< This type of instruction changes the point of execution. */
-    LABEL, /**< This type of instruction declares a checkpoint for instructions. */
-    CONDITIONAL_JUMP /**< This type of instruction conditionally changes the point of execution. */
+    ASSIGN, /**< Asigna el valor de una expresion a una variable. */
+    INPUT, /**< Lee un valor entero de stdin y lo escribe a una variable. */
+    OUTPUT, /**< Escribe el valor de una expresion en la pantalla. */
+    END, /**< Termina el programa. */
+    JUMP, /**< Cambia el punto de ejecucion. */
+    LABEL, /**< Declara una etiqueta, lugar al cual se puede cambiar el punto de ejecucion. */
+    CONDITIONAL_JUMP /**< Cambia condicionalmente el punto de ejecucion. */
 } instructionType;
 
 /**
- * @brief An instruction is a set of words, and its corresponding length. 
+ * @brief Una instruccion es un conjunto de palabras. 
  */
 typedef struct _Instruction {
     int length;
@@ -32,27 +32,40 @@ typedef struct _Instruction {
 
 
 /**
- * Reads a new line and returns it.
+ * @return La siguiente linea a leer de stdin.
  */
 char *          get_instruction_line();
 
 /**
- * Reads a new line, decomposes it into single instructions (words),
- * and returns them as an Instruction.
+ * @return La siguiente instruccion a leer, en forma de _Instruction.
  */
 Instruction     get_next_instruction();
 
 /**
- * Receives an instruction and returns the type of it.
- * @param instr The instruction of which you want to know the type.
- * @return Returns the type of the instruction.
+ * Determina el tipo de instruccion que representa un objeto de tipo
+ * _Instruction.
+ * @param instr La instruccion de la cual se quiere averiguar el tipo.
+ * @return El tipo de la instruccion, como un _instructionType.
  */
 instructionType get_instruction_type(Instruction instr);
 
 /**
- * @param s The name of the string
- * @return Returns true if the string is a valid variable name.
+ * @param s El nombre de la cadena.
+ * @return Retorna verdadero si la cadena corresponde a un nombre valido
+ * para una variable: una letra seguida de un numero de etiqueta, donde
+ * un numero de etiqueta es un valor entre 0 y 2147483647. No se 
+ * permiten ceros a izquierda.
  */
 bool            is_valid_variable_name(const char *s);
+
+/**
+ * Lee una expresion de una lista de palabras. Recordar que una
+ * expresion es: un literal, una variable, o un operador seguido de dos
+ * literales o variables.
+ * @param words Un puntero a la primer palabra de una lista de palabras.
+ * @return Retorna verdadero en caso de que la expresion se haya leido
+ * con exito.
+ */
+bool 			get_next_expression(const char** words);
 
 #endif // INSTRUCTION_DECODER_H
