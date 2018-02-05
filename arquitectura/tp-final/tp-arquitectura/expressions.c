@@ -7,10 +7,10 @@
 #include "expressions.h"
 
 bool is_valid_integer(const char *s){
-	const int n = strlen(s);
-	if(n >= 1 && n <= 11){
-		int i;
-		
+    const int n = strlen(s);
+    if(n >= 1 && n <= 11){
+        int i;
+        
         for(i = 1; i < n; i++){
             if(!isdigit(s[i])) return false;
         }
@@ -21,30 +21,30 @@ bool is_valid_integer(const char *s){
         bool first_dig = true;
         bool first_dig_zero = false;
         for(i = 0; i < n; i++){
-			if(s[i] == '-'){
-				neg = true;
-			}
-			else {
-				if(first_dig){
-					if(s[i] == '0'){
-						first_dig_zero = true;
-					}
-					first_dig = false;
-				}
-				val = val * 10;
-				val = val + (s[i] - '0');
-			}
-		}
-		if(neg) val = -val;
-		
-		if(first_dig_zero && !neg && n > 1) return false;
-		if(first_dig_zero && neg) return false; /* No permito -0 */
-		
-		if(val < INT_MIN || val > INT_MAX) return false;
-		
-		return true;
-	}
-	return false;
+            if(s[i] == '-'){
+                neg = true;
+            }
+            else {
+                if(first_dig){
+                    if(s[i] == '0'){
+                        first_dig_zero = true;
+                    }
+                    first_dig = false;
+                }
+                val = val * 10;
+                val = val + (s[i] - '0');
+            }
+        }
+        if(neg) val = -val;
+        
+        if(first_dig_zero && !neg && n > 1) return false;
+        if(first_dig_zero && neg) return false; /* No permito -0 */
+        
+        if(val < INT_MIN || val > INT_MAX) return false;
+        
+        return true;
+    }
+    return false;
 }
 
 bool is_valid_variable_name(const char *s){
@@ -89,31 +89,31 @@ Expression get_next_expression(Instruction instr, int pos){
     Expression e; 
     int t;
     if(pos < instr.length){
-		if(is_valid_variable_name(instr.words[pos])){
-			e.valid = true;
-			e.oper = NONE;
-			
-			Component v;
-			v.code = instr.words[pos][0];
-			v.value = atoi(instr.words[pos] + 1);
-			
-			e.v1 = v;
-		}
-		else if( (t = get_operation_type(instr.words[pos])) != -1){
-			if(pos + 2 < instr.length){
-				// Continue here...
-			}
-			else {
-				e.valid = false;
-			}
-		}
-		else {
-			// Continue here...
-		}
-	}
-	else {
-		e.valid = false;
-	}
+        if(is_valid_variable_name(instr.words[pos])){
+            e.valid = true;
+            e.oper = NONE;
+            
+            Component v;
+            v.code = instr.words[pos][0];
+            v.value = atoi(instr.words[pos] + 1);
+            
+            e.v1 = v;
+        }
+        else if( (t = get_operation_type(instr.words[pos])) != -1){
+            if(pos + 2 < instr.length){
+                // Continue here...
+            }
+            else {
+                e.valid = false;
+            }
+        }
+        else {
+            // Continue here...
+        }
+    }
+    else {
+        e.valid = false;
+    }
     return e;
 }
 

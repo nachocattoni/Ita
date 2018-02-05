@@ -39,12 +39,12 @@ typedef enum _operatorType {
  * -1, entonces el valor de la expresion esta solo en el componente v1.
  */
 typedef struct _Expression {
-	bool valid;
+    bool valid;
     operatorType oper;
     Component v1, v2;
 } Expression;
 
-bool 			is_valid_integer(const char *s);
+bool            is_valid_integer(const char *s);
 
 /**
  * @param s El nombre de la cadena.
@@ -62,7 +62,7 @@ bool            is_valid_variable_name(const char *s);
  * @param word La palabra que posiblemente represente el operador.
  * @return El operador que representa la palabra o -1 si no.
  */
-operatorType 	get_operation_type(const char *word);
+operatorType    get_operation_type(const char *word);
 
 /**
  * Lee una expresion de una lista de palabras. Recordar que una
