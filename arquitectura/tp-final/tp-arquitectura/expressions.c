@@ -47,9 +47,13 @@ bool is_valid_integer(const char *s){
     return false;
 }
 
+bool is_label_number(const char *s){
+    return isdigit(s[0]) && is_valid_integer(s);
+}
+
 bool is_valid_variable_name(const char *s){
     const int n = strlen(s);
-    return n >= 2 && islower(s[0]) && isdigit(s[1]) && is_valid_integer(s + 1);
+    return n >= 2 && islower(s[0]) is_label_number(s + 1);
 }
 
 operatorType get_operator_type(const char *word){
