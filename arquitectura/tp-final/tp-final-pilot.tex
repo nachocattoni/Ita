@@ -67,7 +67,7 @@ El objetivo de este projecto es generar un compilador para el lenguaje Pilot a l
 
 Todas las sentencias en Pilot son de una linea. Cada linea comienza con una letra que indica la operación a ejecutarse, o con el nombre de una variable para una operación de asignación.
 
-Las variables son cadenas alfanuméricas que comienzan con una letra en minúscula, y son seguidas obligatoriamente por un entero de etiqueta\footnote{Número entero no negativo representable por un entero con signo de 32 bits. Cualquier entero entre $0$ y $2^{31}-1$ inclusive.}. De esta manera:
+Las variables son cadenas alfanuméricas que comienzan con una letra en minúscula, y son seguidas obligatoriamente por un entero de etiqueta\footnote{Un entero de etiqueta es un número entero no negativo representable por un entero con signo de 32 bits. Cualquier entero entre $0$ y $2^{31}-1$ inclusive, sin ceros a izquierda.}. De esta manera:
 \begin{itemize}
 \item{a0, z24, x231, p2147483647, son nombres válidos, mientras que}
 \item{a-1, b, romeosantos, 23z, w2147483648, no son nombres válidos}
@@ -92,10 +92,10 @@ Para realizar este projecto, necesitaremos:
 \item{Familiarizarnos con el lenguaje Pilot.}
 \item{Diagramar una posible implementación de alto nivel del compilador.}
 \item{Crear un sistema de procesado linea por linea.}
-\item{Interpretar cada linea y discriminarlas por tipo de operación.}
+\item{Interpretar cada linea y discriminarla por tipo de operación.}
 \item{Obtener el conjunto de instrucciones equivalentes a cada sentencia de Pilot.}
 \item{Mapear las sentencias en Pilot a cada  conjunto de instrucciones de ARM.}
-\item{Programar el algoritmo del campesino ruso y realizarle pruebas para verificar su correctitud.}
+\item{Hacer pruebas de correctitud creando diversos programas en Pilot y verificando que actuen segun lo esperado.}
 \end{enumerate}
 
 % --------------------------------------------------------------
