@@ -7,7 +7,8 @@
 /**
  * @brief Representa un literal o una variable. Si es un literal, code
  * vale '?'. De lo contrario, si es, por ejemplo, la variable p278, 
- * entonces code vale 'p', y value es 278.
+ * entonces code vale 'p', y value es 278. 
+ * Si no es válido, code vale '#'.
  */
 typedef struct _Component {
     char code;
@@ -36,7 +37,7 @@ typedef enum _operatorType {
 /**
  * @brief Representa una expresion. Una expresion es un componente
  * unico, o es una operacion seguido de dos componentes. Si oper es
- * -1, entonces el valor de la expresion esta solo en el componente v1.
+ * NONE, entonces el valor de la expresion esta solo en el componente v1.
  */
 typedef struct _Expression {
     bool valid;

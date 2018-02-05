@@ -52,27 +52,52 @@ bool is_valid_variable_name(const char *s){
     return n >= 2 && islower(s[0]) && isdigit(s[1]) && is_valid_integer(s + 1);
 }
 
-operatorType get_operation_type(const char *word){
+operatorType get_operator_type(const char *word){
     const char *operators[] = OPERATOR_LIST;
-    const operatorType operation_code[] = {SUMA, RESTA, MULTIPLICACION, 
+    const operatorType operator_code[] = {SUMA, RESTA, MULTIPLICACION, 
         DIVISION, AND, OR, XOR, MENOR, MENOR_O_IGUAL, IGUAL, MAYOR, 
         MAYOR_O_IGUAL};
     int i;
     
     for(i = 0; i < NUMBER_OF_OPERATORS; i++){
         if(strcmp(word, operators[i]) == 0){
-            return operation_code[i];
+            return operator_code[i];
         }
     }
     
-    return -1;
+    return NONE;
+}
+
+Component get_component(const char *s){
+    Component ans;
+    if(is_valid_variable_name(s)){
+        ans.code = s[0];
+        ans.value = atoi(s + 1);
+    }
+    else if(is_valid_integer(s)){
+        ans.code = '?';
+        ans.value = atoi(s);
+    }
+    else {
+        ans.code = '#'; // Invalid component
+        ans.value = -1;
+    }
+    return ans;
 }
 
 Expression get_next_expression(Instruction instr, int pos){
     Expression e;
-    int t;
+    operatorType t;
     if(pos < instr.length){
-        if(is_valid_variable_name(instr.words[pos])){
+        if(is_valid_integer(instr.words[pos])){
+            e.valid = true;
+            e.oper = NONE;
+            Component v;
+            v.code = '?';
+            v.value = atoi(instr.words[pos]);
+            e.v1 = v;
+        }
+        else if(is_valid_variable_name(instr.words[pos])){
             e.valid = true;
             e.oper = NONE;
             
@@ -82,16 +107,28 @@ Expression get_next_expression(Instruction instr, int pos){
             
             e.v1 = v;
         }
-        else if( (t = get_operation_type(instr.words[pos])) != -1){
+        else if( (t = get_operator_type(instr.words[pos])) != NONE ){
             if(pos + 2 < instr.length){
-                // Continue here...
+                /* En pos se encuentra el operador */
+                /* En pos + 1 se encuentra el primer operando */
+                /* En pos + 2 se encuentra el segundo operando */
+                Component l, r;
+                l = get_component(instr.words[pos + 1]);
+                r = get_component(instr.words[pos + 2]);
+                if(l.code != '#' && r.code != '#'){
+                    e.valid = true;
+                    e.oper = t;
+                    e.v1 = l;
+                    e.v2 = r;
+                }
+                else e.valid = false;
             }
             else {
                 e.valid = false;
             }
         }
         else {
-            // Continue here...
+            e.valid = false;
         }
     }
     else {
