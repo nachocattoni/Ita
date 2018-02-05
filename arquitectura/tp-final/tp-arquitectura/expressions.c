@@ -11,7 +11,7 @@ bool is_valid_integer(const char *s){
 	if(n >= 1 && n <= 11){
 		int i;
 		
-		for(i = 1; i < n; i++){
+        for(i = 1; i < n; i++){
             if(!isdigit(s[i])) return false;
         }
         if(!isdigit(s[0]) && s[0] != '-') return false;
