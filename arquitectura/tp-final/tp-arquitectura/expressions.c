@@ -49,24 +49,7 @@ bool is_valid_integer(const char *s){
 
 bool is_valid_variable_name(const char *s){
     const int n = strlen(s);
-    if(n >= 2 && n <= 11 && islower(s[0])){
-        int i;
-
-        for(i = 1; i < n; i++){
-            if(!isdigit(s[i])) return false;
-        }
-
-        long long val = 0;
-        for(i = 1; i < n; i++){
-            val = val * 10;
-            val = val + (s[i] - '0');
-        }
-
-        if(val > 2147483647) return false;
-
-        return true;
-    }
-    return false;
+    return n >= 2 && islower(s[0]) && isdigit(s[1]) && is_valid_integer(s + 1);
 }
 
 operatorType get_operation_type(const char *word){
@@ -86,7 +69,7 @@ operatorType get_operation_type(const char *word){
 }
 
 Expression get_next_expression(Instruction instr, int pos){
-    Expression e; 
+    Expression e;
     int t;
     if(pos < instr.length){
         if(is_valid_variable_name(instr.words[pos])){
