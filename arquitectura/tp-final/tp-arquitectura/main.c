@@ -9,6 +9,13 @@
 int main(){
     while(true){
         Instruction instr = get_next_instruction();
+        if(is_valid_integer(instr.words[0])){
+			puts("OK");
+		}
+		else {
+			puts("NO OK");
+		}
+		continue;
 
         instructionType instr_type = get_instruction_type(instr);
         

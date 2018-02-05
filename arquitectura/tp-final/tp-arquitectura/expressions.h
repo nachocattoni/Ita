@@ -44,6 +44,8 @@ typedef struct _Expression {
     Component v1, v2;
 } Expression;
 
+bool 			is_valid_integer(const char *s);
+
 /**
  * @param s El nombre de la cadena.
  * @return Retorna verdadero si la cadena corresponde a un nombre valido

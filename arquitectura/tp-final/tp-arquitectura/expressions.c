@@ -1,9 +1,51 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <limits.h>
 
 #include "main.h"
 #include "expressions.h"
+
+bool is_valid_integer(const char *s){
+	const int n = strlen(s);
+	if(n >= 1 && n <= 11){
+		int i;
+		
+		for(i = 1; i < n; i++){
+            if(!isdigit(s[i])) return false;
+        }
+        if(!isdigit(s[0]) && s[0] != '-') return false;
+        
+        long long val = 0;
+        bool neg = false;
+        bool first_dig = true;
+        bool first_dig_zero = false;
+        for(i = 0; i < n; i++){
+			if(s[i] == '-'){
+				neg = true;
+			}
+			else {
+				if(first_dig){
+					if(s[i] == '0'){
+						first_dig_zero = true;
+					}
+					first_dig = false;
+				}
+				val = val * 10;
+				val = val + (s[i] - '0');
+			}
+		}
+		if(neg) val = -val;
+		
+		if(first_dig_zero && !neg && n > 1) return false;
+		if(first_dig_zero && neg) return false; /* No permito -0 */
+		
+		if(val < INT_MIN || val > INT_MAX) return false;
+		
+		return true;
+	}
+	return false;
+}
 
 bool is_valid_variable_name(const char *s){
     const int n = strlen(s);
