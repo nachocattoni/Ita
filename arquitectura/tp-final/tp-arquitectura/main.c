@@ -10,7 +10,7 @@ int main(){
     while(true){
         Instruction instr = get_next_instruction();
         instructionType instr_type = get_instruction_type(instr);
-        
+
         switch(instr_type){
             case ASSIGN:
             {

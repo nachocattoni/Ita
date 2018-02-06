@@ -53,7 +53,7 @@ bool is_label_number(const char *s){
 
 bool is_valid_variable_name(const char *s){
     const int n = strlen(s);
-    return n >= 2 && islower(s[0]) is_label_number(s + 1);
+    return n >= 2 && islower(s[0]) && is_label_number(s + 1);
 }
 
 operatorType get_operator_type(const char *word){
