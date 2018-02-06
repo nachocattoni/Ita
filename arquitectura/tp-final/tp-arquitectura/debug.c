@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "expressions.h"
+#include "storage.h"
 #include "debug.h"
 
 void show_component(Component c){
@@ -31,3 +32,10 @@ void show_expression(Expression e){
     }
 }
 
+void show_bucket(Bucket *B){
+    printf("Showing Bucket (%d/%d):\n", B->nelems, B->sz);
+    int i;
+    for(i = 0; i < B->nelems; i++){
+        printf("%d: %s\n", i, B->storage[i]);
+    }
+}

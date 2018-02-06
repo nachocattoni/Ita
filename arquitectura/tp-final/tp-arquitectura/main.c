@@ -5,8 +5,10 @@
 #include "instruction-decoder.h"
 #include "expressions.h"
 #include "debug.h"
+#include "storage.h"
 
 int main(){
+    Bucket B = create_new_bucket();
     while(true){
         Instruction instr = get_next_instruction();
         instructionType instr_type = get_instruction_type(instr);

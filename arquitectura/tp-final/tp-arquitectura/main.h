@@ -15,6 +15,7 @@ typedef enum _bool {
 } bool;
 
 #define MAX_BUFF_SIZE 256
+#define MAX_VARIABLE_NAME_SIZE 15
 #define NUMBER_OF_INSTRUCTION_TYPES 6
 
 #define NUMBER_OF_OPERATORS 12
