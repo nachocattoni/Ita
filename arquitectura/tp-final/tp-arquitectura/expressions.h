@@ -84,7 +84,7 @@ operatorType    get_operator_type(const char *word);
  * @param s La cadena de la cual se quiere extraer el componente.
  * @return Retorna un _Component que representa la cadena de texto,
  */
-Component get_component(const char *s);
+Component       get_component(const char *s);
 
 /**
  * Lee una expresion de una lista de palabras. Recordar que una
