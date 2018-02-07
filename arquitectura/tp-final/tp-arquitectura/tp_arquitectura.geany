@@ -28,15 +28,17 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=2
-FILE_NAME_0=145;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Finstruction-decoder.c;0;4
-FILE_NAME_1=810;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Finstruction-decoder.h;0;4
-FILE_NAME_2=350;C;0;EUTF-8;0;0;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fmain.c;0;4
-FILE_NAME_3=202;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fmain.h;0;4
-FILE_NAME_4=1605;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fexpressions.h;0;4
-FILE_NAME_5=1414;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fexpressions.c;0;4
-FILE_NAME_6=140;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fdebug.h;0;4
-FILE_NAME_7=732;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fdebug.c;0;4
+current_page=9
+FILE_NAME_0=77;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Finstruction-decoder.c;0;4
+FILE_NAME_1=932;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Finstruction-decoder.h;0;4
+FILE_NAME_2=461;C;0;EUTF-8;0;0;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fmain.c;0;4
+FILE_NAME_3=312;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fmain.h;0;4
+FILE_NAME_4=990;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fexpressions.h;0;4
+FILE_NAME_5=3776;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fexpressions.c;0;4
+FILE_NAME_6=204;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fdebug.h;0;4
+FILE_NAME_7=996;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fdebug.c;0;4
+FILE_NAME_8=17;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fstorage.h;0;4
+FILE_NAME_9=571;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fstorage.c;0;4
 
 [build-menu]
 CFT_01_LB=_Build
