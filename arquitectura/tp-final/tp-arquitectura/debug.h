@@ -16,6 +16,10 @@ void show_component(Component c);
  */
 void show_expression(Expression e);
 
+/**
+ * Dado un bucket, muestra la capacidad de este, y muestra cada 
+ * elemento al lado de su índice en el bucket.
+ */
 void show_bucket(Bucket *B);
 
 #endif // DEBUG_H
