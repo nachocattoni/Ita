@@ -74,18 +74,12 @@ operatorType get_operator_type(const char *word){
 
 Component get_component(const char *s){
     Component ans;
-    if(is_valid_variable_name(s)){
-        ans.code = s[0];
-        ans.value = atoi(s + 1);
-    }
-    else if(is_valid_integer(s)){
-        ans.code = '?';
-        ans.value = atoi(s);
-    }
-    else {
-        ans.code = '#'; // Invalid component
-        ans.value = -1;
-    }
+    bool variable = is_valid_variable_name(s);
+    bool literal = is_valid_integer(s);
+    ans.valid = variable || literal;
+    ans.var = variable;
+    ans.value = malloc(MAX_VARIABLE_NAME_SIZE * sizeof(char));
+    strcpy(ans.value, s);
     return ans;
 }
 
@@ -93,22 +87,11 @@ Expression get_next_expression(Instruction instr, int pos){
     Expression e;
     operatorType t;
     if(pos < instr.length){
-        if(is_valid_integer(instr.words[pos])){
+        if(is_valid_integer(instr.words[pos]) || is_valid_variable_name(instr.words[pos])){
             e.valid = true;
             e.oper = NONE;
             Component v;
-            v.code = '?';
-            v.value = atoi(instr.words[pos]);
-            e.v1 = v;
-        }
-        else if(is_valid_variable_name(instr.words[pos])){
-            e.valid = true;
-            e.oper = NONE;
-            
-            Component v;
-            v.code = instr.words[pos][0];
-            v.value = atoi(instr.words[pos] + 1);
-            
+            v = get_component(instr.words[pos]);
             e.v1 = v;
         }
         else if( (t = get_operator_type(instr.words[pos])) != NONE ){
@@ -119,7 +102,7 @@ Expression get_next_expression(Instruction instr, int pos){
                 Component l, r;
                 l = get_component(instr.words[pos + 1]);
                 r = get_component(instr.words[pos + 2]);
-                if(l.code != '#' && r.code != '#'){
+                if(l.valid && r.valid){
                     e.valid = true;
                     e.oper = t;
                     e.v1 = l;

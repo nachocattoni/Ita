@@ -5,12 +5,15 @@
 #include "debug.h"
 
 void show_component(Component c){
-    if(c.code == '?'){
-        printf("La componente consiste del literal: %d\n", c.value);
+    if(!c.valid){
+        printf("Not a valid component:\n");
+        return;
+    }
+    if(c.var == true){
+        printf("La componente corresponde a la variable %s\n", c.value);
     }
     else {
-        printf("La componente corresponde a la variable %c%d\n", c.code,
-            c.value);
+        printf("La componente consiste del literal: %s\n", c.value);
     }
 }
 

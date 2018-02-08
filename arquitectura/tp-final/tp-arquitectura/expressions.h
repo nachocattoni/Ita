@@ -5,14 +5,13 @@
 #include "instruction-decoder.h"
 
 /**
- * @brief Representa un literal o una variable. Si es un literal, code
- * vale '?'. De lo contrario, si es, por ejemplo, la variable p278, 
- * entonces code vale 'p', y value es 278. 
- * Si no es válido, code vale '#'.
+ * @brief Representa un literal o una variable. Si es variable, value
+ * corresponde a un nombre válido para una variable, y 'var' es true.
+ * Si no, en value se guarda su valor explícito.
  */
 typedef struct _Component {
-    char code;
-    int value;
+    bool valid, var;
+    char* value;
 } Component;
 
 /**
