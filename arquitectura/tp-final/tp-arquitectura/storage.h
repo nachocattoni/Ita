@@ -13,8 +13,7 @@ typedef struct _Bucket {
 } Bucket;
 
 /**
- * @return Retorna un nuevo _Bucket inicializado con 0 elementos, y
- * 256 de espacio.
+ * @return Retorna un nuevo _Bucket.
  */
 Bucket create_new_bucket();
 

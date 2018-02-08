@@ -28,17 +28,18 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=9
+current_page=10
 FILE_NAME_0=77;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Finstruction-decoder.c;0;4
 FILE_NAME_1=932;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Finstruction-decoder.h;0;4
-FILE_NAME_2=461;C;0;EUTF-8;0;0;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fmain.c;0;4
+FILE_NAME_2=339;C;0;EUTF-8;0;0;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fmain.c;0;4
 FILE_NAME_3=312;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fmain.h;0;4
 FILE_NAME_4=990;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fexpressions.h;0;4
-FILE_NAME_5=3776;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fexpressions.c;0;4
+FILE_NAME_5=3262;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fexpressions.c;0;4
 FILE_NAME_6=204;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fdebug.h;0;4
-FILE_NAME_7=996;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fdebug.c;0;4
-FILE_NAME_8=17;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fstorage.h;0;4
-FILE_NAME_9=571;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fstorage.c;0;4
+FILE_NAME_7=331;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fdebug.c;0;4
+FILE_NAME_8=304;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fstorage.c;0;4
+FILE_NAME_9=301;C;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FIta%2Farquitectura%2Ftp-final%2Ftp-arquitectura%2Fstorage.h;0;4
+FILE_NAME_10=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fminblue%2FDocuments%2FProgramming%2Fcodeforces%2F461%2FA.cpp;0;4
 
 [build-menu]
 CFT_01_LB=_Build
