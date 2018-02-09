@@ -32,28 +32,48 @@ void evaluate_expression(Expression e, Bucket *B){
                 printf("add r1, r%d, r%d\n", x, y);
             }
             case RESTA: {
-				printf("sub r1, r%d, r%d\n", x, y);
+                printf("sub r1, r%d, r%d\n", x, y);
             }
             case MULTIPLICACION: {
-				printf("mul r1, r%d, r%d\n", x, y);
+                printf("mul r1, r%d, r%d\n", x, y);
             }
             case DIVISION: {
-				printf("sdiv r1, r%d, r%d\n", x, y);
+                printf("sdiv r1, r%d, r%d\n", x, y);
             }
             case AND: {
-				printf("and r1, r%d, r%d\n", x, y);
+                printf("and r1, r%d, r%d\n", x, y);
             }
             case OR: {
-				printf("orr r1, r%d, r%d\n", x, y);
+                printf("orr r1, r%d, r%d\n", x, y);
             }
             case XOR: {
-				printf("eor r1, r%d, r%d\n", x, y);
+                printf("eor r1, r%d, r%d\n", x, y);
             }
-            case MENOR: {}
-            case MENOR_O_IGUAL: {}
-            case IGUAL: {}
-            case MAYOR: {}
-            case MAYOR_O_IGUAL: {}
+            case MENOR: {
+                printf("cmp r%d, r%d\n", x, y);
+                printf("xor r1, r1\n");
+                printf("movlt r1, #1\n", x, y);
+            }
+            case MENOR_O_IGUAL: {
+                printf("cmp r%d, r%d\n", x, y);
+                printf("xor r1, r1\n");
+                printf("movls r1, #1\n", x, y);
+            }
+            case IGUAL: {
+                printf("cmp r%d, r%d\n", x, y);
+                printf("xor r1, r1\n");
+                printf("moveq r1, #1\n", x, y);
+            }
+            case MAYOR: {
+                printf("cmp r%d, r%d\n", x, y);
+                printf("xor r1, r1\n");
+                printf("movgt r1, #1\n", x, y);
+            }
+            case MAYOR_O_IGUAL: {
+                printf("cmp r%d, r%d\n", x, y);
+                printf("xor r1, r1\n");
+                printf("movge r1, #1\n", x, y);
+            }
             case NONE: {}
         }
     }
