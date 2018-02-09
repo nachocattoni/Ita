@@ -9,8 +9,11 @@
 #include "writer.h"
 
 int main(){
+    initialize();
+    
     Bucket B = create_new_bucket();
-    while(true){
+    bool end = false;
+    while(!end){
         Instruction instr = get_next_instruction();
         instructionType instr_type = get_instruction_type(instr);
 
@@ -20,6 +23,13 @@ int main(){
                 
                 break;
             }
+            case OUTPUT:
+            {
+                Expression e = get_next_expression(instr, 1);
+                evaluate_expression(e, &B);
+                print_value();
+                break;
+            }
             case INPUT:
             {
                 
@@ -27,7 +37,8 @@ int main(){
             }
             case END:
             {
-                
+                terminate();
+                end = true;
                 break;
             }
             case JUMP:
@@ -43,7 +54,6 @@ int main(){
             case CONDITIONAL_JUMP:
             {
                 Expression e = get_next_expression(instr, 1);
-                show_expression(e);
                 evaluate_expression(e, &B);
                 break;
             }

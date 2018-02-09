@@ -25,4 +25,22 @@ void evaluate_component(Component v, Bucket *B, int where);
  */
 void evaluate_expression(Expression e, Bucket *B);
 
+/**
+ * Imprime el valor alojado en r1 por pantalla. Asume que la instruccion
+ * push {ip, lr} fue usada al comienzo, y que pop {ip, pc} será usada
+ * al final.
+ */
+void print_value();
+
+/**
+ * Escribe todo el código necesario para inicializar el programa en 
+ * ARM. 
+ */
+void initialize();
+
+/**
+ * Escribe todo el código necesario al final de programa ARM.
+ */
+void terminate();
+
 #endif // WRITTER_H
