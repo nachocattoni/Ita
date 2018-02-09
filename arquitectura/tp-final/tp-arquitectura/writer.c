@@ -25,6 +25,7 @@ void evaluate_expression(Expression e, Bucket *B){
     else {
         int x, y;
         x = 2; y = 3; // registros auxiliares para los cómputos...
+        printf("  ");
         switch(e.oper){
             case SUMA: {
                 evaluate_component(e.v1, B, x);
@@ -45,4 +46,25 @@ void evaluate_expression(Expression e, Bucket *B){
             case NONE: {}
         }
     }
+}
+
+void print_value(){
+    puts("  ldr r0, =output");
+    puts("  bl printf");
+}
+
+void initialize(){
+    puts(".global main");
+    puts(".extern printf");
+    puts(".extern scanf");
+    puts("main:");
+    puts("  push {ip, lr}");
+}
+
+void terminate(){
+    puts("  pop {ip, pc}");
+    puts("  bx lr");
+    puts(".data");
+    puts("input: .asciz \"%d\"");
+    puts("output: .asciz \"%d\\n\"");
 }
