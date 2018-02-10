@@ -97,6 +97,14 @@ void print_value(){
     puts("  bl printf");
 }
 
+void scan_value(Bucket *B, const char *s){
+    int k = insert_element(B, s);
+    puts("  ldr r0, =input");
+    puts("  ldr r1, =universe");
+    printf("  add r1, #%d\n", 4 * k);
+    puts("  bl scanf");
+}
+
 void load_value(Bucket *B, const char *s){
     int k = insert_element(B, s);
     puts("ldr r0, =universe");

@@ -35,7 +35,13 @@ int main(){
             }
             case INPUT:
             {
-                
+                Component v = get_component(instr.words[1]);
+                if(!v.var){
+                    fprintf(stderr, "%s\n", INCORRECT_INSTRUCTION);
+                    return -1;
+                }
+                scan_value(&B, v.value);
+                //~ load_value(&B, v.value);
                 break;
             }
             case END:
