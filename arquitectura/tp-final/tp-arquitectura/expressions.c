@@ -61,7 +61,7 @@ operatorType get_operator_type(const char *word){
     const char *operators[] = OPERATOR_LIST;
     const operatorType operator_code[] = {SUMA, RESTA, MULTIPLICACION, 
         DIVISION, AND, OR, XOR, MENOR, MENOR_O_IGUAL, IGUAL, MAYOR, 
-        MAYOR_O_IGUAL, DISTINTO};
+        MAYOR_O_IGUAL, DISTINTO, NOT};
     int i;
     
     for(i = 0; i < NUMBER_OF_OPERATORS; i++){
@@ -87,6 +87,7 @@ Component get_component(const char *s){
 Expression get_next_expression(Instruction instr, int pos){
     Expression e;
     operatorType t;
+    e.valid = false;
     if(pos < instr.length){
         if(is_valid_integer(instr.words[pos]) || is_valid_variable_name(instr.words[pos])){
             e.valid = true;
@@ -96,7 +97,15 @@ Expression get_next_expression(Instruction instr, int pos){
             e.v1 = v;
         }
         else if( (t = get_operator_type(instr.words[pos])) != NONE ){
-            if(pos + 2 < instr.length){
+            if(t == NOT){
+                Component p = get_component(instr.words[pos + 1]);
+                if(p.valid){
+                    e.valid = true;
+                    e.oper = t;
+                    e.v1 = p;
+                }
+            }
+            else if(pos + 2 < instr.length){
                 /* En pos se encuentra el operador */
                 /* En pos + 1 se encuentra el primer operando */
                 /* En pos + 2 se encuentra el segundo operando */
@@ -109,18 +118,8 @@ Expression get_next_expression(Instruction instr, int pos){
                     e.v1 = l;
                     e.v2 = r;
                 }
-                else e.valid = false;
-            }
-            else {
-                e.valid = false;
             }
         }
-        else {
-            e.valid = false;
-        }
-    }
-    else {
-        e.valid = false;
     }
     return e;
 }

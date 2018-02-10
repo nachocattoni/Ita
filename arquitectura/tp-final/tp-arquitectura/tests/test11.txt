@@ -1,0 +1,6 @@
+# Probando la operacion not (!)
+R p40
+R k40
+O ! p40
+O ! k40
+E

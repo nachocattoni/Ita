@@ -26,7 +26,7 @@ void evaluate_expression(Expression e, Bucket *B){
         int x, y;
         x = 2; y = 3; // registros auxiliares para los cómputos...
         evaluate_component(e.v1, B, x);
-        evaluate_component(e.v2, B, y);
+        if(e.oper != NOT) evaluate_component(e.v2, B, y);
         printf("  ");
         switch(e.oper){
             case SUMA: {
@@ -58,40 +58,45 @@ void evaluate_expression(Expression e, Bucket *B){
                 break;
             }
             case MENOR: {
-                printf("eor r1, r1\n");
+                puts("eor r1, r1");
                 printf("  cmp r%d, r%d\n", x, y);
                 printf("  movlt r1, #1\n");
                 break;
             }
             case MENOR_O_IGUAL: {
-                printf("eor r1, r1\n");
+                puts("eor r1, r1");
                 printf("  cmp r%d, r%d\n", x, y);
                 printf("  movls r1, #1\n");
                 break;
             }
             case IGUAL: {
-                printf("eor r1, r1\n");
+                puts("eor r1, r1");
                 printf("  cmp r%d, r%d\n", x, y);
                 printf("  moveq r1, #1\n");
                 break;
             }
             case MAYOR: {
-                printf("eor r1, r1\n");
+                puts("eor r1, r1");
                 printf("  cmp r%d, r%d\n", x, y);
                 printf("  movgt r1, #1\n");
                 break;
             }
             case MAYOR_O_IGUAL: {
-                printf("eor r1, r1\n");
+                puts("eor r1, r1");
                 printf("  cmp r%d, r%d\n", x, y);
                 printf("  movge r1, #1\n");
                 break;
             }
             case DISTINTO: {
-                printf("eor r1, r1\n");
+                puts("eor r1, r1");
                 printf("  cmp r%d, r%d\n", x, y);
                 printf("  movne r1, #1\n");
                 break;
+            }
+            case NOT: {
+                puts("eor r1, r1");
+                printf("  cmp r%d, #0\n", x);
+                puts("  moveq r1, #1");
             }
             case NONE: {}
         }
