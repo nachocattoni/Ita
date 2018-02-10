@@ -13,6 +13,8 @@ int main(){
     Bucket B = create_new_bucket();
     while(true){
         Instruction instr = get_next_instruction();
+        if(instr.length == 0) break;
+        
         instructionType instr_type = get_instruction_type(instr);
 
         switch(instr_type){

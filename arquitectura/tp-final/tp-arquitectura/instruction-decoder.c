@@ -18,6 +18,12 @@ char *get_instruction_line(){
 Instruction get_next_instruction(){
     Instruction instr;
     char *line = get_instruction_line();
+    
+    if((int)strlen(line) == 0){
+        instr.words = NULL;
+        instr.length = 0;
+        return instr;
+    }
 
     instr.words = (char **) malloc(MAX_BUFF_SIZE * sizeof(char *));
     instr.length = 0;
