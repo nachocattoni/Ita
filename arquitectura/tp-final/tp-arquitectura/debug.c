@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #include "expressions.h"
 #include "storage.h"
@@ -40,5 +41,13 @@ void show_bucket(Bucket *B){
     int i;
     for(i = 0; i < B->nelems; i++){
         fprintf(stderr, "%d: %s\n", i, B->storage[i]);
+    }
+}
+
+void show_instruction(Instruction instr){
+    int n = instr.length, i;
+    fprintf(stderr, "La instruccion consiste de %d palabras.\n", n);
+    for(i = 0; i < n; i++){
+        printf("sz(%d) -> %s\n", (int)strlen(instr.words[i]), instr.words[i]);
     }
 }

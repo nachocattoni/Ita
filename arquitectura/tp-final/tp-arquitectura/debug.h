@@ -22,4 +22,10 @@ void show_expression(Expression e);
  */
 void show_bucket(Bucket *B);
 
+/**
+ * Dada una instruccion, muestra la cantidad de palabras de esta,
+ * y cada elemento en una nueva linea.
+ */
+void show_instruction(Instruction instr);
+
 #endif // DEBUG_H
