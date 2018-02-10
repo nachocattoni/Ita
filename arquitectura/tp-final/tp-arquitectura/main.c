@@ -37,7 +37,7 @@ int main(){
             }
             case END:
             {
-                terminate();
+                terminate(&B);
                 end = true;
                 break;
             }

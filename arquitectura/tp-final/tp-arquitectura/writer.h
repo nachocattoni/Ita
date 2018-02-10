@@ -41,6 +41,6 @@ void initialize();
 /**
  * Escribe todo el código necesario al final de programa ARM.
  */
-void terminate();
+void terminate(Bucket *B);
 
 #endif // WRITTER_H

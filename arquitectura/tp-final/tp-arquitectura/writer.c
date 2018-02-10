@@ -53,27 +53,27 @@ void evaluate_expression(Expression e, Bucket *B){
             case MENOR: {
                 printf("cmp r%d, r%d\n", x, y);
                 printf("xor r1, r1\n");
-                printf("movlt r1, #1\n", x, y);
+                printf("movlt r1, #1\n");
             }
             case MENOR_O_IGUAL: {
                 printf("cmp r%d, r%d\n", x, y);
                 printf("xor r1, r1\n");
-                printf("movls r1, #1\n", x, y);
+                printf("movls r1, #1\n");
             }
             case IGUAL: {
                 printf("cmp r%d, r%d\n", x, y);
                 printf("xor r1, r1\n");
-                printf("moveq r1, #1\n", x, y);
+                printf("moveq r1, #1\n");
             }
             case MAYOR: {
                 printf("cmp r%d, r%d\n", x, y);
                 printf("xor r1, r1\n");
-                printf("movgt r1, #1\n", x, y);
+                printf("movgt r1, #1\n");
             }
             case MAYOR_O_IGUAL: {
                 printf("cmp r%d, r%d\n", x, y);
                 printf("xor r1, r1\n");
-                printf("movge r1, #1\n", x, y);
+                printf("movge r1, #1\n");
             }
             case NONE: {}
         }
@@ -93,10 +93,11 @@ void initialize(){
     puts("  push {ip, lr}");
 }
 
-void terminate(){
+void terminate(Bucket *B){
     puts("  pop {ip, pc}");
     puts("  bx lr");
     puts(".data");
     puts("input: .asciz \"%d\"");
     puts("output: .asciz \"%d\\n\"");
+    printf("universe: .fill %d\n", 4 * B->nelems);
 }
