@@ -8,11 +8,11 @@ void evaluate_component(Component v, Bucket *B, int where){
     if(!v.valid) return;
     if(v.var){
         int pos = insert_element(B, v.value);
-        printf("ldr r0, =universe\n");
-        printf("ldr r%d, [r0, #%d]\n", where, pos * 4);
+        printf("  ldr r0, =universe\n");
+        printf("  ldr r%d, [r0, #%d]\n", where, pos * 4);
     }
     else {
-        printf("ldr r%d, =#%s\n", where, v.value);
+        printf("  ldr r%d, =#%s\n", where, v.value);
     }
 }
 

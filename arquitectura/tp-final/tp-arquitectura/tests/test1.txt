@@ -3,5 +3,4 @@ R v2
 O + v1 v2
 O - v1 v2
 O * v1 v2
-O / v1 v2
 E
