@@ -59,32 +59,32 @@ void evaluate_expression(Expression e, Bucket *B){
             }
             case MENOR: {
                 printf("eor r1, r1\n");
-                printf("cmp r%d, r%d\n", x, y);
-                printf("movlt r1, #1\n");
+                printf("  cmp r%d, r%d\n", x, y);
+                printf("  movlt r1, #1\n");
                 break;
             }
             case MENOR_O_IGUAL: {
                 printf("eor r1, r1\n");
-                printf("cmp r%d, r%d\n", x, y);
-                printf("movls r1, #1\n");
+                printf("  cmp r%d, r%d\n", x, y);
+                printf("  movls r1, #1\n");
                 break;
             }
             case IGUAL: {
                 printf("eor r1, r1\n");
-                printf("cmp r%d, r%d\n", x, y);
-                printf("moveq r1, #1\n");
+                printf("  cmp r%d, r%d\n", x, y);
+                printf("  moveq r1, #1\n");
                 break;
             }
             case MAYOR: {
                 printf("eor r1, r1\n");
-                printf("cmp r%d, r%d\n", x, y);
-                printf("movgt r1, #1\n");
+                printf("  cmp r%d, r%d\n", x, y);
+                printf("  movgt r1, #1\n");
                 break;
             }
             case MAYOR_O_IGUAL: {
                 printf("eor r1, r1\n");
-                printf("cmp r%d, r%d\n", x, y);
-                printf("movge r1, #1\n");
+                printf("  cmp r%d, r%d\n", x, y);
+                printf("  movge r1, #1\n");
                 break;
             }
             case NONE: {}
