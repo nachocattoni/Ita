@@ -119,6 +119,11 @@ void jump_label(const char *l){
     printf("  b LABEL%s\n", l);
 }
 
+void conditional_jump(const char *l){
+    puts("  cmp r1, #0");
+    printf("  bne LABEL%s\n", l);
+}
+
 void initialize(){
     puts(".global main");
     puts(".extern printf");

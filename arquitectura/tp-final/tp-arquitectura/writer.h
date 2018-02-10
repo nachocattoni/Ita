@@ -62,6 +62,13 @@ void mark_label(const char *l);
 void jump_label(const char *l);
 
 /**
+ * Escribe un salto condicional, en el caso de que el valor en r1
+ * sea distinto de 0.
+ * @param l Numero de la etiqueta a la cual saltar.
+ */
+void conditional_jump(const char *l);
+
+/**
  * Escribe todo el código necesario para inicializar el programa en 
  * ARM. 
  */

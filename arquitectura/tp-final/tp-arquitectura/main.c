@@ -68,6 +68,8 @@ int main(){
             {
                 Expression e = get_next_expression(instr, 1);
                 evaluate_expression(e, &B);
+                char *label = (e.oper == NONE) ? instr.words[2] : instr.words[4];
+                conditional_jump(label);
                 break;
             }
             default:
