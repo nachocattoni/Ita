@@ -48,6 +48,6 @@ void show_instruction(Instruction instr){
     int n = instr.length, i;
     fprintf(stderr, "La instruccion consiste de %d palabras.\n", n);
     for(i = 0; i < n; i++){
-        printf("sz(%d) -> %s\n", (int)strlen(instr.words[i]), instr.words[i]);
+        fprintf(stderr, "sz(%d) -> %s\n", (int)strlen(instr.words[i]), instr.words[i]);
     }
 }

@@ -1,3 +1,4 @@
+# Recibe una matriz, imprime su determinante.
 R a1
 R b1
 R c1

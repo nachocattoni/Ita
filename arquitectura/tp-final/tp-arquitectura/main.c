@@ -74,6 +74,10 @@ int main(){
                 conditional_jump(label);
                 break;
             }
+            case COMMENT:
+            {
+                break;
+            }
             default:
             {
                 fprintf(stderr, "%s\n", INCORRECT_INSTRUCTION);

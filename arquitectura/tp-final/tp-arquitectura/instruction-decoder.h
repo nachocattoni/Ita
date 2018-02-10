@@ -19,7 +19,8 @@ typedef enum _instructionType {
     END, /**< Termina el programa. */
     JUMP, /**< Cambia el punto de ejecucion. */
     LABEL, /**< Declara una etiqueta, lugar al cual se puede cambiar el punto de ejecucion. */
-    CONDITIONAL_JUMP /**< Cambia condicionalmente el punto de ejecucion. */
+    CONDITIONAL_JUMP, /**< Cambia condicionalmente el punto de ejecucion. */
+    COMMENT /**< No forma parte del código, es solo un comentario. */
 } instructionType;
 
 /**

@@ -47,9 +47,9 @@ instructionType get_instruction_type(Instruction instr){
         return ASSIGN;
     }
     
-    const char *instructionTypes[] = {"R", "O", "E", "G", "L", "I"};
+    const char *instructionTypes[] = {"R", "O", "E", "G", "L", "I", "#"};
     const instructionType types[] = {INPUT, OUTPUT, END, JUMP, LABEL, 
-        CONDITIONAL_JUMP};
+        CONDITIONAL_JUMP, COMMENT};
     int i;
     
     for(i = 0; i < NUMBER_OF_INSTRUCTION_TYPES; i++){

@@ -1,3 +1,4 @@
+# Lee arbitraria cantidad de pares a y b, e imprime su suma en cada instancia.
 L 10
 R v1
 R v2
