@@ -11,8 +11,7 @@ int main(){
     initialize();
     
     Bucket B = create_new_bucket();
-    bool end = false;
-    while(!end){
+    while(true){
         Instruction instr = get_next_instruction();
         instructionType instr_type = get_instruction_type(instr);
 
@@ -45,7 +44,6 @@ int main(){
             case END:
             {
                 terminate(&B);
-                end = true;
                 break;
             }
             case JUMP:
