@@ -74,6 +74,24 @@ void conditional_jump(const char *l);
 void exit_program();
 
 /**
+ * Escribe el llamado a una funcion en ARM.
+ * @param name Nombre de la funcion a llamar.
+ */
+void write_call(const char *name);
+
+/**
+ * Escribe la declaracion de una funcion en ARM.
+ * @param name Nombre de la función a declarar.
+ */
+void declare_function(const char *name);
+
+/**
+ * Escribe el retorno de una función en ARM.
+ * @param name Nombre de la función de la cual retornar.
+ */
+void return_function(const char *name);
+
+/**
  * Escribe todo el código necesario para inicializar el programa en 
  * ARM. 
  */

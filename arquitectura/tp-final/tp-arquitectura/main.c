@@ -78,6 +78,24 @@ int main(){
             {
                 break;
             }
+            case CALL:
+            {
+                char *name = instr.words[1];
+                write_call(name);
+                break;
+            }
+            case FUNCTION:
+            {
+                char *name = instr.words[1];
+                declare_function(name);
+                break;
+            }
+            case RETURN:
+            {
+                char *name = instr.words[1];
+                return_function(name);
+                break;
+            }
             default:
             {
                 fprintf(stderr, "%s\n", INCORRECT_INSTRUCTION);

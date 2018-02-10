@@ -1,0 +1,16 @@
+# Programa que lee pares (a, b) y responde a % b.
+L 1
+R a0
+R b0
+C mod
+O c0
+G 1
+# Funcion que calcula a % b.
+# Parámetro 1: a0
+# Parámetro 2: b0
+# Retorna: a0 % b0, guardado en c0
+F mod
+c0 / a0 b0
+c0 * c0 b0
+c0 - a0 c0
+RET mod

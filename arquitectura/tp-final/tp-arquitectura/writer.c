@@ -140,6 +140,19 @@ void exit_program(){
     puts("  bx lr");
 }
 
+void write_call(const char *name){
+    printf("  b func_%s\n", name);
+    printf("back_%s:\n", name);
+}
+
+void declare_function(const char *name){
+    printf("func_%s:\n", name);
+}
+
+void return_function(const char *name){
+    printf("  b back_%s\n", name);
+}
+
 void initialize(){
     puts(".global main");
     puts(".extern printf");
