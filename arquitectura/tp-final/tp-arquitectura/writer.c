@@ -31,49 +31,61 @@ void evaluate_expression(Expression e, Bucket *B){
         switch(e.oper){
             case SUMA: {
                 printf("add r1, r%d, r%d\n", x, y);
+                break;
             }
             case RESTA: {
                 printf("sub r1, r%d, r%d\n", x, y);
+                break;
             }
             case MULTIPLICACION: {
                 printf("mul r1, r%d, r%d\n", x, y);
+                break;
             }
             case DIVISION: {
                 printf("sdiv r1, r%d, r%d\n", x, y);
+                break;
             }
             case AND: {
                 printf("and r1, r%d, r%d\n", x, y);
+                break;
             }
             case OR: {
                 printf("orr r1, r%d, r%d\n", x, y);
+                break;
             }
             case XOR: {
                 printf("eor r1, r%d, r%d\n", x, y);
+                break;
             }
             case MENOR: {
                 printf("eor r1, r1\n");
                 printf("cmp r%d, r%d\n", x, y);
                 printf("movlt r1, #1\n");
+                break;
             }
             case MENOR_O_IGUAL: {
                 printf("eor r1, r1\n");
                 printf("cmp r%d, r%d\n", x, y);
                 printf("movls r1, #1\n");
+                break;
             }
             case IGUAL: {
                 printf("eor r1, r1\n");
                 printf("cmp r%d, r%d\n", x, y);
                 printf("moveq r1, #1\n");
+                break;
             }
             case MAYOR: {
                 printf("eor r1, r1\n");
                 printf("cmp r%d, r%d\n", x, y);
                 printf("movgt r1, #1\n");
+                break;
             }
             case MAYOR_O_IGUAL: {
                 printf("eor r1, r1\n");
                 printf("cmp r%d, r%d\n", x, y);
                 printf("movge r1, #1\n");
+                break;
             }
             case NONE: {}
         }
@@ -83,6 +95,12 @@ void evaluate_expression(Expression e, Bucket *B){
 void print_value(){
     puts("  ldr r0, =output");
     puts("  bl printf");
+}
+
+void load_value(Bucket *B, const char *s){
+    int k = insert_element(B, s);
+    puts("ldr r0, =universe");
+    printf("  str r1, [r0, #%d]\n", k);
 }
 
 void initialize(){

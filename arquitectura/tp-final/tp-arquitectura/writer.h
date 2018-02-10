@@ -33,6 +33,13 @@ void evaluate_expression(Expression e, Bucket *B);
 void print_value();
 
 /**
+ * Carga el valor de r1 en la variable defnida por la cadena pasada.
+ * @param B Bucket con los nombres de las variables.
+ * @param s Nombre de la variable, se supone que es válido.
+ */
+void load_value(Bucket *B, const char *s);
+
+/**
  * Escribe todo el código necesario para inicializar el programa en 
  * ARM. 
  */

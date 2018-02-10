@@ -20,7 +20,11 @@ int main(){
         switch(instr_type){
             case ASSIGN:
             {
-                
+                insert_element(&B, instr.words[0]);
+                Expression e = get_next_expression(instr, 1);
+                show_expression(e);
+                evaluate_expression(e, &B);
+                load_value(&B, instr.words[0]);
                 break;
             }
             case OUTPUT:
