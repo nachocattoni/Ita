@@ -1,0 +1,9 @@
+R a1
+R b1
+R c1
+R d1
+a1 * a1 b1
+c1 * c1 d1
+a1 - a1 c1
+O a1
+E 
