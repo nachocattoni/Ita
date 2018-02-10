@@ -18,8 +18,8 @@ typedef enum _bool {
 #define MAX_VARIABLE_NAME_SIZE 15
 #define NUMBER_OF_INSTRUCTION_TYPES 6
 
-#define NUMBER_OF_OPERATORS 12
-#define OPERATOR_LIST {"+", "-", "*", "/", "&", "|", "^", "<", "<=", "==", ">", ">="}
+#define NUMBER_OF_OPERATORS 13
+#define OPERATOR_LIST {"+", "-", "*", "/", "&", "|", "^", "<", "<=", "==", ">", ">=", "!="}
 
 #define INCORRECT_INSTRUCTION "ERROR: One of the instructions is not valid."
 

@@ -30,6 +30,7 @@ typedef enum _operatorType {
     IGUAL,
     MAYOR,
     MAYOR_O_IGUAL,
+    DISTINTO,
     NONE
 } operatorType;
 

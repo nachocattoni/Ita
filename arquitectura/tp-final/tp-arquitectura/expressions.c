@@ -61,7 +61,7 @@ operatorType get_operator_type(const char *word){
     const char *operators[] = OPERATOR_LIST;
     const operatorType operator_code[] = {SUMA, RESTA, MULTIPLICACION, 
         DIVISION, AND, OR, XOR, MENOR, MENOR_O_IGUAL, IGUAL, MAYOR, 
-        MAYOR_O_IGUAL};
+        MAYOR_O_IGUAL, DISTINTO};
     int i;
     
     for(i = 0; i < NUMBER_OF_OPERATORS; i++){

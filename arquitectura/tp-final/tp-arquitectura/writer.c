@@ -87,6 +87,12 @@ void evaluate_expression(Expression e, Bucket *B){
                 printf("  movge r1, #1\n");
                 break;
             }
+            case DISTINTO: {
+                printf("eor r1, r1\n");
+                printf("  cmp r%d, r%d\n", x, y);
+                printf("  movne r1, #1\n");
+                break;
+            }
             case NONE: {}
         }
     }
