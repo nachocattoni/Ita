@@ -69,6 +69,11 @@ void jump_label(const char *l);
 void conditional_jump(const char *l);
 
 /**
+ * Escribe la instrucción de abandonar el programa.
+ */
+void exit_program();
+
+/**
  * Escribe todo el código necesario para inicializar el programa en 
  * ARM. 
  */

@@ -45,7 +45,7 @@ int main(){
             }
             case END:
             {
-                terminate(&B);
+                exit_program(&B);
                 break;
             }
             case JUMP:
@@ -81,5 +81,7 @@ int main(){
             }
         }
     }
+    
+    terminate(&B);
     return 0;
 }

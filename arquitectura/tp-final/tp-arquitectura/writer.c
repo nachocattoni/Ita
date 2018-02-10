@@ -124,6 +124,11 @@ void conditional_jump(const char *l){
     printf("  bne LABEL%s\n", l);
 }
 
+void exit_program(){
+    puts("  pop {ip, pc}");
+    puts("  bx lr");
+}
+
 void initialize(){
     puts(".global main");
     puts(".extern printf");
@@ -133,8 +138,6 @@ void initialize(){
 }
 
 void terminate(Bucket *B){
-    puts("  pop {ip, pc}");
-    puts("  bx lr");
     puts(".data");
     puts("input: .asciz \"%d\"");
     puts("output: .asciz \"%d\\n\"");
