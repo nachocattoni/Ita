@@ -41,7 +41,6 @@ int main(){
                     return -1;
                 }
                 scan_value(&B, v.value);
-                //~ load_value(&B, v.value);
                 break;
             }
             case END:

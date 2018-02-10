@@ -33,7 +33,10 @@ void evaluate_expression(Expression e, Bucket *B);
 void print_value();
 
 /**
- * Lee un valor de la entrada estándar y lo almacena en r1.
+ * Lee un valor de la entrada estándar y lo almacena en la posición
+ * correspondiente del arreglo universe.
+ * @param B Bucket con los nombres de las variables.
+ * @param s Nombre de la variable en la cual guardar el valor leido.
  */
 void scan_value(Bucket *B, const char *s);
 
