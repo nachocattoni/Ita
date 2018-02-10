@@ -100,7 +100,7 @@ void print_value(){
 void load_value(Bucket *B, const char *s){
     int k = insert_element(B, s);
     puts("ldr r0, =universe");
-    printf("  str r1, [r0, #%d]\n", k);
+    printf("  str r1, [r0, #%d]\n", 4 * k);
 }
 
 void initialize(){
