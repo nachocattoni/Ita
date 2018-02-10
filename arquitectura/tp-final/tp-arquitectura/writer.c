@@ -107,8 +107,16 @@ void scan_value(Bucket *B, const char *s){
 
 void load_value(Bucket *B, const char *s){
     int k = insert_element(B, s);
-    puts("ldr r0, =universe");
+    puts("  ldr r0, =universe");
     printf("  str r1, [r0, #%d]\n", 4 * k);
+}
+
+void mark_label(const char *l){
+    printf("LABEL%s:\n", l);
+}
+
+void jump_label(const char *l){
+    printf("  b LABEL%s\n", l);
 }
 
 void initialize(){

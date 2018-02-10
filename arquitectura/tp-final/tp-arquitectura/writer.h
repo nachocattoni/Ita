@@ -48,6 +48,20 @@ void scan_value(Bucket *B, const char *s);
 void load_value(Bucket *B, const char *s);
 
 /**
+ * Marca un label en el programa, correspondiente al número de etiqueta
+ * que recibe como parámetro.
+ * @param l Número de etiqueta que representa al label. 
+ */
+void mark_label(const char *l);
+
+/**
+ * Salta al label en el programa, correspondiente al número de etiqueta
+ * que recibe como parámetro.
+ * @param l Número de etiqueta que representa al label. 
+ */
+void jump_label(const char *l);
+
+/**
  * Escribe todo el código necesario para inicializar el programa en 
  * ARM. 
  */

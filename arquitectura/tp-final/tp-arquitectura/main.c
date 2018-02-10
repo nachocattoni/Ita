@@ -51,12 +51,20 @@ int main(){
             }
             case JUMP:
             {
-                
+                if(!is_label_number(instr.words[1])){
+                    fprintf(stderr, "%s\n", INCORRECT_INSTRUCTION);
+                    return -1;
+                }
+                jump_label(instr.words[1]);
                 break;
             }
             case LABEL:
             {
-                
+                if(!is_label_number(instr.words[1])){
+                    fprintf(stderr, "%s\n", INCORRECT_INSTRUCTION);
+                    return -1;
+                }
+                mark_label(instr.words[1]);
                 break;
             }
             case CONDITIONAL_JUMP:
