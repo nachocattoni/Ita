@@ -15,6 +15,7 @@ bool is_valid_integer(const char *s){
             if(!isdigit(s[i])) return false;
         }
         if(!isdigit(s[0]) && s[0] != '-') return false;
+        if(n < 2 && s[0] == '-') return false;
         
         long long val = 0;
         bool neg = false;
