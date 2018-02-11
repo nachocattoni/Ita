@@ -8,6 +8,7 @@
 
 #include "storage.h"
 #include "expressions.h"
+#include "instruction-decoder.h"
 
 /**
  * Dada una componente, imprime por pantalla toda la informacion sobre

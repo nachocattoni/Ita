@@ -43,7 +43,7 @@ typedef enum _operatorType {
 /**
  * @brief Representa una expresion. Una expresion es un componente
  * unico, o es una operacion seguido de dos componentes. Si oper es
- * NONE, entonces el valor de la expresion esta solo en el componente v1.
+ * NONE, entonces el valor de la expresion está sólo en el componente v1.
  */
 typedef struct _Expression {
     bool valid;
@@ -79,7 +79,7 @@ bool            is_valid_variable_name(const char *s);
 /**
  * Funcion auxiliar usada para determinar que operador simboliza una 
  * palabra dada, en caso de que lo haga. Un operador es uno de la 
- * siguiente lista: +, -, *, /, &, *, |, ^, <, <=, ==, >, >=.
+ * siguiente lista: +, -, *, /, &, *, |, ^, <, <=, ==, >, >=, !=, !.
  * @param word La palabra que posiblemente represente el operador.
  * @return El operador que representa la palabra o -1 si no.
  */
@@ -94,8 +94,8 @@ Component       get_component(const char *s);
 
 /**
  * Lee una expresion de una lista de palabras. Recordar que una
- * expresion es: un literal, una variable, o un operador seguido de dos
- * literales o variables.
+ * expresion es o bien un componente, o bien un operador seguido
+ * de dos componentes.
  * @param instr Es la instruccion de la cual leer la expresion.
  * @param pos Es la posicion desde la cual leer la instruccion.
  * @return Retorna la expresion, en caso de fallo retorna una expresion

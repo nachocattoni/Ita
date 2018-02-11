@@ -23,11 +23,12 @@ typedef enum _instructionType {
     COMMENT, /**< No forma parte del código, es solo un comentario. */
     CALL, /**< Llama a una función. */
     FUNCTION, /**< Declara una función. */
-    RETURN /**< Retorna a una función. */
+    RETURN /**< Retorna de una función. */
 } instructionType;
 
 /**
- * @brief Una instruccion es un conjunto de palabras. 
+ * @brief Una instruccion es un conjunto de palabras, junto con el 
+ * número de palabras.
  */
 typedef struct _Instruction {
     int length;
@@ -41,6 +42,7 @@ typedef struct _Instruction {
 char *          get_instruction_line();
 
 /**
+ * Obtiene una instrucción.
  * @return La siguiente instruccion a leer, en forma de _Instruction.
  */
 Instruction     get_next_instruction();

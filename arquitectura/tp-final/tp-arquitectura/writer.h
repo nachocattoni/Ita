@@ -10,8 +10,8 @@
 #include "storage.h"
 
 /**
- * Evalua una componente, dejando su valor guardado en el registro
- * indicado por el parámetro where. 
+ * Escribe la evaluación de una componente, dejando su valor guardado 
+ * en el registro indicado por el parámetro where.
  * @param v Componente que se quiere evaluar.
  * @param B Bucket que contiene los nombres de las variables, y al
  * cual se van a agregar nombres de variables.
@@ -21,8 +21,8 @@
 void evaluate_component(Component v, Bucket *B, int where);
 
 /**
- * Evalua una expresion, dejando su valor guardado en r1, para uso
- * posterior via printf/scanf.
+ * Escribe la evaluación una expresion, dejando su valor guardado en 
+ * r1, para uso posterior, posiblemente via printf.
  * @param e La expresion que se quiere evaluar.
  * @param B Bucket que contiene los nombres de las variables
  * ya utilizadas, y al que potencialmente se va a agregar nombres
@@ -31,38 +31,39 @@ void evaluate_component(Component v, Bucket *B, int where);
 void evaluate_expression(Expression e, Bucket *B);
 
 /**
- * Imprime el valor alojado en r1 por pantalla. Asume que la instruccion
- * push {ip, lr} fue usada al comienzo, y que pop {ip, pc} será usada
- * al final.
+ * Escribe la impresión del valor alojado en r1 por pantalla. Asume 
+ * que la instruccion push {ip, lr} fue usada al comienzo, y que 
+ * pop {ip, pc} será usada al final.
  */
 void print_value();
 
 /**
- * Lee un valor de la entrada estándar y lo almacena en la posición
- * correspondiente del arreglo universe.
+ * Escribe la lectura de un valor de la entrada estándar y su 
+ * almacenamiento en la posición correspondiente del arreglo universe.
  * @param B Bucket con los nombres de las variables.
  * @param s Nombre de la variable en la cual guardar el valor leido.
  */
 void scan_value(Bucket *B, const char *s);
 
 /**
- * Carga el valor de r1 en la variable defnida por la cadena pasada.
+ * Escribe la carga del valor de r1 en la variable definida por la 
+ * cadena pasada.
  * @param B Bucket con los nombres de las variables.
  * @param s Nombre de la variable, se supone que es válido.
  */
 void load_value(Bucket *B, const char *s);
 
 /**
- * Marca un label en el programa, correspondiente al número de etiqueta
- * que recibe como parámetro.
- * @param l Número de etiqueta que representa al label. 
+ * Escribe una etiqueta en el programa, correspondiente al número de 
+ * etiqueta que recibe como parámetro.
+ * @param l Número de etiqueta. 
  */
 void mark_label(const char *l);
 
 /**
- * Salta al label en el programa, correspondiente al número de etiqueta
- * que recibe como parámetro.
- * @param l Número de etiqueta que representa al label. 
+ * Escribe un salto a una etiqueta en el programa, correspondiente 
+ * al número de etiqueta que recibe como parámetro.
+ * @param l Número de etiqueta. 
  */
 void jump_label(const char *l);
 
