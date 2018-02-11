@@ -72,8 +72,8 @@ Todas las sentencias en Pilot son de una línea. Cada línea comienza con una le
 
 Las variables son cadenas alfanuméricas que comienzan con una letra en minúscula, y son seguidas obligatoriamente por un entero de etiqueta\footnote{Un entero de etiqueta es un número entero no negativo representable por un entero con signo de 32 bits. Cualquier entero entre $0$ y $2^{31}-1$ inclusive, sin ceros a izquierda.}. De esta manera:
 \begin{itemize}
-\item{a0, z24, x231, p2147483647, son nombres válidos, mientras que}
-\item{a-1, b, romeosantos, 23z, w2147483648, r00, no son nombres válidos}
+\item{a0, z24, x231, p2147483647, son nombres válidos, mientras que:}
+\item{a-1, b, romeosantos, 23z, w2147483648, r00, no son nombres válidos.}
 \end{itemize}
 
 \noindent Las operaciones soportadas son las siguientes:
@@ -84,14 +84,14 @@ Las variables son cadenas alfanuméricas que comienzan con una letra en minúscu
 \item{Terminar: consiste de una única letra E, su efecto es el de terminar el programa.}
 \item{Salto: se representa por una G inicial, seguida de un entero de etiqueta. Su efecto es el de modificar el flujo de la ejecución del programa para resumirla en la etiqueta determinada por el entero.}
 \item{Etiqueta: comienza con una L, y es seguida por un entero de etiqueta. Su efecto es definir la etiqueta caracterizada por el entero.}
-\item{Salto condicional: se representa por una letra I, seguida de una expresión, y termina en un entero de etiqueta. Su efecto es el de saltar a la etiqueta correspondiente si el valor de la expresión o variable es distinto de cero.}
+\item{Salto condicional: se representa por una letra I, seguida de una expresión, y termina en un entero de etiqueta. Su efecto es el de saltar a la etiqueta correspondiente si el valor de la expresión es distinto de cero.}
 \item{Comentario: se representa por un símbolo \#, y tiene el efecto de ignorar todo lo que sigue en la línea.}
 \item{Definición de función: se representa por una F y sigue con el nombre de la función.}
 \item{Llamada a función: se representa por una C, seguida del nombre de una función, tiene el efecto de pasar el mando de la ejecución a la función.}
 \item{Retorno de función: se representa por la palabra RET seguida del nombre de la función de la cual se quiere retornar. Devuelve el mando de la ejecución al punto desde el cual se llamó a la función.}
 \end{itemize}
 
-\noindent Un componente es una constante o una variable. Una expresión consiste de un componente, o un operador seguido de dos componentes.
+\noindent Un componente es una constante o una variable. Una expresión consiste de un componente, o un operador seguido de una o dos componentes (según corresponda).
 
 \noindent No se permiten líneas en blanco, estas simbolizan el fin del programa.
 
@@ -124,7 +124,7 @@ Finalmente, se determinó que declarar un arreglo con la cantidad mínima requer
 
 \subsubsection{Una vez que se tiene guardada una expresión, ¿cómo obtener su valor? ¿dónde guardarlo?}
 
-Debido a que una expresión posee a lo más 2 componentes, se realizó un evaluador de expresiones, que utiliza los registros \texttt{r2} y \texttt{r3} (esto es configurable) y guarda el resultado en el registro \texttt{r1}.
+Debido a que una expresión posee a lo más 2 componentes, se realizó un evaluador de expresiones, que utiliza los registros \texttt{r2} y \texttt{r3} (esto es configurable) para almacenar valores auxiliares y guarda el resultado en el registro \texttt{r1}.
 
 Se determinó guardar el valor en el registro \texttt{r1} ya que resulta conveniente para las llamadas posteriores a \texttt{printf}, ahorrando una instrucción \texttt{mov}.
 
@@ -139,7 +139,7 @@ Dichas instrucciones fueron las únicas con las que el compilador arrojó tal er
 Esto se pudo solucionar agregando \texttt{-march=armv8-a} como opción en la compilación, dando por finalizado el problema.
 
 \section{¿Cómo seguir?}
-El compilador soporta todas las características adicionales sugeridas en las consignas del trabajo. Además, también soporta comentarios, y posee una documentación realizada con \texttt{Doxygen}.
+El compilador soporta todas las características adicionales sugeridas en las consignas del trabajo. También soporta comentarios, y posee una documentación realizada con \texttt{Doxygen}.
 Además de estas extensiones, el proyecto puede continuar por medio de:
 \begin{itemize}
 \item{Agregar más tests}
