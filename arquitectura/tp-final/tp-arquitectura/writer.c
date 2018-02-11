@@ -67,29 +67,30 @@ void evaluate_expression(Expression e, Bucket *B){
             default: { /** Para operaciones de comparación **/
                 puts("eor r1, r1");
                 printf("  cmp r%d, r%d\n", x, y);
+                printf("  ");
                 switch(e.oper){
                     case MENOR: {
-                        printf("  movlt r1, #1\n");
+                        printf("movlt r1, #1\n");
                         break;
                     }
                     case MENOR_O_IGUAL: {
-                        printf("  movls r1, #1\n");
+                        printf("movls r1, #1\n");
                         break;
                     }
                     case IGUAL: {
-                        printf("  moveq r1, #1\n");
+                        printf("moveq r1, #1\n");
                         break;
                     }
                     case MAYOR: {
-                        printf("  movgt r1, #1\n");
+                        printf("movgt r1, #1\n");
                         break;
                     }
                     case MAYOR_O_IGUAL: {
-                        printf("  movge r1, #1\n");
+                        printf("movge r1, #1\n");
                         break;
                     }
                     case DISTINTO: {
-                        printf("  movne r1, #1\n");
+                        printf("movne r1, #1\n");
                         break;
                     }
                 }
