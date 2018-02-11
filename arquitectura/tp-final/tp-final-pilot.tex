@@ -119,81 +119,61 @@ Para realizar este proyecto:
 Desde un principio, el objetivo del proyecto ha sido desarrollar un compilador que dado un código válido en Pilot, genere un código válido en lenguaje ensamblador ARM que lo represente. Como consecuencia de esto, si se recibe un código no válido en Pilot, el comportamiento del compilador es indefinido.
 
 \section{Problemas}
-En el proceso de desarrollo del proyecto, nos hemos enfrentado a numerosos desafíos, los cuales se indican a continuación:
-\subsubsection{¿Cómo recordar los valores de las variables?}
+Durante el proceso de desarrollo, han surgido numerosos desafíos. Algunos de ellos se listan a continuación.
+\subsubsection{¿Cómo almacenar los valores de las variables?}
 
-Pensamos primero en guardar los valores de las variables en los registros, esto resultaría eficiente, pero si la cantidad de variables a manipular crece lo suficiente, esta opción se torna tediosa y caótica, ya que se requeriría de un lugar de almacenamiento extra.
+Se investigó la posibilidad de guardar los valores de las variables en los registros, esto resultaría eficiente, pero si la cantidad de variables a manipular crece lo suficiente, esta opción se torna tediosa y caótica, ya que se requeriría de almacenamiento extra.
 
-Por otro lado, pensamos en utilizar la pila, y asignárle a cada variable un offset desde el tope de la pila. Esta opción también tiene limitaciones cuando el número de variables es elevado, además de que es probable que no sean sólo variables los valores que se guardan en la pila.
+También se evaluó utilizar la pila, y asignarle a cada variable un offset desde el tope de la pila. Esta opción también tiene limitaciones cuando el número de variables es elevado, además de que es probable que no sean sólo variables los valores que se guarden en la pila.
 
-Finalmente, decidimos declarar un arreglo con la cantidad mínima requerida de memoria para guardar el valor de todas nuestras variables. Esto resulta fácil y cómodo de manejar, sólo asignamos a cada variable una posición en el arreglo, en el cual sabemos que sólo va a haber variables guardadas (a diferencia de con la pila), y además resulta óptimo en el uso de la memoria.
+Finalmente, se determinó que declarar un arreglo con la cantidad mínima requerida de memoria para guardar el valor de todas las variables era la mejor opción. Este método resulta fácil y cómodo de manejar, sólo asignamos a cada variable una posición en el arreglo, en el cual sabemos que sólo va a haber variables guardadas, y además resulta óptimo en el uso de la memoria.
 
 \subsubsection{Una vez que se tiene guardada una expresión, ¿cómo obtener su valor? ¿dónde guardarlo?}
 
-Una vez que creamos la funcionalidad para leer las expresiones, el siguiente desafío era el de obtener el valor de la expresión luego de evaluarla. 
+Debido a que una expresión posee a lo más 2 componentes, se realizó un evaluador de expresiones, que utiliza los registros \texttt{r2} y \texttt{r3} (esto es configurable) y guarda el resultado en el registro \texttt{r1}.
 
-Debido a que una expresión tiene a lo más 2 componentes, hicimos un evaluador de expresiones, que utiliza los registros \texttt{r2} y \texttt{r3} (esto es configurable) y guarda el resultado en el registro \texttt{r1}.
-
-Decidimos guardar el valor en el registro \texttt{r1} ya que resultaba conveniente para las llamadas posteriores a \texttt{printf}, ahorrándo una instrucción \texttt{mov}.
+Se determinó guardar el valor en el registro \texttt{r1} ya que resulta conveniente para las llamadas posteriores a \texttt{printf}, ahorrando una instrucción \texttt{mov}.
 
 \subsubsection{¿Cómo soportar la operación de división entera? (\texttt{/})}
 
 Uno de los inconvenientes se presentó al agregar el cociente a la lista de operadores. El conjunto de instrucciones de ARM contiene a \texttt{sdiv} y \texttt{udiv}, división con signo y sin signo, respectivamente. 
 
-Al ejecutar estas instrucciones se ha obtenido, en ambos casos, el siguiente error: \texttt{« Error: selected processor does not support `sdiv r1,r2,r3' in ARM mode »} con la instrucción correspondiente.
+Al ejecutar estas instrucciones se ha obtenido, en ambos casos, el siguiente error: \texttt{«Error: selected processor does not support `sdiv r1,r2,r3' in ARM mode»} con la instrucción correspondiente.
 
 Dichas instrucciones fueron las únicas con las que el compilador arrojó tal error. Luego de consultar foros informáticos y manuales de ARM en busca de alternativas, se pudo observar que las operaciones de cociente han sido agregadas en ARMv8, y todos los emuladores de dicha arquitectura ejecutan, por defecto, ARMv6. 
 
 Esto se pudo solucionar agregando \texttt{-march=armv8-a} como opción en la compilación, dando por finalizado el problema.
 
-\subsubsection{¿Podría retornar de una función en la que no estoy?}
-
-Por cómo está implementado, lo siguiente es posible:
-
-\noindent
-\texttt{F funcion1}
-
-\noindent
-\texttt{O 15}
-
-\noindent
-\texttt{RET funcion2}
-
-\noindent
-Nuestro compilador entenderá estas instrucciones como válidas, pero el programa no tendrá sentido. 
-
-Esto es debido a que a pesar de que nuestro compilador entienda las instrucciones como válidas, el programa en Pilot no es válido, resultando en comportamiento indefinido.
-
 \section{¿Cómo seguir?}
 El compilador soporta todas las características adicionales sugeridas en las consignas del trabajo. Además, también soporta comentarios, y posee una documentación realizada con \texttt{doxygen}.
-Además de estas extensiones, el proyecto podría continuar por medio de:
+Además de estas extensiones, el proyecto puede continuar por medio de:
 \begin{itemize}
 \item{Agregar más tests}
 
-Un programa nunca está bien probado, y un compilador es un programa particularmente difícil de probar. Agregar más tests puede probablemente dejar en evidencia fallas, y hacer el compilador más robusto a cambios que puedan provocar problemas en el futuro.
+Un compilador es un programa particularmente difícil de probar. Agregar más tests puede probablemente dejar en evidencia fallas, y hacer el compilador más robusto a cambios que puedan provocar problemas en el futuro.
 
 \item{Agregarle un \texttt{for} a Pilot}
 
-El código actualmente permite una integración de nuevas instrucciones con relativa facilidad. Debido a esto, implementar un \texttt{for} es una buena idea para continuar el proyecto. 
+El código actualmente permite la integración de nuevas instrucciones con relativa facilidad. Debido a esto, implementar un \texttt{for} es una buena idea para continuar el proyecto. 
 
-Una posible sintaxis puede ser \texttt{FOR var comp1 comp2} donde \texttt{var} es la variable que itera, mientras que \texttt{comp1} y \texttt{comp2} son componentes. Para terminar el for, se podría usar \texttt{END FOR}.
+Una posible sintaxis puede ser \texttt{FOR var comp1 comp2} donde \texttt{var} es la variable que itera, mientras que \texttt{comp1} y \texttt{comp2} son componentes. Para terminarlo, se podría usar \texttt{END FOR}.
 
-Debido a que los \texttt{fors} deberían poder anidarse, es necesario implementar una pila que recuerde la información de cada \texttt{for}, de manera que un \texttt{END FOR} cierre el último \texttt{for} que se abrió.
+Debido a que deberían poder anidarse, es necesario implementar una pila que recuerde la información de cada \texttt{for}, de manera que un \texttt{END FOR} cierre el último \texttt{for} que se abrió.
 
 \item{Determinar si el programa ingresado en Pilot es válido.}
 
-Esto se omitió debido a que se requiere de al menos:
+Se determinó que esta característica no es crucial para el compilador, debido a que no afecta a la correctitud de éste, sino a su facilidad de uso.
+
+Para realizarlo, se requiere de al menos:
 \begin{enumerate}
 \item{Guardar las etiquetas definidas, para verificar que no haya dos definiciones de la misma etiqueta.}
 \item{Hacer verificaciones de la cantidad de palabras de cada instruccion, dependiendo del tipo de instruccion.}
 \item{Evitar la declaración de una función dentro de otra, y verificar que el \texttt{RET} al final de una función corresponde a esa función.}
 \end{enumerate}
 
-Lo cual hubiera tomado mucho más tiempo.
-
 \item{Optimizar la traducción}
 
-Al inspeccionar un código \texttt{ARM} generado por nuestro compilador, resulta evidente que el impacto de eficiencia es elevado.
+Al inspeccionar un código \texttt{ARM} generado por el compilador, resulta evidente que el impacto de eficiencia debido al proceso de compilación es elevado.
 
 Por medio de mantener el valor de los registros guardados en el compilador, se puede evitar que el compilador ingrese ciertas operaciones redundantes, haciendo que el programa generado sea más eficiente.
 
@@ -207,7 +187,7 @@ Hemos creado 20 programas en Pilot para probar la correctitud del compilador, y 
 \noindent
 Entre los programas en Pilot más destacados que creamos se encuentran:
 \begin{enumerate}
-\item{\texttt{test7.txt}: Calcula n-ésimo número de Fibonacci.}
+\item{\texttt{test7.txt}: Calcula el n-ésimo número en la sucesión de Fibonacci.}
 \item{\texttt{test8.txt}: Invierte los dígitos de un número.}
 \item{\texttt{test16.txt}: Recibe un rango $[a, b]$ e imprime todos los números primos en ese rango.}
 \item{\texttt{test17.txt}: Multiplica dos números con el famoso algoritmo del campesino ruso.}
