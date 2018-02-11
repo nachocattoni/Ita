@@ -63,9 +63,9 @@
 \maketitle
 
 \section{Introducción}
-El objetivo de este projecto es generar un compilador para el lenguaje Pilot a lenguaje ensamblador ARM. \textbf{Pilot} es un lenguaje sencillo, del cual nosotros proveemos una descripción basada en las consignas del trabajo práctico.
+El objetivo de este projecto es generar un compilador para el lenguaje Pilot a lenguaje ensamblador ARM. \textbf{Pilot} es un lenguaje sencillo, del cual nosotros proveemos una descripción precisa basada en las consignas del trabajo práctico.
 
-Todas las sentencias en Pilot son de una linea. Cada linea comienza con una letra que indica la operación a ejecutarse, o con el nombre de una variable para una operación de asignación.
+Todas las sentencias en Pilot son de una linea. Cada linea comienza con una letra o símbolo que indica la operación a ejecutarse, o con el nombre de una variable para una operación de asignación.
 
 Las variables son cadenas alfanuméricas que comienzan con una letra en minúscula, y son seguidas obligatoriamente por un entero de etiqueta\footnote{Un entero de etiqueta es un número entero no negativo representable por un entero con signo de 32 bits. Cualquier entero entre $0$ y $2^{31}-1$ inclusive, sin ceros a izquierda.}. De esta manera:
 \begin{itemize}
@@ -82,22 +82,128 @@ Las variables son cadenas alfanuméricas que comienzan con una letra en minúscu
 \item{Salto: se representa por una G inicial, seguida de un entero de etiqueta. Su efecto es el de interrumpir la ejecución del programa para resumirla en la etiqueta caracterizada por el entero.}
 \item{Etiqueta: comienza con una L, y es seguida por un entero de etiqueta. Su efecto es definir la etiqueta caracterizada por el entero. Sólo puede haber una definición de la etiqueta por cada entero.}
 \item{Salto condicional: se representa por una letra I, seguida de una expresión, y termina en un entero de etiqueta. Su efecto es el de saltar a la etiqueta correspondiente si el valor de la expresión o variable es distinto de cero.}
+\item{Comentario: se representa por un símbolo \#, y tiene el efecto de ignorar todo lo que sigue en la linea.}
+\item{Definición de función: se representa por una F y sigue con el nombre de la función.}
+\item{Llamada a función: se representa por una C, seguida del nombre de una función, tiene el efecto de pasar el mando de la ejecución a la función.}
+\item{Retorno de función: se representa por la palabra RET seguida del nombre de la función de la cual se quiere retornar. Devuelve el mando de la ejecución al punto desde el cual se llamó a la función.}
 \end{itemize}
 
-\noindent Es importante notar que una expresión, está definida como una variable, una constante o un operador seguido de dos variables o constantes.
+\noindent Un componente es una constante o una variable. Una expresión consiste de un componente, o un operador y dos componentes.
 
-\section{Pasos a seguir}
-Para realizar este projecto, necesitaremos:
+\noindent No se permiten lineas en blanco, estas simbolizan el fin del programa.
+
+\section{Proceso}
+Para realizar este proyecto:
 \begin{enumerate}
-\item{Familiarizarnos con el lenguaje Pilot.}
-\item{Diagramar una posible implementación de alto nivel del compilador.}
-\item{Crear un sistema de procesado linea por linea.}
-\item{Interpretar cada linea y discriminarla por tipo de operación.}
-\item{Obtener el conjunto de instrucciones equivalentes a cada sentencia de Pilot.}
-\item{Mapear las sentencias en Pilot a cada  conjunto de instrucciones de ARM.}
-\item{Hacer pruebas de correctitud creando diversos programas en Pilot y verificando que actuen segun lo esperado.}
+\item{Acordamos una definición precisa del lenguaje Pilot.}
+\item{Realizamos una investigación para saber estructurar y dividir el programa en varios archivos.}
+\item{Realizamos una investigación para poder documentar todos los archivos del proyecto.}
+\item{Creamos un sistema de lectura y discriminación de instrucciones (\texttt{instruction-decoder.c}).}
+\item{Diseñamos una estructura de datos para mapear nombres de variables a direcciones de memoria (\texttt{storage.c}).}
+\item{Creamos un sistema para leer y evaluar expresiones (\texttt{expressions.c}).}
+\item{Creamos un sistema para imprimir por pantalla información útil en el proceso de desarrollo (\texttt{debug.c}).}
+\item{Creamos un sistema por medio del cual se imprime el programa en ARM resultante (\texttt{writer.c}).}
+\item{Desarrollamos 20 programas en Pilot con el fin de servir para probar la correctitud del compilador (\texttt{tests/*})}
 \end{enumerate}
 
+\section{Nota}
+Desde un principio, el objetivo del proyecto fue desarrollar un compilar que dado un código válido en Pilot, genere un código válido en lenguaje ensamblador ARM que lo represente. Como consecuencia de esto, si se recibe un código no válido en Pilot, el comportamiento del compilador es indefinido.
+
+\section{Problemas}
+En el proceso de desarrollo del proyecto, nos hemos enfrentado a numerosos desafíos, los cuales se indican a continuación:
+\subsubsection{¿Cómo recordar los valores de las variables?}
+
+Pensamos primero en guardar los valores de las variables en los registros, esto resultaría eficiente, pero si la cantidad de variables a manipular crece lo suficiente, esta opción se torna tediosa y caótica, ya que se requeriría de un lugar de almacenamiento extra.
+
+Por otro lado, pensamos en utilizar la pila, y asignárle a cada variable un offset desde el tope de la pila. Esta opción también tiene limitaciones cuando el número de variables es elevado, además de que es probable que no sean sólo variables los valores que se guardan en la pila.
+
+Finalmente, decidimos declarar un arreglo con la cantidad mínima requerida de memoria para guardar el valor de todas nuestras variables. Esto resulta fácil y cómodo de manejar, sólo asignamos a cada variable una posición en el arreglo, en el cual sabemos que sólo va a haber variables guardadas (a diferencia de con la pila), y además resulta óptimo en el uso de la memoria.
+
+\subsubsection{Una vez que se tiene guardada una expresión, ¿cómo obtener su valor? ¿dónde guardarlo?}
+
+Una vez que creamos la funcionalidad para leer las expresiones, el siguiente desafío era el de obtener el valor de la expresión luego de evaluarla. 
+
+Debido a que una expresión tiene a lo más 2 componentes, hicimos un evaluador de expresiones, que utiliza los registros \texttt{r2} y \texttt{r3} (esto es configurable) y guarda el resultado en el registro \texttt{r1}.
+
+Decidimos guardar el valor en el registro \texttt{r1} ya que resultaba conveniente para las llamadas posteriores a \texttt{printf}, ahorrándo una instrucción \texttt{mov}.
+
+\subsubsection{¿Cómo soportar la operación de división entera? (\texttt{/})}
+
+Uno de los inconvenientes se presentó al agregar el cociente a la lista de operadores. El conjunto de instrucciones de ARM contiene a \texttt{sdiv} y \texttt{udiv}, división con signo y sin signo, respectivamente. 
+
+Al ejecutar estas instrucciones se ha obtenido, en ambos casos, el siguiente error: \texttt{« Error: selected processor does not support `sdiv r1,r2,r3' in ARM mode »} con la instrucción correspondiente.
+
+Dichas instrucciones fueron las únicas con las que el compilador arrojó tal error. Luego de consultar foros informáticos y manuales de ARM en busca de alternativas, se pudo observar que las operaciones de cociente han sido agregadas en ARMv8, y todos los emuladores de dicha arquitectura ejecutan, por defecto, ARMv6. 
+
+Esto se pudo solucionar agregando \texttt{-march=armv8-a} como opción en la compilación, dando por finalizado el problema.
+
+\subsubsection{¿Podría retornar de una función en la que no estoy?}
+
+Por cómo está implementado, lo siguiente es posible:
+
+\noindent
+\texttt{F funcion1}
+
+\noindent
+\texttt{O 15}
+
+\noindent
+\texttt{RET funcion2}
+
+\noindent
+Nuestro compilador entenderá estas instrucciones como válidas, pero el programa no tendrá sentido. 
+
+Esto es debido a que a pesar de que nuestro compilador entienda las instrucciones como válidas, el programa en Pilot no es válido, resultando en comportamiento indefinido.
+
+\section{¿Cómo seguir?}
+El compilador soporta todas las características adicionales sugeridas en las consignas del trabajo. Además, también soporta comentarios, y posee una documentación realizada con \texttt{doxygen}.
+Además de estas extensiones, el proyecto podría continuar por medio de:
+\begin{itemize}
+\item{Agregar más tests}
+
+Un programa nunca está bien probado, y un compilador es un programa particularmente difícil de probar. Agregar más tests puede probablemente dejar en evidencia fallas, y hacer el compilador más robusto a cambios que puedan provocar problemas en el futuro.
+
+\item{Agregarle un \texttt{for} a Pilot}
+
+El código actualmente permite una integración de nuevas instrucciones con relativa facilidad. Debido a esto, implementar un \texttt{for} es una buena idea para continuar el proyecto. 
+
+Una posible sintaxis puede ser \texttt{FOR var comp1 comp2} donde \texttt{var} es la variable que itera, mientras que \texttt{comp1} y \texttt{comp2} son componentes. Para terminar el for, se podría usar \texttt{END FOR}.
+
+Debido a que los \texttt{fors} deberían poder anidarse, es necesario implementar una pila que recuerde la información de cada \texttt{for}, de manera que un \texttt{END FOR} cierre el último \texttt{for} que se abrió.
+
+\item{Determinar si el programa ingresado en Pilot es válido.}
+
+Esto se omitió debido a que se requiere de al menos:
+\begin{enumerate}
+\item{Guardar las etiquetas definidas, para verificar que no haya dos definiciones de la misma etiqueta.}
+\item{Hacer verificaciones de la cantidad de palabras de cada instruccion, dependiendo del tipo de instruccion.}
+\item{Evitar la declaración de una función dentro de otra, y verificar que el \texttt{RET} al final de una función corresponde a esa función.}
+\end{enumerate}
+
+Lo cual hubiera tomado mucho más tiempo.
+
+\item{Optimizar la traducción}
+
+Al inspeccionar un código \texttt{ARM} generado por nuestro compilador, resulta evidente que el impacto de eficiencia es elevado.
+
+Por medio de mantener el valor de los registros guardados en el compilador, se puede evitar que el compilador ingrese ciertas operaciones redundantes, haciendo que el programa generado sea más eficiente.
+
+De todos modos, se debe ser cuidadoso, debido a los saltos condicionales, etiquetas y funciones que pueden hacer difícil mantener el valor exacto de los registros.
+
+\end{itemize}
+
+\section{Resultados}
+Hemos creado 20 programas en Pilot para probar la correctitud del compilador, y hemos obtenido resultados satisfactorios.
+
+\noindent
+Entre los programas en Pilot más destacados que creamos se encuentran:
+\begin{enumerate}
+\item{\texttt{test7.txt}: Calcula n-ésimo número de Fibonacci.}
+\item{\texttt{test8.txt}: Invierte los dígitos de un número.}
+\item{\texttt{test16.txt}: Recibe un rango $[a, b]$ e imprime todos los números primos en ese rango.}
+\item{\texttt{test17.txt}: Multiplica dos números con el famoso algoritmo del campesino ruso.}
+\item{\texttt{test19.txt}: Implementa un juego de frio-caliente.}
+\end{enumerate}
 % --------------------------------------------------------------
 %     You don't have to mess with anything below this line.
 % --------------------------------------------------------------
