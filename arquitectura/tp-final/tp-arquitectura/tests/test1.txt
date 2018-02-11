@@ -1,14 +1,15 @@
-# Lee a y b, e imprime a+b, a-b, a*b.
+# Lee a y b, e imprime a+b, a-b, a*b y a/b.
 R v1
 R v2
 O + v1 v2
 O - v1 v2
 #
 #
-# Esto es sólo para testear...
+# Esto es sólo para probar meter comentarios en el medio.
 #
 #
 O * v1 v2
 #
+O / v1 v2
 E
 #

@@ -2,7 +2,7 @@
 # Si el primer número es 1, se hace la suma.
 # Si el primer número es 2, se hace la resta.
 # Si el primer número es 3, se hace la multiplicacion.
-# Si el primer número es 4, se hace el AND.
+# Si el primer número es 4, se hace el división.
 R v1
 R v2
 R v3
@@ -20,5 +20,5 @@ L 300
 O * v2 v3
 E
 L 400
-O & v2 v3
+O / v2 v3
 E
