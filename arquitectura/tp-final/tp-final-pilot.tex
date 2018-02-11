@@ -56,21 +56,15 @@
 %                         Start here
 % --------------------------------------------------------------
  
-\title{TP Final Arquitectura - Pilot}
-\author{Gonzalo Turconi, Ignacio Cattoni, Maximiliano Redigonda}
+\title{Trabajo Práctico Final - Pilot \\
+ \large Arquitectura del Computador
+}
 \date{Enero 8, 2018}
- 
+\author{Gonzalo Turconi - T-2820/7 \\
+        Ignacio Cattoni - C-6415/7 \\
+        Redigonda Maximiliano - R-4079/7}
 \maketitle
 
-\section{Integrantes}
-
-Gonzalo Turconi - T-2820/7
-
-\noindent
-Ignacio Cattoni - C-6415/7
-
-\noindent
-Redigonda Maximiliano - R-4079/7
 \section{Introducción}
 El objetivo de este proyecto es generar un compilador de lenguaje Pilot a lenguaje ensamblador ARM. \textbf{Pilot} es un lenguaje sencillo, del cual se provee una descripción precisa basada en las consignas del trabajo práctico.
 
@@ -108,7 +102,7 @@ Para realizar este proyecto:
 \item{Se realizó una investigación para estructurar y dividir el programa en varios archivos.}
 \item{Se realizó una investigación para documentar todos los archivos del proyecto.}
 \item{Se creó un sistema de lectura y discriminación de instrucciones (\texttt{instruction-decoder.c}).}
-\item{Se diseño una estructura de datos para mapear nombres de variables a direcciones de memoria (\texttt{storage.c}).}
+\item{Se diseñó una estructura de datos para mapear nombres de variables a direcciones de memoria (\texttt{storage.c}).}
 \item{Se creó un sistema para leer y evaluar expresiones (\texttt{expressions.c}).}
 \item{Se creó un sistema para imprimir por pantalla información útil durante el proceso de desarrollo (\texttt{debug.c}).}
 \item{Se creó un sistema por medio del cual se imprime el programa en ARM resultante (\texttt{writer.c}).}
@@ -145,12 +139,12 @@ Dichas instrucciones fueron las únicas con las que el compilador arrojó tal er
 Esto se pudo solucionar agregando \texttt{-march=armv8-a} como opción en la compilación, dando por finalizado el problema.
 
 \section{¿Cómo seguir?}
-El compilador soporta todas las características adicionales sugeridas en las consignas del trabajo. Además, también soporta comentarios, y posee una documentación realizada con \texttt{doxygen}.
+El compilador soporta todas las características adicionales sugeridas en las consignas del trabajo. Además, también soporta comentarios, y posee una documentación realizada con \texttt{Doxygen}.
 Además de estas extensiones, el proyecto puede continuar por medio de:
 \begin{itemize}
 \item{Agregar más tests}
 
-Un compilador es un programa particularmente difícil de probar. Agregar más tests puede probablemente dejar en evidencia fallas, y hacer el compilador más robusto a cambios que puedan provocar problemas en el futuro.
+Un compilador es un programa particularmente difícil de probar. Agregar más tests es una de las mejores opciones para dejar en evidencia fallas, y volver el compilador más robusto a cambios que puedan provocar problemas en el futuro.
 
 \item{Agregarle un \texttt{for} a Pilot}
 
@@ -182,10 +176,10 @@ De todos modos, se debe ser cuidadoso, debido a los saltos condicionales, etique
 \end{itemize}
 
 \section{Resultados}
-Hemos creado 20 programas en Pilot para probar la correctitud del compilador, y hemos obtenido resultados satisfactorios.
+Se han creado 20 programas en Pilot para probar la correctitud del compilador, con los que se han obtenido resultados satisfactorios.
 
 \noindent
-Entre los programas en Pilot más destacados que creamos se encuentran:
+Entre los programas en Pilot más destacados creados se encuentran:
 \begin{enumerate}
 \item{\texttt{test7.txt}: Calcula el n-ésimo número en la sucesión de Fibonacci.}
 \item{\texttt{test8.txt}: Invierte los dígitos de un número.}
