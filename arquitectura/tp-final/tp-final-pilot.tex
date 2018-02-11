@@ -104,19 +104,19 @@ Las variables son cadenas alfanuméricas que comienzan con una letra en minúscu
 \section{Proceso}
 Para realizar este proyecto:
 \begin{enumerate}
-\item{Acordamos una definición precisa del lenguaje Pilot.}
-\item{Realizamos una investigación para saber estructurar y dividir el programa en varios archivos.}
-\item{Realizamos una investigación para poder documentar todos los archivos del proyecto.}
-\item{Creamos un sistema de lectura y discriminación de instrucciones (\texttt{instruction-decoder.c}).}
-\item{Diseñamos una estructura de datos para mapear nombres de variables a direcciones de memoria (\texttt{storage.c}).}
-\item{Creamos un sistema para leer y evaluar expresiones (\texttt{expressions.c}).}
-\item{Creamos un sistema para imprimir por pantalla información útil en el proceso de desarrollo (\texttt{debug.c}).}
-\item{Creamos un sistema por medio del cual se imprime el programa en ARM resultante (\texttt{writer.c}).}
-\item{Desarrollamos 20 programas en Pilot con el fin de servir para probar la correctitud del compilador (\texttt{tests/*})}
+\item{Se acordó una definición precisa del lenguaje Pilot.}
+\item{Se realizó una investigación para estructurar y dividir el programa en varios archivos.}
+\item{Se realizó una investigación para documentar todos los archivos del proyecto.}
+\item{Se creó un sistema de lectura y discriminación de instrucciones (\texttt{instruction-decoder.c}).}
+\item{Se diseño una estructura de datos para mapear nombres de variables a direcciones de memoria (\texttt{storage.c}).}
+\item{Se creó un sistema para leer y evaluar expresiones (\texttt{expressions.c}).}
+\item{Se creó un sistema para imprimir por pantalla información útil durante el proceso de desarrollo (\texttt{debug.c}).}
+\item{Se creó un sistema por medio del cual se imprime el programa en ARM resultante (\texttt{writer.c}).}
+\item{Se desarrollaron 20 programas en Pilot con el fin de probar la correctitud del compilador (\texttt{tests/*}).}
 \end{enumerate}
 
 \section{Nota}
-Desde un principio, el objetivo del proyecto fue desarrollar un compilador que dado un código válido en Pilot, genere un código válido en lenguaje ensamblador ARM que lo represente. Como consecuencia de esto, si se recibe un código no válido en Pilot, el comportamiento del compilador es indefinido.
+Desde un principio, el objetivo del proyecto ha sido desarrollar un compilador que dado un código válido en Pilot, genere un código válido en lenguaje ensamblador ARM que lo represente. Como consecuencia de esto, si se recibe un código no válido en Pilot, el comportamiento del compilador es indefinido.
 
 \section{Problemas}
 En el proceso de desarrollo del proyecto, nos hemos enfrentado a numerosos desafíos, los cuales se indican a continuación:
