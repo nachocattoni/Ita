@@ -57,48 +57,43 @@ void evaluate_expression(Expression e, Bucket *B){
                 printf("eor r1, r%d, r%d\n", x, y);
                 break;
             }
-            case MENOR: {
-                puts("eor r1, r1");
-                printf("  cmp r%d, r%d\n", x, y);
-                printf("  movlt r1, #1\n");
-                break;
-            }
-            case MENOR_O_IGUAL: {
-                puts("eor r1, r1");
-                printf("  cmp r%d, r%d\n", x, y);
-                printf("  movls r1, #1\n");
-                break;
-            }
-            case IGUAL: {
-                puts("eor r1, r1");
-                printf("  cmp r%d, r%d\n", x, y);
-                printf("  moveq r1, #1\n");
-                break;
-            }
-            case MAYOR: {
-                puts("eor r1, r1");
-                printf("  cmp r%d, r%d\n", x, y);
-                printf("  movgt r1, #1\n");
-                break;
-            }
-            case MAYOR_O_IGUAL: {
-                puts("eor r1, r1");
-                printf("  cmp r%d, r%d\n", x, y);
-                printf("  movge r1, #1\n");
-                break;
-            }
-            case DISTINTO: {
-                puts("eor r1, r1");
-                printf("  cmp r%d, r%d\n", x, y);
-                printf("  movne r1, #1\n");
-                break;
-            }
             case NOT: {
                 puts("eor r1, r1");
                 printf("  cmp r%d, #0\n", x);
                 puts("  moveq r1, #1");
+                break;
             }
             case NONE: {}
+            default: { /** Para operaciones de comparación **/
+                puts("eor r1, r1");
+                printf("  cmp r%d, r%d\n", x, y);
+                switch(e.oper){
+                    case MENOR: {
+                        printf("  movlt r1, #1\n");
+                        break;
+                    }
+                    case MENOR_O_IGUAL: {
+                        printf("  movls r1, #1\n");
+                        break;
+                    }
+                    case IGUAL: {
+                        printf("  moveq r1, #1\n");
+                        break;
+                    }
+                    case MAYOR: {
+                        printf("  movgt r1, #1\n");
+                        break;
+                    }
+                    case MAYOR_O_IGUAL: {
+                        printf("  movge r1, #1\n");
+                        break;
+                    }
+                    case DISTINTO: {
+                        printf("  movne r1, #1\n");
+                        break;
+                    }
+                }
+            }
         }
     }
 }
