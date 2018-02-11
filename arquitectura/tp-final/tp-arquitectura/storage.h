@@ -1,3 +1,9 @@
+/**
+ * @file storage.h
+ * @brief Implementa Bucket, la estructura de datos para guardar
+ * los nombres de las variables y asignarles un número.
+ */
+ 
 #ifndef STORAGE_H
 #define STORAGE_H
 

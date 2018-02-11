@@ -1,3 +1,8 @@
+/**
+ * @file debug.h
+ * @brief Implementa utilidades para facilitar el desarrollo.
+ */
+
 #ifndef DEBUG_H
 #define DEBUG_H
 

@@ -1,3 +1,8 @@
+/**
+ * @file expressions.h
+ * @brief Implementa funciones para reconocer nombres de variables 
+ * válidos, y para leer expresiones y componentes.
+ */
 #ifndef EXPRESSIONS_H
 #define EXPRESSIONS_H
 

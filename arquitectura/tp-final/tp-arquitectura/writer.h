@@ -1,3 +1,8 @@
+/**
+ * @file writer.h
+ * @brief Consta de todas las funciones para imprimir el programa
+ * en ARM por pantalla.
+ */
 #ifndef WRITER_H
 #define WRITER_H
 
