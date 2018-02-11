@@ -1,0 +1,36 @@
+# Es un frío-caliente de números:
+# En v1 almacenás el número a adivinar
+# En v2 almacenás la cantidad de oportunidades
+# Ejecutás el código. Ingresas un número:
+# Si el número que ingresaste es menor al que tenés 
+# que adivinar, en la pantalla se imprime un 1 y 
+# tenés una oportunidad menos.
+# Si el número que ingresaste es mayor, se imprime 
+# un -1 y tenés una oportunidad menos.
+# Si el número ingresado es el que tenías que 
+# adivinar, se imprime un 0.
+# Y en todos los casos, si adivinás o te quedás 
+# sin oportunidades se imprime el número a adivinar 
+# y se finaliza la ejecución.
+v1 55
+v2 5
+L 1
+I == v2 0 2
+R v3
+I == v3 v1 3
+I < v3 v1 4
+I > v3 v1 5
+L 5
+O -1
+v2 - v2 1
+G 1
+L 4
+O 1
+v2 - v2 1
+G 1
+L 3
+O 0
+G 2
+L 2
+O v1
+E

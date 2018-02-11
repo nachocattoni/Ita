@@ -1,0 +1,14 @@
+# Recibe un número, e imprime 0 si es 0, 1 si es >0, o -1 si es <0.
+R v2
+I < v2 0 1
+I > v2 0 2
+v2 0
+G 3
+L 1
+v2 -1
+G 3
+L 2
+v2 1
+L 3
+O v2
+E
